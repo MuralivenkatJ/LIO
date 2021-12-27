@@ -1,0 +1,116 @@
+*{
+    padding: o;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+
+.grid-cont{
+            display: grid;
+            background:white;
+            align-items: center;
+            justify-items: center;
+            height: 100vh;
+}
+.grid{
+            display: grid;
+            grid-template-columns: 100px 75px 95px;
+            grid-template-rows: 100px 50px 50px 50px 50px 50px;
+            grid-template-areas: "a a a"
+                                 "b c c"
+                                 "d e e"
+                                 "f f g"
+                                 "h i j"
+                                 "k l l"
+                                 "n o p";
+                                 
+                                 outline: 3px solid;
+                                 border-radius: 15px;
+                                 
+}
+ .login-form{
+              background-color: white;
+              grid-area: a;
+              text-align: center;
+              font-size: 30px;
+              text-transform: uppercase;
+              text-shadow: 1px 1px;
+              
+              
+      
+}
+.username{
+            background: white;
+            grid-area: b;
+            text-align: center;
+ }
+ .username_input{
+            background: #ffffff;
+            grid-area: c;
+            
+ }        
+        
+
+    
+
+        .password{
+            background: white;
+            grid-area: d;
+            text-align: center;
+        }
+        .password_input{
+            background: white;
+            grid-area: e;
+            
+            
+        }
+        .empty1{
+            background: white;
+            grid-area: f;
+        }
+        .forgot_password{
+            background: white;
+            grid-area: g;
+            font-size: 12.5px;
+        }
+        .empty2{
+            background: white;
+            grid-area: h;
+        }
+        .login{
+            background: white;
+            grid-area: i;
+            font-size: 25px;
+            
+            
+        }
+        .empty3{
+            grid-area: j;
+            background: white;
+        }
+.empty4{
+    grid-area: k;
+    background: white;
+}
+.donothaveaccount{
+    grid-area: l;
+    background: white;
+}
+.empty5{
+    grid-area: m;
+    background: white;
+}
+.empty6{
+    grid-area: n;
+    background: white;
+}
+.sign-up{
+    grid-area: o;
+    background: white;
+    text-align: center;
+    font-size: 20px;
+}
+.empty7{
+    grid-area: p;
+    background: white;
+}

@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="{% static 'css/course.css' %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>Learn It Online</title>
+</head>
+<body>
+
+    <div class="page w3-border w3-round-xlarge" id="page">
+
+        <div class="sticky">
+
+            <div class="back" id="back">
+                <button class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity">back</button>
+            </div>
+            <div class="back-mobile">
+                <button class="w3-border w3-btn w3-hover-black with w3-hover-opacity">&#8592</button>
+            </div>
+            <img class="c-image" id="image" src="{% static 'images/java.jpg' %}" alt="Python">
+            <div id="video-cont">
+                <iframe type="text/html" src="https://www.youtube.com/embed/{{data.0.vidId}}?rel=0&modestbranding=1" frameborder="0" id="video" allow="autoplay;" allowfullscreen="true"></iframe>
+            </div>
+            <div id="title" title="{{data.0.title}}">{{data.0.title}}</div>
+            <div id="desc"><span id="more" onclick="more()">&gt;</span>{{data.0.desc}}</div>
+
+        </div>
+
+        <div class="content-container">
+
+            {% for dict,dura in z_data %}
+            <div class="content w3-border w3-hover-grey" data-vId="{{dict.vidId}}" onclick="play(this)">
+                <img src="{{dict.image}}" alt="thumbnail" class="t-image">
+                <!-- <a class="t-image" href="{{response.items.snippet.thumbnails.medium.url}}">click here</a> -->
+                <img src="{% static 'images/pending.png' %}" class="symbol" alt="symbol">
+                <div class="title" id="t-1">{{dict.title}}</div>
+                <div class="empty1"></div>
+                <div class="description">&#09;{{dict.desc}}</div>
+                <div class="duration">{{dura}}</div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    
+    <script src="{% static 'js/course.js' %}"></script>
+
+</body>
+</html>

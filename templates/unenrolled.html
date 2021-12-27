@@ -1,0 +1,67 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="{% static 'css/unenrolled.css' %}">
+
+    <title>Learn It Online</title>
+</head>
+<body>
+    
+    <div class="page w3-border w3-round-xlarge w3-margin">
+
+
+        <!-- BUTTON AND IMAGE -->
+        <div class="back">
+            <button class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity">back</button>
+        </div>
+        <div class="back-mobile">
+            <button class="w3-border w3-btn w3-hover-black with w3-hover-opacity">&#8592</button>
+        </div>
+        <img class="c-image" src="{% static 'images/java.jpg' %}" alt="Python">
+
+
+        <!-- TITLE AND DESCRIPTION -->
+        <div class="title">
+            Object Oriented Programming in Java
+        </div>
+        <div class="desc">
+            <div id="d-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, nam maxime? Dolore ad tenetur tempore voluptatem, error, quo in natus tempora dignissimos cupiditate voluptatum excepturi hic obcaecati molestiae quas delectus doloremque repellat rerum! Ipsam, consequatur quam. Unde, ex.
+            </div>
+            <div id="d-readmore" onclick="readMoreD()">Read more</div>
+        </div>
+
+        <!-- PROFESSOR DETAILS -->
+        <div class="professor">
+            <img class="p-image" src="{% static 'images/professor.png' %}" alt="Professor">
+            <div class="name">Professor</div>
+            <div id="quali1">
+                <div id="q-text1">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, nam maxime? Dolore ad tenetur tempore voluptatem, error, quo in natus tempora dignissimos cupiditate voluptatum excepturi hic obcaecati molestiae quas delectus doloremque repellat rerum! Ipsam, consequatur quam. Unde, ex.
+                </div>
+                <div id="q-readmore1" onclick="readMoreQ()">Read more</div>
+            </div>
+            <div id="quali2">
+                <div id="q-text2">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, nam maxime? Dolore ad tenetur tempore voluptatem, error, quo in natus tempora dignissimos cupiditate voluptatum excepturi hic obcaecati molestiae quas delectus doloremque repellat rerum! Ipsam, consequatur quam. Unde, ex.
+                </div>
+                <div id="q-readmore2" onclick="readLessQ()">Read less</div>
+            </div>
+        </div>
+
+        <!-- ENROLL BUTTON -->
+        <button class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity">Enroll</button>
+
+    </div>
+
+    <script src="{% static 'js/unenrolled.js' %}"></script>
+
+</body>
+</html>

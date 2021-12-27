@@ -1,0 +1,161 @@
+body{
+    background: rgb(228, 228, 228);
+
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+/* PAGE */
+.page{
+    width: 100%;
+    background: white;
+
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    box-shadow: 10px 10px 15px grey;
+    padding-bottom: 20px;
+    padding-top: 15px;
+}
+
+
+/* BUTTON */
+.back{
+    width: calc(100% - 20px);
+
+    margin-top: 5px;
+    margin-left: 20px;
+
+    display: grid;
+    justify-items: left;
+
+    display: none;
+}
+.back-mobile{
+    width: calc(100% - 20px);
+
+    margin-top: 5px;
+    margin-left: 20px;
+
+    display: grid;
+    justify-items: left;
+}
+.back-mobile button{
+    padding: 10px;
+    padding-top: 1px !important;
+    padding-left: 6px !important;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+@media only screen and (min-width: 500px){
+    .back-mobile{
+        display: none;
+    }
+    .back{
+        display: block;
+    }
+}
+
+
+/* IMAGE */
+.c-image{
+    border: 2px solid black;
+}
+.page img{
+    width: 100%;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+@media only screen and (min-width: 500px){
+    .page{
+        width: 70%;
+    }
+    .page img{
+        width: 70%;
+
+        margin-top: 10px;
+    }
+}
+
+/* TITLE AND DESCRIPTION */
+.title{
+    font-size: 26px;
+    font-weight: 500;
+
+    padding: 0 20px 0 20px;
+    margin: 10px 0 10px 0;
+}
+.desc{
+    padding: 0 20px 0 20px;
+    margin: 10px 0 10px 0;
+}
+#d-text{
+    height: 50px;
+    overflow: hidden;
+}
+#d-readmore{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* PROFESSOR DETAILS */
+.professor{
+    display: grid;
+    grid-template-columns: 150px auto;
+    grid-template-rows: 50px 100px auto;
+    grid-template-areas: "image name"
+                         "image quali1"
+                         "quali2 quali2";
+
+
+    margin: 20px;
+
+    align-items: center;
+    justify-items: center;
+}
+.professor img{
+    grid-area: image;
+    width: 150px;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+.name{
+    grid-area: name;
+    font-size: 26px;
+    font-weight: 500;
+
+    padding: 0 20px 0 20px;
+    margin: 10px 0 10px 0;
+}
+#quali1{
+    grid-area: quali1;
+    padding: 0 20px 0 20px;
+    margin: 10px 0 10px 0;
+}
+    #q-text1{
+        height: 50px;
+        overflow: hidden;
+    }
+    #q-readmore1{
+        cursor: pointer;
+        text-decoration: underline;
+    }
+#quali2{
+    grid-area: quali2;
+    display: none;
+    
+    padding: 0 20px 0 20px;
+    margin: 10px 0 10px 0;
+}
+    #q-readmore2{
+        cursor: pointer;
+        text-decoration: underline;
+    }

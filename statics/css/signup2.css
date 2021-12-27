@@ -1,0 +1,103 @@
+body{
+    margin: 0;
+}
+
+.grid-cont {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    width: 100%;
+    height: 100vh;
+    background: rgb(228, 228, 228);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 130px 100px 150px;
+    grid-template-rows: 90px 50px 50px 80px 50px 50px 50px 60px 60px;
+    grid-template-areas: "title title title"
+                         "name n-input n-input"
+                         "email e-input e-input"
+                         "qualification q-input q-input"
+                         "institute i-input i-input"
+                         "phone p-input p-input"
+                         "pass1 p1-input p1-input"
+                         "pass2 p2-input p2-input"
+                         "empty2 submit empty3";
+    
+    padding-bottom: 20px;
+
+    box-shadow: 10px 10px 15px grey;
+    background: white;
+
+    align-items: center;
+    justify-items: center;
+}
+
+.logo {
+    grid-area: title;
+    font-size: 24px;
+    font-weight: 500 !important;
+}
+
+.name {
+    grid-area: name;
+}
+.name_input {
+    grid-area: n-input;
+}
+
+.email {
+    grid-area: email;
+}
+.email_input {
+    grid-area: e-input;
+}
+
+.qual {
+    grid-area: qualification;
+}
+.qual_input {
+    grid-area: q-input;
+}
+
+.inst {
+    grid-area: institute;
+}
+.inst_input {
+    grid-area: i-input;
+}
+
+.phone {
+    grid-area: phone;
+}
+.ph_input {
+    grid-area: p-input;
+}
+
+
+.password {
+    grid-area: pass1;
+}
+.password_input {
+    grid-area: p1-input;
+}
+
+.password2 {
+    grid-area: pass2;
+    text-align: center;
+}
+.password_input2 {
+    grid-area: p2-input;
+}
+
+.empty2 {
+    grid-area: empty2;
+}
+.submit {
+    grid-area: submit;
+}
+.empty3 {
+    grid-area: empty3;
+}

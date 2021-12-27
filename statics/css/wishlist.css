@@ -1,0 +1,92 @@
+
+.item-a {
+    grid-area: image;
+    
+}
+.item-b {
+    grid-area: complition;
+  
+}
+.item-c {
+    grid-area: title;
+}
+.item-d {
+    grid-area: date;
+}
+.item-e{
+    grid-area: name;
+}
+.item-f{
+    grid-area: prize;
+}
+.item-g{
+    grid-area: enroll;
+}
+@media screen and (min-width:300px) and (max-width:400px){
+    .container {
+        margin-bottom: 50px;
+        display: grid;
+        max-height: 400px;
+        margin-left: 2%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        grid-template-columns: 200px 200px;
+        grid-template-rows: 40px 40px 40px 40px;
+        grid-template-areas: 
+          "image image"
+          "complition complition"
+          "title title"
+          "date name"
+          "prize enroll"
+          ;
+          row-gap: 10px;
+        column-gap: 2px;  
+    }
+}
+@media screen and (min-width:400px) and (max-width:500px){
+    .container {
+        display: grid;
+        margin:2% 10% auto 10%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        grid-template-columns: 150px 150px 100px;
+        grid-template-rows: 100px 80px 90px;
+        grid-template-areas: 
+          "image complition complition"
+          "prize title title"
+          "enroll date name"
+          ;
+          row-gap: 3px;
+        column-gap: 2px;  
+    }
+}
+@media screen and (min-width:500px) and (max-width:800px){
+    .container {
+        display: grid;
+        margin:2% 10% auto 10%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        grid-template-columns: 150px 250px 200px;
+        grid-template-rows: 100px 80px 90px;
+        grid-template-areas: 
+              "image complition complition"
+              "prize title title"
+              "enroll date name"
+              ;
+        row-gap: 3px;
+        column-gap: 2px;  
+    }
+}
+@media screen and (min-width:800px) {
+    .container {
+        display: grid;
+        margin:2% 10% auto 10%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        grid-template-columns: 250px 150px 450px;
+        grid-template-rows: 100px 80px 90px;
+        grid-template-areas: 
+          "image complition complition"
+          "prize title title"
+          "enroll date name"
+          ;
+          row-gap: 3px;
+        column-gap: 2px;  
+    }
+}

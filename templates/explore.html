@@ -1,0 +1,179 @@
+{% load static %}
+{% static "images" as imageURL %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="{% static 'images/logo1.png' %}" type = "image/x-icon">
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/explore.css' %}">
+
+    <title>Explore</title>
+</head>
+<body>
+    
+    <!-- in anchor tag we can add javascript in 'href' attribute 
+    eg :- <a href="javascript:console.log('attitude');">link</a>
+            in this example 'attitude' will be printed in console on clicking 'link'
+    In the same manner if we give <a href="javascrpit:void(0)">link</a>
+            [void(0) -> undefined] it will do nothing
+            this is done to prevent page from reloading or refreshing -->
+
+    <!-- MENU BAR -->
+    <div class="w3-top">
+        <div class="w3-bar w3-white">
+            <img src="{% static 'images/logo1.png' %}" alt="logo" width="40px" height="40px" class="w3-bar-item logo  w3-margin-left" title="LIO">
+            <a href="#" class="w3-bar-item w3-hide-small w3-black with w3-opacity bar-item w3-margin-left w3-border w3-btn" title="Explore">Explore</a>
+            <a href="#" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="My courses">My courses</a>
+            <a href="#" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="Wishlist">Wishlist</a>
+            <a href="#" class="w3-bar-item w3-hide-small w3-right logo"><img src="{% static 'images/logo1.png' %}" alt="logo" width="40px" height="40px" class="logo w3-margin-right"></a>
+            <a href="#" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-right w3-margin-right w3-border w3-btn" title="login">login</a>
+            <a href="javascript:void(0)" class="w3-bar-item w3-hide-large w3-hide-medium w3-right" onclick="collapseBar()">&#9776;</a>
+        </div>
+
+        <div id="collapse" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium w3-white">
+            <a href="#" class="w3-bar-item mobile-bar w3-black with w3-opacity bar-item w3-border w3-btn" title="Explore">Explore</a>
+            <a href="#" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="My courses">My courses</a>
+            <a href="#" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="Wishlist">Wishlist</a>
+            <a href="#" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="login">login</a>
+            <a href="#" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn"><img src="{% static 'images/logo1.png' %}" alt="logo" width="40px" height="40px" style="float: right;" class="logo w3-margin-right"></a>
+        </div>
+    </div>
+
+    <br><br><br><br>
+
+    <!-- SEARCH BAR -->
+    <div id="search" class="w3-panel">
+        <input type="text" placeholder="Search" id="search-input" class="w3-round w3-border">
+        <button id="search-btn" class="w3-border w3-round w3-hover-black with w3-hover-opacity w3-margin-left">Search</button>
+    </div>
+
+    <br>
+
+    <!-- SPECIALISATION -->
+    <div class="w3-panel scroll specialisation">
+        {% for s in specialisation %}
+        <button class="w3-btn w3-round w3-margin-left scroll-item w3-red">s</button>
+        {% endfor %}
+        <!-- <button class="w3-btn w3-round w3-margin-left scroll-item w3-purple">App development</button>
+        <button class="w3-btn w3-round w3-margin-left scroll-item w3-indigo">Programming languages</button>
+        <button class="w3-btn w3-round w3-margin-left scroll-item w3-blue">Data structures and algorithms</button>
+        <button class="w3-btn w3-round w3-margin-left scroll-item w3-deep-orange">Machine learning</button>
+        <button class="w3-btn w3-round w3-margin-left scroll-item w3-blue-gray">Artificial intellegence</button>
+        <button class="w3-btn w3-round w3-margin-left scroll-item w3-dark-gray">Internet of things</button> -->
+    </div>
+
+    <br>
+
+    <!-- TRENDING -->
+    <h2>Trending</h2>
+    <div class="w3-panel scroll">
+
+        {% for c in trending %}
+        <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{{imageURL}}/{{c.image}}" alt="python">
+                </div>
+                <div class="card-forWho">{{c.forwho}}</div>
+                <div class="card-empty1"></div>
+                <div class="card-duration">{{c.hour}}h {{c.minutes}}m</div>
+                <div class="card-title">{{c.title}}</div>
+                <div class="card-description">{{c.desc}}</div>
+                <div class="card-price">${{c.price}}</div>
+                <div class="card-empty2"></div>
+                <div class="card-rating">{{c.rating}}</div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <br>
+
+    <!-- MOST POPULAR -->
+    <h2>Most Popular</h2>
+    <div class="w3-panel scroll">
+
+        {% for c in most_popular %}
+        <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{{imageURL}}/{{c.image}}" alt="python">
+                </div>
+                <div class="card-forWho">{{c.forwho}}</div>
+                <div class="card-empty1"></div>
+                <div class="card-duration">{{c.hour}}h {{c.minutes}}m</div>
+                <div class="card-title">{{c.title}}</div>
+                <div class="card-description">{{c.desc}}</div>
+                <div class="card-price">${{c.price}}</div>
+                <div class="card-empty2"></div>
+                <div class="card-rating">{{c.rating}}</div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <br>
+
+    <!-- RECENTLY LAUNCHED -->
+    <h2>Recently Launched</h2>
+    <div class="w3-panel scroll">
+
+        {% for c in recently_launched %}
+        <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{{imageURL}}/{{c.image}}" alt="python">
+                </div>
+                <div class="card-forWho">{{c.forwho}}</div>
+                <div class="card-empty1"></div>
+                <div class="card-duration">{{c.hour}}h {{c.minutes}}m</div>
+                <div class="card-title">{{c.title}}</div>
+                <div class="card-description">{{c.desc}}</div>
+                <div class="card-price">${{c.price}}</div>
+                <div class="card-empty2"></div>
+                <div class="card-rating">{{c.rating}}</div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <br>
+
+    <!-- GUIDED PROJECT -->
+    <h2>Guided Project</h2>
+    <div class="w3-panel scroll">
+
+        {% for c in guided_project %}
+        <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{{imageURL}}/{{c.image}}" alt="python">
+                </div>
+                <div class="card-forWho">{{c.forwho}}</div>
+                <div class="card-empty1"></div>
+                <div class="card-duration">{{c.hour}}h {{c.minutes}}m</div>
+                <div class="card-title">{{c.title}}</div>
+                <div class="card-description">{{c.desc}}</div>
+                <div class="card-price">${{c.price}}</div>
+                <div class="card-empty2"></div>
+                <div class="card-rating">{{c.rating}}</div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <script src="{% static 'js/nav.js' %}"></script>
+
+</body>
+</html>

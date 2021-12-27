@@ -1,0 +1,88 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.grid-cont{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    height: 100vh;
+}
+.grid{
+    display: grid;
+    grid-template-columns: 100px 150px 150px;
+    grid-template-rows: 100px 50px 50px 50px 50px 50px 50px;
+    grid-template-areas: "a a a"
+                         "b c c"
+                         "d e e"
+                         "f g g"
+                         "h i i"
+                         "j k k"
+                         "l m n";
+    outline: 3px solid;
+    border-radius: 15px;
+    align-items: center;
+    justify-items: center;                    
+}
+.register-form{
+      background-color: white;
+      grid-area: a;
+      font-size: 30px;
+      text-transform: uppercase;
+      text-shadow: 1px 1px;
+      }
+
+.name{
+    grid-area: b;
+    background: white;
+}     
+.Name_input{
+    grid-area: c;
+    background: white;
+}
+.phone_no{
+    grid-area: d;
+    background: white;
+}
+.phone_no_input{
+    grid-area: e;
+    background: white;
+}
+.Email_id{
+    grid-area: f;
+    background: white;
+}
+.email_id_input{
+    grid-area: g;
+    background: white;
+}
+.password{
+    grid-area: h;
+    background: white;
+}
+.password_input{
+    grid-area: i;
+    background: white;
+}
+.c_password{
+    grid-area: j;
+    background: white;
+}
+.c_password_input{
+    grid-area: k;
+    background: white;
+}
+.empty1{
+    grid-area: l;
+    background: white;
+}
+.sign-in{
+    grid-area: m;
+    background: white;
+}
+.empty2{
+    grid-area: o;
+    background: white;
+}

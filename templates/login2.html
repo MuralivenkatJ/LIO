@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>professor</title>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="stylesheet" href="{% static 'css/login2.css' %}">
+</head>
+
+<body>
+    <div class="grid-cont">
+    
+        <form action="" method="PSOT" class="grid w3-border w3-round-large">
+
+            {% csrf_token %}
+
+            <div class="logo">Professor Login</div>
+            
+            <div class="username">Username :</div>
+            <div class="username_input">
+                 <input type="text">
+            </div>
+            <div class="password">Password :</div>
+            <div class="password_input">
+                    <input type="password">
+            </div>
+            <div class="empty1"></div>
+            <div class="forgot_password">
+             forgot password?
+            </div>
+            <div class="empty2"></div>
+            <div class="login">
+                <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity">Login</button></div>
+            <div class="empty3"></div>
+            <div class="create">Create New Account</div>
+        </form>
+    </div>
+
+</body>
+</html>
