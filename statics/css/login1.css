@@ -4,6 +4,9 @@
     font-family: sans-serif;
 }
 
+a{
+    text-decoration: none;
+}
 
 .grid-cont{
             display: grid;
@@ -11,11 +14,12 @@
             align-items: center;
             justify-items: center;
             height: 100vh;
+            width: 100%;
 }
 .grid{
             display: grid;
             grid-template-columns: 100px 75px 95px;
-            grid-template-rows: 100px 50px 50px 50px 50px 50px;
+            grid-template-rows: 100px 50px 30px 30px 50px 50px;
             grid-template-areas: "a a a"
                                  "b c c"
                                  "d e e"
@@ -24,9 +28,9 @@
                                  "k l l"
                                  "n o p";
                                  
-                                 outline: 3px solid;
-                                 border-radius: 15px;
-                                 
+            outline: 2px solid;
+            border-radius: 15px;
+            align-items: start;                    
 }
  .login-form{
               background-color: white;
@@ -35,7 +39,7 @@
               font-size: 30px;
               text-transform: uppercase;
               text-shadow: 1px 1px;
-              
+              border-radius: inherit;
               
       
 }
@@ -43,13 +47,17 @@
             background: white;
             grid-area: b;
             text-align: center;
+            font-size: 19px;
  }
  .username_input{
             background: #ffffff;
             grid-area: c;
             
+
  }        
-        
+  .username_input input{
+      width: 160px;
+  }      
 
     
 
@@ -57,12 +65,20 @@
             background: white;
             grid-area: d;
             text-align: center;
+            font-size: 19px;
         }
         .password_input{
             background: white;
             grid-area: e;
-            
-            
+            position: relative;
+        }
+        .password_input input{
+            width: 160px;
+        }
+        #eye{
+            position: absolute;
+            right: 15px;
+            top: 5px;
         }
         .empty1{
             background: white;
@@ -80,7 +96,9 @@
         .login{
             background: white;
             grid-area: i;
-            font-size: 25px;
+            font-size: 15px;
+            
+        
             
             
         }
@@ -95,6 +113,8 @@
 .donothaveaccount{
     grid-area: l;
     background: white;
+    font-size: 16px;
+    
 }
 .empty5{
     grid-area: m;
@@ -108,9 +128,33 @@
     grid-area: o;
     background: white;
     text-align: center;
-    font-size: 20px;
+    font-size: 15px;
+    
+    
 }
 .empty7{
     grid-area: p;
     background: white;
+}
+@media only screen and (max-width : 780px){
+    body{
+        width: 100%;
+    }
+    .grid-cont{
+        width: 100%;
+    }
+    .grid{
+        width: 90%;
+        border: 2px solid black;
+        display: grid;
+        grid-template-columns: 4fr 3fr 4fr;
+        grid-template-rows: 100px 50px 30px 20px 50px 50px;
+        grid-template-areas: "a a a"
+                             "b c c"
+                             "d e e"
+                             "f f g"
+                             "h i j"
+                             "k l l"
+                             "n o p";
+    }
 }

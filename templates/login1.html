@@ -9,36 +9,42 @@
     
     <title>Explore</title>
     <link rel="stylesheet"  href="{% static 'css/login1.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" title="" type=""/>
     
     </head>
    
  <body>
    
     <div class="grid-cont">
-        <form action="" method="POST" class="grid">
-
+        <form method="POST" class="grid w3-border w3-round-large">
+            
             {% csrf_token %}
-            
+
             <div class="login-form">LOGIN FORM</div>
-            
             <div class="username">username :</div>
             <div class="username_input"><input type="text" placeholder="Enter the username"></div>
-            
-           
             <div class="password">Password :</div>
-            <div class="password_input"><input type="password" placeholder="Enter the Password"></div>
+            <div class="password_input"><input type="password" id="pass-input" placeholder="Enter the Password">
+            <i class="fa fa-eye" id="eye"onclick="visible()"></i>
+            </div>
             <div class="empty1"></div>
-            <div class="forgot_password"><a href="#">forgot_password</a></div>
+            <div class="forgot_password"><a href="#">forgot_password</a> </div>
             <div class="empty2"></div>
-            <div class="login"><a href="#">LOGIN</a></div>
+            <div class="login">
+                <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity">LOGIN</button>
+            </div>
             <div class="empty3"></div>
             <div class="empty4"></div>
-            <div class="donothaveaccount">don't have account</div>
+            <div class="donothaveaccount"> <a href="{% url 'register1' %}">don't have account?</a> </div>
             <div class="empty6"></div>
-            <div class="sign-up"><a href="#">sign-up</a></div>
+            <div class="sign-up">
+                <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity">SIGN-UP</button>
+            </div>
             <div class="empty7"></div>
         </form>
     </div>
-    
-    </body>
+    <script type="text/javascript" src="{% static 'js/login1.js' %}" charset="utf-8">
+    </script>
+</body>
 </html>

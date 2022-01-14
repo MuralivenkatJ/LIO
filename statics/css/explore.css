@@ -142,3 +142,52 @@ div.scroll-item{
     margin-top: 5px;
     font-size: 12px;
 }
+
+/* #dropdown-btn-m{
+    float: right;
+} */
+
+/* #dropdown-cont{
+    border-radius: inherit;
+} */
+
+#dropdown1{
+    border-radius: 15% !important;
+}
+#dropdown2{
+    border-radius: inherit !important;
+}
+#dropdown3{
+    border-radius: inherit !important;
+}
+
+/* #dropdown1-m{
+    border-radius: 15% !important;
+
+    padding: 0%;
+}
+#dropdown2-m{
+    border-radius: inherit !important;
+}
+#dropdown2-m button{
+    text-align: right;
+}
+#dropdown3-m{
+    border-radius: inherit !important;
+
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    margin: 0%;
+
+    background-color: inherit;
+    color: inherit;
+    border: 0;
+}
+
+/* #collapse{
+    z-index: -1;
+} */
+/* #dropdown-cont-m{
+    z-index: 3 !important;
+}  */

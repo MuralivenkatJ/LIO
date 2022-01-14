@@ -1,3 +1,21 @@
+.s{
+    margin-top: 10%;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 250px 150px 450px;
+    grid-template-rows: 100px 80px 90px;
+    grid-template-areas:    "image complition complition"
+                            "prize title title"
+                            "enroll date name";
+
+    align-items: center;
+    justify-items: center;
+
+    cursor: pointer;
+}
+
 
 .item-a {
     grid-area: image;

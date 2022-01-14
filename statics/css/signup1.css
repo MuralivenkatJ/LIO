@@ -12,7 +12,7 @@
 }
 .grid{
     display: grid;
-    grid-template-columns: 100px 150px 150px;
+    grid-template-columns: 100px 120px 140px;
     grid-template-rows: 100px 50px 50px 50px 50px 50px 50px;
     grid-template-areas: "a a a"
                          "b c c"
@@ -24,7 +24,7 @@
     outline: 3px solid;
     border-radius: 15px;
     align-items: center;
-    justify-items: center;                    
+    justify-items: center; 
 }
 .register-form{
       background-color: white;
@@ -37,42 +37,75 @@
 .name{
     grid-area: b;
     background: white;
+    
 }     
 .Name_input{
     grid-area: c;
     background: white;
 }
+.Name_input input{
+    width: 220px;
+}
 .phone_no{
     grid-area: d;
     background: white;
+    
 }
 .phone_no_input{
     grid-area: e;
     background: white;
 }
+.phone_no_input input{
+    width: 220px;
+}
 .Email_id{
     grid-area: f;
     background: white;
+    
 }
 .email_id_input{
     grid-area: g;
     background: white;
 }
+.email_id_input input{
+    width: 220px;
+}
 .password{
     grid-area: h;
     background: white;
+
 }
 .password_input{
     grid-area: i;
     background: white;
+    position: relative;
+
+}
+.password_input input{
+    width: 220px;
+}
+#eye{
+    position: absolute;
+    right: 15px;
+    top: 5px;
 }
 .c_password{
     grid-area: j;
     background: white;
+    
 }
 .c_password_input{
     grid-area: k;
     background: white;
+    position: relative;
+}
+.c_password_input input{
+    width: 220px;
+}
+#eye1{
+    position: absolute;
+    right: 15px;
+    top: 5px;
 }
 .empty1{
     grid-area: l;

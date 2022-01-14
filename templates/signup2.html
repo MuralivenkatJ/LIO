@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-    <link rel="stylesheet" href="{% static 'csss/signup2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/signup2.css' %}">
 </head>
 
 <body>
@@ -50,17 +50,17 @@
 
             <div class="password">Password :</div>
             <div class="password_input">
-                <input type="password">
+                <input type="password" id="pass-input">
             </div>
 
             <div class="password2">Confirm Password :</div>
             <div class="password_input2">
-                <input type="password">
+                <input type="password" id="c_pass-input">
             </div>
 
             <div class="empty2"></div>
             <div class="submit">
-                <button class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity">Submit</button>
+                <button class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity" type="submit" onclick="validate()">Submit</button>
             </div>
             <div class="empty3"></div>
             

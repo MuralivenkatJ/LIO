@@ -29,19 +29,39 @@
     <div class="w3-top">
         <div class="w3-bar w3-white">
             <img src="{% static 'images/logo1.png' %}" alt="logo" width="40px" height="40px" class="w3-bar-item logo  w3-margin-left" title="LIO">
-            <a href="#" class="w3-bar-item w3-hide-small w3-black with w3-opacity bar-item w3-margin-left w3-border w3-btn" title="Explore">Explore</a>
+            <a href="{% url 'explore' %}" class="w3-bar-item w3-hide-small w3-black with w3-opacity bar-item w3-margin-left w3-border w3-btn" title="Explore">Explore</a>
             <a href="#" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="My courses">My courses</a>
-            <a href="#" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="Wishlist">Wishlist</a>
+            <a href="{% url 'wishlist' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="Wishlist">Wishlist</a>
             <a href="#" class="w3-bar-item w3-hide-small w3-right logo"><img src="{% static 'images/logo1.png' %}" alt="logo" width="40px" height="40px" class="logo w3-margin-right"></a>
-            <a href="#" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-right w3-margin-right w3-border w3-btn" title="login">login</a>
+            <div class="w3-bar-item w3-hide-small bar-item w3-right w3-margin-right" id="dropdown1" style="padding: 0%;">
+                <div class="w3-dropdown-click" id="dropdown2">
+                    <button onclick="dropdown()" class="w3-hover-black with w3-hover-opacity w3-border w3-btn" id="dropdown3">login</button>
+                    <div id="dropdown-cont" class="w3-dropdown-content w3-bar-block w3-border">
+                        <a href="{% url 'login1' %}" class="w3-bar-item w3-button" title="Student">Student</a>
+                        <a href="{% url 'login2' %}" class="w3-bar-item w3-button" title="Faculty">Faculty</a>
+                    </div>
+                </div>
+            </div>
+            
             <a href="javascript:void(0)" class="w3-bar-item w3-hide-large w3-hide-medium w3-right" onclick="collapseBar()">&#9776;</a>
         </div>
 
         <div id="collapse" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium w3-white">
-            <a href="#" class="w3-bar-item mobile-bar w3-black with w3-opacity bar-item w3-border w3-btn" title="Explore">Explore</a>
+            <a href="{% url 'explore' %}" class="w3-bar-item mobile-bar w3-black with w3-opacity bar-item w3-border w3-btn" title="Explore">Explore</a>
             <a href="#" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="My courses">My courses</a>
-            <a href="#" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="Wishlist">Wishlist</a>
-            <a href="#" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="login">login</a>
+            <a href="{% url 'wishlist' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="Wishlist">Wishlist</a>
+            <!-- <a href="{% url 'login1' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="login">login</a> -->
+
+            <div class="w3-bar-item bar-item w3-right" style="padding: 0%;">
+                <div class="w3-dropdown-click">
+                    <button onclick="dropdownm()" class="w3-hover-black with w3-hover-opacity w3-border w3-btn" id="dropdown-btn-m">login</button>
+                    <div id="dropdown-cont-m" class="w3-dropdown-content w3-bar-block w3-border">
+                        <a href="{% url 'login1' %}" class="w3-bar-item w3-button" title="Student">Student</a>
+                        <a href="{% url 'login2' %}" class="w3-bar-item w3-button" title="Faculty">Faculty</a>
+                    </div>
+                </div>
+            </div>
+
             <a href="#" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn"><img src="{% static 'images/logo1.png' %}" alt="logo" width="40px" height="40px" style="float: right;" class="logo w3-margin-right"></a>
         </div>
     </div>
@@ -75,7 +95,26 @@
     <h2>Trending</h2>
     <div class="w3-panel scroll">
 
+        <a href="{% url 'enrolled' playlistid='PLsyeobzWxl7r2ukVgTqIQcl-1T0C2mzau' %}">
+            <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{% static 'images/iot.jpg' %}" alt="python">
+                    </div>
+                    <div class="card-forWho">Beginners</div>
+                    <div class="card-empty1"></div>
+                    <div class="card-duration">5h 25m</div>
+                    <div class="card-title">Python for Beginners</div>
+                    <div class="card-description">This is a good course</div>
+                    <div class="card-price">&#8377;200</div>
+                    <div class="card-empty2"></div>
+                    <div class="card-rating">4.3</div>
+                </div>
+            </div>
+        </a>
+
         {% for c in trending %}
+        <a href="{% url 'c.cid' %}">
         <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
             <div class="card">
                 <div class="card-image">
@@ -86,11 +125,12 @@
                 <div class="card-duration">{{c.hour}}h {{c.minutes}}m</div>
                 <div class="card-title">{{c.title}}</div>
                 <div class="card-description">{{c.desc}}</div>
-                <div class="card-price">${{c.price}}</div>
+                <div class="card-price">&#8377;{{c.price}}</div>
                 <div class="card-empty2"></div>
                 <div class="card-rating">{{c.rating}}</div>
             </div>
         </div>
+        </a>
         {% endfor %}
 
     </div>
@@ -102,6 +142,7 @@
     <div class="w3-panel scroll">
 
         {% for c in most_popular %}
+        <a href="{% url 'c.cid' %}">
         <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
             <div class="card">
                 <div class="card-image">
@@ -117,6 +158,7 @@
                 <div class="card-rating">{{c.rating}}</div>
             </div>
         </div>
+        </a>
         {% endfor %}
 
     </div>
@@ -128,6 +170,7 @@
     <div class="w3-panel scroll">
 
         {% for c in recently_launched %}
+        <a href="{% url 'c.cid' %}">
         <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
             <div class="card">
                 <div class="card-image">
@@ -143,6 +186,7 @@
                 <div class="card-rating">{{c.rating}}</div>
             </div>
         </div>
+        </a>
         {% endfor %}
 
     </div>
@@ -154,6 +198,7 @@
     <div class="w3-panel scroll">
 
         {% for c in guided_project %}
+        <a href="{% url 'c.cid' %}">
         <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
             <div class="card">
                 <div class="card-image">
@@ -169,11 +214,13 @@
                 <div class="card-rating">{{c.rating}}</div>
             </div>
         </div>
+        </a>
         {% endfor %}
 
     </div>
 
     <script src="{% static 'js/nav.js' %}"></script>
+    <script src="{% static 'js/explore.js' %}"></script>
 
 </body>
 </html>

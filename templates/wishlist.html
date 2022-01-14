@@ -13,48 +13,94 @@
     <link rel="stylesheet" href="{% static 'css/wishlist.css' %}">
     <link rel="stylesheet" href="{% static 'css/explore.css' %}">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
 </head>
 <body>
+    
+    <!-- MENU BAR -->
     <div class="w3-top">
         <div class="w3-bar w3-white">
-            <img src="{% static 'images/logo.jpeg' %}" alt="logo" width="40px" height="40px" class="w3-bar-item logo  w3-margin-left">
-            <a href="#" class="w3-bar-item w3-hide-small w3-black with w3-opacity bar-item w3-margin-left w3-border w3-btn" title="Explore">Explore</a>
+            <img src="{% static 'images/logo1.png' %}" alt="logo" width="40px" height="40px" class="w3-bar-item logo  w3-margin-left" title="LIO">
+            <a href="{% url 'explore' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="Explore">Explore</a>
             <a href="#" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="My courses">My courses</a>
-            <a href="#" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="Wishlist">Wishlist</a>
+            <a href="{% url 'wishlist' %}" class="w3-bar-item w3-hide-small w3-black with w3-opacity bar-item w3-margin-left w3-border w3-btn" title="Wishlist">Wishlist</a>
             <a href="#" class="w3-bar-item w3-hide-small w3-right logo"><img src="{% static 'images/logo1.png' %}" alt="logo" width="40px" height="40px" class="logo w3-margin-right"></a>
-            <a href="#" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-right w3-margin-right w3-border w3-btn" title="login">login</a>
+            <div class="w3-bar-item w3-hide-small bar-item w3-right w3-margin-right" id="dropdown1" style="padding: 0%;">
+                <div class="w3-dropdown-click" id="dropdown2">
+                    <button onclick="dropdown()" class="w3-hover-black with w3-hover-opacity w3-border w3-btn" id="dropdown3">login</button>
+                    <div id="dropdown-cont" class="w3-dropdown-content w3-bar-block w3-border">
+                        <a href="{% url 'login1' %}" class="w3-bar-item w3-button" title="Student">Student</a>
+                        <a href="{% url 'login2' %}" class="w3-bar-item w3-button" title="Faculty">Faculty</a>
+                    </div>
+                </div>
+            </div>
+            
             <a href="javascript:void(0)" class="w3-bar-item w3-hide-large w3-hide-medium w3-right" onclick="collapseBar()">&#9776;</a>
         </div>
- <div class="s">
-    <div class="container">
-        <div class="item-a"><img src="" alt="image comes here"> </div>
-        
-        <div class="item-b"><div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
-          </div></div>
-        <div class="item-c"><h3>Python For Begginers</h3> </div>
-        <div class="item-d"><p>date:21/05/2021</p> </div>
-        <div class="item-e"><p>navin reddy</p></div>
-        <div class="item-f"><h3>150IRS</h3></div>
-        <div class="item-g"><button type="button" class="btn btn-success">ENROLL</button></div>
 
-    </div>
-    <div class="container">
-        <div class="item-a"><img src="" alt="image comes here"> </div>
-        
-        <div class="item-b"><div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
-          </div></div>
-        <div class="item-c"><h3>Python For Begginers</h3> </div>
-        <div class="item-d"><p>date:21/05/2021</p> </div>
-        <div class="item-e"><p>navin reddy</p></div>
-        <div class="item-f"><h3>150IRS</h3></div>
-        <div class="item-g"><button type="button" class="btn btn-success">ENROLL</button></div>
+        <div id="collapse" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium w3-white">
+            <a href="{% url 'explore' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="Explore">Explore</a>
+            <a href="#" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="My courses">My courses</a>
+            <a href="{% url 'wishlist' %}" class="w3-bar-item mobile-bar w3-black with w3-opacity bar-item w3-border w3-btn" title="Wishlist">Wishlist</a>
+            <!-- <a href="{% url 'login1' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="login">login</a> -->
 
+            <div class="w3-bar-item bar-item w3-right" style="padding: 0%;">
+                <div class="w3-dropdown-click">
+                    <button onclick="dropdownm()" class="w3-hover-black with w3-hover-opacity w3-border w3-btn" id="dropdown-btn-m">login</button>
+                    <div id="dropdown-cont-m" class="w3-dropdown-content w3-bar-block w3-border">
+                        <a href="{% url 'login1' %}" class="w3-bar-item w3-button" title="Student">Student</a>
+                        <a href="{% url 'login2' %}" class="w3-bar-item w3-button" title="Faculty">Faculty</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn"><img src="{% static 'images/logo1.png' %}" alt="logo" width="40px" height="40px" style="float: right;" class="logo w3-margin-right"></a>
+        </div>
     </div>
+
+    <div class="s">
+
+        <div class="container w3-round-large w3-hover-shadow">
+            <div class="item-a">
+                <img src="" alt="image comes here">
+            </div>
+        
+            <div class="item-b">
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%
+                    </div>
+                </div>
+            </div>
+            <div class="item-c"><h3>Python For Begginers</h3> </div>
+            <div class="item-d"><p>date:21/05/2021</p> </div>
+            <div class="item-e"><p>navin reddy</p></div>
+            <div class="item-f"><h3>150IRS</h3></div>
+            <div class="item-g">
+                <button type="button" class="btn btn-success">ENROLL</button>
+            </div>
+        </div>
+
+        <div class="container w3-round-large w3-hover-shadow">
+            <div class="item-a">
+                <img src="" alt="image comes here">
+            </div>
+        
+            <div class="item-b">
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+                </div>
+            </div>
+            <div class="item-c"><h3>Python For Begginers</h3> </div>
+            <div class="item-d"><p>date:21/05/2021</p> </div>
+            <div class="item-e"><p>navin reddy</p></div>
+            <div class="item-f"><h3>150IRS</h3></div>
+            <div class="item-g">
+                <button type="button" class="btn btn-success">ENROLL</button>
+            </div>
+        </div>
    
-</div>
+    </div>
+
+    <script src="{% static 'js/explore.js' %}"></script>
 </body>
 </html>

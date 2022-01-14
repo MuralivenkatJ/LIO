@@ -6,29 +6,48 @@
     
     <title>Register</title>
     <link rel="stylesheet" href="{% static 'css/signup1.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" title="" type=""/>
 </head>
 <body>
     <div class="grid-cont">
-        <form action="" method="POST" class="grid">
+        <form action="" method="POST" class="grid w3-border w3-round-large">
 
             {% csrf_token %}
             
             <div class="register-form">Register Form</div>
             
             <div class="name">Name :</div>
-            <div class="Name_input"><input type="text" placeholder="Enter the name"></div>
+            <div class="Name_input">
+                <input type="text" placeholder="Enter the name">
+            </div>
             <div class="phone_no">Phone No :</div>
-            <div class="phone_no_input"><input type="text" placeholder="Enter the phone no"></div>
+            <div class="phone_no_input">
+                <input type="text" placeholder="Enter the phone no">
+            </div>
             <div class="Email_id">Email_id :</div>
-            <div class="email_id_input"><input type="text" placeholder="Enter the email_id"></div>
+            <div class="email_id_input">
+                <input type="text" placeholder="Enter the email_id">
+            </div>
             <div class="password">Password :</div>
-            <div class="password_input"><input type="password" placeholder="Enter the Password"></div>
+            <div class="password_input">
+                <input type="password" placeholder="Enter the Password" id="pass-input">
+                <i class="fa fa-eye" id="eye" onclick="visible()"></i>
+            </div>
             <div class="c_password">c_password :</div>
-            <div class="c_password_input"><input type="c_password" placeholder="Enter the c_password"></div>
+            <div class="c_password_input">
+                <input type="password" placeholder="Enter the c_password" id="c_pass-input">
+                <i class="fa fa-eye" id="eye1" onclick="visible1()"></i>
+            </div>
             <div class="empty1"></div>
-            <div class="sign-in"><a href="#">sign-in </div>
+            <div class="sign-in">
+                <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity" type="submit" onclick="validate()">SIGN-IN</button>
             <div class="empty2"></div>
         </form>
     </div>
+
+    <script type="text/javascript" src="{% static 'js/signup1.js' %}" charset="utf-8">
+    </script>
+
 </body>
 </html>
