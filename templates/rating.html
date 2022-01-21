@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rating</title>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="stylesheet" href="{% static 'css/rating.css' ">
+</head>
+
+<body>
+    <div class="grid-cont">
+    
+        <form method="post" action="{% url 'reviews' c_id %}" class="grid w3-border w3-round-large">
+
+            {% csrf_token %}
+
+            <div class="rat">Rating</div>
+            
+            <div class="Rating">Rating :</div>
+            <div class="Rating_input">
+                 <input type="number" placeholder=" out of 5 " name="rating">
+            </div>
+            <div class="desc">Description :</div>
+            <div class="desc_input">
+                <textarea name="desc"></textarea>
+            </div>
+            <div class="empty1"></div>
+            <div class="empt">
+            
+            </div>
+            <div class="empty2"></div>
+            <div class="sub">
+                <button type="submit" class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity">submit</button>
+            </div>
+            <div class="empty3"></div>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -21,10 +21,10 @@
         <div class="sticky">
 
             <div class="back" id="back">
-                <button class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity">back</button>
+                <a href="{% url 'mycourses' %}" class="w3-hover-black with w3-hover-opacity w3-border w3-btn" title="My courses">back</a>
             </div>
             <div class="back-mobile">
-                <button class="w3-border w3-btn w3-hover-black with w3-hover-opacity">&#8592</button>
+                <a href="{% url 'mycourses' %}" class="w3-hover-black with w3-hover-opacity w3-border w3-btn" title="My courses">&#8592</a>
             </div>
             <img class="c-image" id="image" src="{% static 'images/java.jpg' %}" alt="Python">
             <div id="video-cont">

@@ -7,9 +7,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>signup</title>
+    <title>Faculty Register</title>
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" title="" type=""/>
 
     <link rel="stylesheet" href="{% static 'css/signup2.css' %}">
 </head>
@@ -17,57 +18,76 @@
 <body>
      <div class="grid-cont">
     
-        <form action="" method="POST" class="grid w3-border w3-round-xlarge">
+        <form action="" method="POST" class="grid w3-border w3-round-xlarge" enctype="multipart/form-data">
 
             {% csrf_token %}
 
-            <div class="logo">Sign Up</div>
+            <div class="logo">Faculty Register</div>
 
             <div class="name">Name :</div>
             <div class="name_input">
-                <input type="text">
+                <input type="text" name="f_name">
              </div>
 
             <div class="email">Email :</div>
             <div class="email_input">
-                <input type="text" placeholder="email123@gmail.com">
+                <input type="text" placeholder="email123@gmail.com" name="email">
             </div>
 
             <div class="qual">Qualification :</div>
             <div class="qual_input">
-                <textarea></textarea>
+                <input type="text" name="qualification">
             </div>
 
             <div class="inst">Institute Name :</div>
             <div class="inst_input">
-               <input type="text">
+                <select name="i_id" id="">
+                    {% for i in institute %}
+                        <option value="{{i.i_id}}">{{i.i_name}}</option>
+                    {% endfor %}
+                </select>
             </div>
-       
+            
+            <div class="image">Image :</div>
+            <div class="image_input">
+                <input type="file" name="image">
+            </div>
+
             <div class="phone">Phone no :</div>
             <div class="ph_input">
-                <input type="number">
+                <input type="text" name="phone">
             </div>
 
             <div class="password">Password :</div>
             <div class="password_input">
-                <input type="password" id="pass-input">
+                <input type="password" id="pass-input" name="password">
                 <i class="fa fa-eye" id="eye" onclick="visible()"></i>
             </div>
 
             <div class="password2">Confirm Password :</div>
             <div class="password_input2">
-                <input type="password" id="c_pass-input">
+                <input type="password" id="c_pass-input" name="cpassword">
                 <i class="fa fa-eye" id="eye1" onclick="visible1()"></i>
             </div>
 
             <div class="empty2"></div>
             <div class="submit">
-                <button class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity" type="submit" onclick="validate()">Submit</button>
+                <button class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity" type="submit" >Submit</button>
             </div>
             <div class="empty3"></div>
             
         </form>
     </div>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+	            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <script src="{% static 'js/signup2.js' %}"></script>
 
 </body>
 </html>

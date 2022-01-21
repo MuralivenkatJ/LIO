@@ -1,10 +1,5 @@
 body{
     background: rgb(228, 228, 228);
-
-    margin: 0;
-    padding: 0;
-
-    width: 100%;
     display: grid;
     align-items: center;
     justify-items: center;
@@ -110,7 +105,7 @@ body{
 .professor{
     display: grid;
     grid-template-columns: 150px auto;
-    grid-template-rows: 50px 100px auto;
+    grid-template-rows: 50px 120px auto;
     grid-template-areas: "image name"
                          "image quali1"
                          "quali2 quali2";
@@ -159,3 +154,239 @@ body{
         cursor: pointer;
         text-decoration: underline;
     }
+
+.container{
+    width: 90%;
+    display: grid;
+    grid-template-columns: 160px auto;
+    grid-template-rows: 50px 50px 25px 25px;
+    grid-template-areas: "Image Title"
+                         "Image Title"
+                         "Image Mail"
+                         "Image link";
+    /* box-shadow: 0 4px 8px 0 #00000066; */
+
+    align-items: center;
+    justify-items: center;
+}
+
+.Title{
+    grid-area: Title;
+    font-size: large;
+
+    overflow-wrap: break-word;
+    hyphens: manual;
+    white-space: pre-wrap;
+
+    height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+.mail{
+    grid-area: Mail;
+}
+.Image{
+    grid-area: Image;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+.Image img{
+    max-width: 150px;
+    max-height: 150px;
+}
+.u-link{
+    grid-area: link;
+}
+/* @media screen and (min-width: 100px) and (max-width:1000px){
+    .container{
+        width: 290px;
+        
+        display: grid;
+        grid-template-areas: "Image"
+                             "Title"
+                             "Mail"
+                             "link";
+        grid-template-columns: 150px;
+        grid-template-rows: 100px 80px 80px 80px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+       
+   
+    }
+    .Image{
+        
+        
+        grid-area: Image;
+    }
+    .Title{
+        margin-left: 5%;
+        grid-area: Title;
+    }
+    .mail{
+        margin-left: 5%;
+        grid-area: Mail;
+    }
+    .u-link{
+        margin-left: 5%;
+        grid-area: link;
+    }
+} */
+
+/* @media screen and (min-width:700px) and (max-width: 1000px){
+    .container{
+    width: 480px;
+    
+    display: grid;
+    grid-template-areas: "Image Title"
+                         "Image Mail"
+                         "Image link";
+    grid-template-columns: 250px 150px;
+    grid-template-rows: 80px 80px 80px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+    
+}
+.Image{
+    grid-area: Image;
+}
+.Title{
+    grid-area: Title;
+}
+.mail{
+    grid-area: Mail;
+}
+.u-link{
+    grid-area: link;
+}
+} */
+/* @media screen and (min-width:1000px) and (max-width: 1300px){
+    .container{
+    width: 700px;
+    
+    display: grid;
+    grid-template-areas: "Image Title"
+                         "Image Mail"
+                         "Image link";
+    grid-template-columns: 300px 150px;
+    grid-template-rows: 80px 80px 80px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+    column-gap: 2px;
+}
+.Image{
+    
+    grid-area: Image;
+}
+.Title{
+    grid-area: Title;
+}
+.mail{
+    grid-area: Mail;
+}
+.u-link{
+    grid-area: link;
+}
+} */
+/* @media screen and (min-width:1300px){
+    .container{
+    width: 900px;
+    
+    display: grid;
+    grid-template-areas: "Image Title"
+                         "Image Mail"
+                         "Image link";
+    grid-template-columns: 400px 200px;
+    grid-template-rows: 80px 80px 80px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+    column-gap: 20px;
+}
+.Image{
+    grid-area: Image;
+}
+.Title{
+    grid-area: Title;
+}
+.mail{
+    grid-area: Mail;
+}
+.u-link{
+    grid-area: link;
+}
+} */
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+.container2{
+    margin: 4%;
+    
+    display: grid;
+    grid-template-columns: 3fr 5fr 2fr;
+    grid-template-areas: 50px 100px;
+    grid-template-areas: "Img name rating"
+                         "Img review review";
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+}
+.Image2{
+    grid-area: Img;
+}
+.Student{
+    margin-left: 2%;
+    grid-area: name;
+}
+.Rating{
+    grid-area: rating;
+}
+.review{
+    margin-left: 2%;
+    grid-area: review;
+}
+@media screen  and (min-width:750px) {
+    /* .container2{
+        margin: 4%;
+        display: grid;
+        grid-template-areas: "Img name rating"
+                             "Img review review";
+        grid-template-columns: 50% 20%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+    } */
+    .Image2{
+        grid-area: Img;
+    }
+    .Student{
+        grid-area: name;
+    }
+    .Rating{
+        grid-area: rating;
+    }
+    .review{
+        grid-area: review;
+    }
+}
+
+.container3{
+    display: grid;
+    grid-template-areas: "enroll wishlist";
+}
+.con1{
+    grid-area: enroll;
+}
+.con2{
+    grid-area: wishlist;
+}

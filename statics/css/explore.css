@@ -1,3 +1,8 @@
+body{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 /* Search */
 
 #search{
@@ -13,7 +18,7 @@
     margin-left: 5%;
     width: 20%;
     height: 30px;
-    padding: 3px 0;
+    padding: 3px 15px;
 
     background-color: inherit;
     cursor: pointer;
@@ -26,7 +31,7 @@
 
 div.scroll{
     overflow-x: scroll;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
     white-space: nowrap;
     padding-bottom: 10px;
 }
@@ -35,11 +40,12 @@ div.scroll-item{
     display: inline-block;
 }
 
-/* ::-webkit-scrollbar{
-    width: 5px;
+::-webkit-scrollbar{
+    width: 10px;
+    height: 10px;
 }
 ::-webkit-scrollbar-track{
-    box-shadow: inset 0 0 3px grey;
+    background: transparent;
     border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb{
@@ -47,10 +53,14 @@ div.scroll-item{
     border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover{
-    background: darkgray;
-} */
+    background: darkgrey;
+}
 
 /* TRENDING */
+
+.w3-panel{
+    padding: 0%;
+}
 
 .card{
     display: grid;

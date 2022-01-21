@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Course</title>
+    <link rel="stylesheet"  href="{% static 'css/upload.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" title="" type=""/>
+    
+</head>
+<body>
+    <div class="grid-cont">
+    <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data" class="grid">
+
+        {% csrf_token %}
+
+        <div class="professor">Upload Course</div>
+        <div class="title">Title : </div>
+        <div class="titles-input">
+            <input type="text" name="c_name" required>
+        </div>
+        <div class="image">image : </div>
+        <div class='image-input'>
+            <input type="file" id="upload" name="image" required>
+        </div>
+        <div class="specialization">specialization : </div>
+        <div class="specialization-input">
+            <input type="text" name="specialization" required>
+        </div>
+        <div class="forwho">Forwho : </div>
+        <div class="forwho-input">
+            <select name="level">
+                <option value="Beginners">Beginners</option>
+                <option value="Intermdiate">Intermdiate</option>
+                <option value="Advanced">Advanced</option>
+            </select>
+        </div>
+        <div class="playlist">Playlist_id : </div>
+        <div class="playlist-input">
+            <input type="text" name="playlistid" required>
+        </div>
+        <div class="guidedproject">Type : </div>
+        <div class="guidedproject-input">
+            <input type="radio" name="guided_project" value="False">Course
+            &nbsp;
+            <input type="radio" name="guided_project" value="True">Guided Project
+        </div>
+        <div class="descrption">descrption : </div>
+        <div class="descrption-input">
+            <input type="text" name="description" required>
+        </div>
+        <div class="skillacquired">skill Acquired : </div>
+       <div class="chooseaskillacquired-input"> 
+           <input type="text" multiple name="skills" required>
+       </div>
+             
+        <div class="price">Price : </div>
+        <div class="price-input">
+            <input type="number" name="price">
+        </div>
+        <div class="empty"></div>
+        <div class="upload"> 
+            <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity" type="submit">UPLOAD</button>
+        </div>
+        <div class="empty1"></div>
+    </form>
+    </div>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+	            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+</body>
+</html>

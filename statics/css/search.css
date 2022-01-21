@@ -1,0 +1,152 @@
+div.scroll{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-bottom: 10px;
+}
+
+div.scroll-item{
+    display: inline-block;
+}
+
+.back{
+    width: calc(100% - 20px);
+
+    margin-top: 5px;
+    margin-left: 10px;
+
+    display: grid;
+    justify-items: left;
+
+    display: none;
+}
+.back-mobile{
+    width: calc(100% - 20px);
+
+    margin-top: 5px;
+    margin-left: 10px;
+
+    display: grid;
+    justify-items: left;
+}
+.back-mobile a{
+    padding: 10px;
+    padding-top: 1px !important;
+    padding-left: 6px !important;
+    width: 30px;
+    height: 30px;
+    border-radius: 50% !important;
+}
+
+@media only screen and (min-width: 700px)
+{
+    /*  for laptop view 
+    back button
+    size of page, image and video   */
+    .back-mobile{
+        display: none;
+    }
+    .back{
+        display: block;
+    }
+}
+
+
+.container{
+}
+
+.scroll-item{
+    margin-bottom: 20px;
+}
+
+
+.card{
+    display: grid;
+    grid-template-columns: 75px 100px 75px;
+    grid-template-rows: 140px 25px 50px 75px 25px;
+    grid-template-areas: "image image image"
+                         "forWho empty1 duration" 
+                         "title title title" 
+                         "description description description"
+                         "price empty2 rating";
+
+    justify-items: center;
+    align-items: center;
+
+    padding: 5px;
+}
+.card-image{
+    grid-area: image;
+}
+.card-image img{
+    width: 250px;
+    height: 140px;
+}
+
+.card-forWho{
+    grid-area: forWho;
+    margin-top: 5px;
+    font-size: 12px;
+}
+.card-empty1{
+    grid-area: empty1;
+    margin-top: 5px;
+    font-size: 12px;
+}
+.card-duration{
+    grid-area: duration;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.card-title{
+    grid-area: title;
+    margin-top: 5px;
+
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    overflow-wrap: break-word;
+    hyphens: manual;
+    white-space: pre-wrap;
+
+    width: 250px;
+    height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    font-size: 18px;
+}
+
+.card-description{
+    grid-area: description;
+    margin-top: 5px;
+
+    overflow-wrap: break-word;
+    hyphens: manual;
+    white-space: pre-wrap;
+
+    width: 250px;
+    height: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    font-size: 12px;
+}
+
+.card-price{
+    grid-area: price;
+    margin-top: 5px;
+    font-size: 12px;
+}
+.card-empty2{
+    grid-area: empty2;
+    margin-top: 5px;
+    font-size: 12px;
+}
+.card-rating{
+    grid-area: rating;
+    margin-top: 5px;
+    font-size: 12px;
+}

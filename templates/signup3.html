@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Institute Register</title>
+    <link rel="stylesheet" href="{% static 'css/signup3.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" title="" type=""/>
+</head>
+<body>
+    <div class="grid-cont">
+        <form action="" method="post" class="grid w3-border w3-round-large"  enctype="multipart/form-data">
+            
+            {% csrf_token %}
+
+            <div class="register-form">Institute Register</div>
+            
+            <div class="name">Istitute :</div>
+            <div class="Name_input">
+                <input type="text" placeholder="Enter the Institute name" name="i_name">
+            </div>
+
+            <div class="address">Address :</div>
+            <div class="address_input">
+                <input type="text" placeholder="Enter the institute address" name="address">
+            </div>
+
+            <div class="image">Image :</div>
+            <div class="image_input">
+                <input type="file"  name="image">
+            </div>
+
+            <div class="Email">Email :</div>
+            <div class="email_id_input">
+                <input type="text"placeholder="Enter the email" name="email">
+            </div>
+
+            <div class="website">website :</div>
+            <div class="website_input">
+                <input type="url" placeholder="Enter the website" name="website">
+            </div>
+            <div class="empty1"></div>
+            <div class="sign-in">
+                <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity" type="submit">SIGN-IN</button>
+            </div>
+            <div class="empty2"></div>
+        </form>
+    </div>
+    
+</body>
+</html>

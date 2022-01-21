@@ -13,11 +13,12 @@
 .grid{
     display: grid;
     grid-template-columns: 100px 120px 140px;
-    grid-template-rows: 100px 50px 50px 50px 50px 50px 50px;
+    grid-template-rows: 100px 50px 50px 50px 50px 50px 50px 50px;
     grid-template-areas: "a a a"
                          "b c c"
                          "d e e"
                          "f g g"
+                         "x y y"
                          "h i i"
                          "j k k"
                          "l m n";
@@ -70,6 +71,24 @@
 .email_id_input input{
     width: 220px;
 }
+
+.Institute{
+    grid-area: x;
+}
+.institute_input{
+    grid-area: y;
+
+    display: grid;
+    align-items: center;
+}
+.institute_input select{
+    width: 220px;
+    height: auto;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .password{
     grid-area: h;
     background: white;

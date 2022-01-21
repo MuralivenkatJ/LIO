@@ -7,9 +7,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>professor</title>
+    <title>Faculty login</title>
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" title="" type=""/>
 
     <link rel="stylesheet" href="{% static 'css/login2.css' %}">
 </head>
@@ -17,31 +18,42 @@
 <body>
     <div class="grid-cont">
     
-        <form action="" method="PSOT" class="grid w3-border w3-round-large">
+        <form action="{% url 'login2' %}" method="POST" class="grid w3-border w3-round-large">
 
             {% csrf_token %}
 
-            <div class="logo">Professor Login</div>
+            <div class="logo">Faculty Login</div>
             
-            <div class="username">Username :</div>
+            <div class="username">email :</div>
             <div class="username_input">
-                 <input type="text">
+                 <input type="email" name="email">
             </div>
             <div class="password">Password :</div>
             <div class="password_input">
-                    <input type="password">
+                <input type="password" name="password" id="pass-input">
+                <i class="fa fa-eye" id="eye" onclick="visible()"></i>
             </div>
             <div class="empty1"></div>
             <div class="forgot_password">
-             forgot password?
+             <!-- forgot password? -->
             </div>
             <div class="empty2"></div>
             <div class="login">
-                <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity">Login</button></div>
+                <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity" type="submit">Login</button></div>
             <div class="empty3"></div>
             <a class="create" href="{% url 'register2' %}">Create New Account</a>
         </form>
     </div>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+	            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <script src="{% static 'js/login2.js' %}"></script>
 
 </body>
 </html>

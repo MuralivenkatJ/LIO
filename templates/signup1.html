@@ -4,47 +4,64 @@
 <html lang="en">
 <head>
     
-    <title>Register</title>
+    <title>Student Register</title>
     <link rel="stylesheet" href="{% static 'css/signup1.css' %}">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" title="" type=""/>
 </head>
 <body>
     <div class="grid-cont">
-        <form action="" method="POST" class="grid w3-border w3-round-large">
+        <form action="{% url 'register1' %}" method="POST" class="grid w3-border w3-round-large">
 
             {% csrf_token %}
             
-            <div class="register-form">Register Form</div>
+            <div class="register-form">Student Register</div>
             
             <div class="name">Name :</div>
             <div class="Name_input">
-                <input type="text" placeholder="Enter the name">
+                <input type="text" placeholder="Enter the name" name="s_name" required>
             </div>
             <div class="phone_no">Phone No :</div>
             <div class="phone_no_input">
-                <input type="text" placeholder="Enter the phone no">
+                <input type="text" placeholder="Enter the phone no" name="phone" required>
             </div>
             <div class="Email_id">Email_id :</div>
             <div class="email_id_input">
-                <input type="text" placeholder="Enter the email_id">
+                <input type="email" placeholder="Enter the email_id"
+                name="email" required>
+            </div>
+            <div class="Institute">Institute :</div>
+            <div class="institute_input">
+                <select name="i_id" id="">
+                    {% for i in institute %}
+                        <option value="{{i.i_id}}">{{i.i_name}}</option>
+                    {% endfor %}
+                </select>
             </div>
             <div class="password">Password :</div>
             <div class="password_input">
-                <input type="password" placeholder="Enter the Password" id="pass-input">
+                <input type="password" placeholder="Enter the Password" id="pass-input" name="password">
                 <i class="fa fa-eye" id="eye" onclick="visible()"></i>
             </div>
             <div class="c_password">c_password :</div>
             <div class="c_password_input">
-                <input type="password" placeholder="Enter the c_password" id="c_pass-input">
+                <input type="password" placeholder="Enter the c_password" id="c_pass-input" name="cpassword">
                 <i class="fa fa-eye" id="eye1" onclick="visible1()"></i>
             </div>
             <div class="empty1"></div>
             <div class="sign-in">
-                <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity" type="submit" onclick="validate()">SIGN-IN</button>
+                <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity" onclick="validate()" type="submit">SIGN-IN</button>
             <div class="empty2"></div>
         </form>
     </div>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+	            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
     <script type="text/javascript" src="{% static 'js/signup1.js' %}" charset="utf-8">
     </script>

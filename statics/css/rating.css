@@ -1,0 +1,72 @@
+body{
+    margin: 0;
+}
+
+.grid-cont {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    width: 100%;
+    height: 100vh;
+    background: rgb(228, 228, 228);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 120px 90px 180px;
+    grid-template-rows: 90px 50px 50px 30px 50px 50px;
+    grid-template-areas: "a a a" 
+                         "b c c" 
+                         "d e e" 
+                         "f f g" 
+                         "h i j";
+
+    box-shadow: 10px 10px 15px grey;
+    background: white;
+
+    align-items: center;
+    justify-items: center;
+}
+
+.rat {
+    grid-area: a;
+    font-size: 24px;
+    font-weight: 500 !important;
+}
+
+.Rating {
+    grid-area: b;
+}
+
+.Rating_input {
+    grid-area: c;
+}
+
+.desc {
+    grid-area: d;
+}
+
+.desc_input {
+    grid-area: e;
+}
+
+.empty1 {
+    grid-area: f;
+}
+
+.empt {
+    grid-area: g;
+    
+}
+
+.empty2 {
+    grid-area: h;
+}
+
+.sub {
+    grid-area: i;
+}
+.empty3{
+    grid-area: j;
+}

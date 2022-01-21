@@ -15,12 +15,13 @@ body{
 .grid {
     display: grid;
     grid-template-columns: 130px 100px 150px;
-    grid-template-rows: 90px 50px 50px 80px 50px 50px 50px 60px 60px;
+    grid-template-rows: 90px 50px 50px 80px 50px 50px 50px 50px 60px 60px;
     grid-template-areas: "title title title"
                          "name n-input n-input"
                          "email e-input e-input"
                          "qualification q-input q-input"
                          "institute i-input i-input"
+                         "image i-image i-image"
                          "phone p-input p-input"
                          "pass1 p1-input p1-input"
                          "pass2 p2-input p2-input"
@@ -67,6 +68,23 @@ body{
 }
 .inst_input {
     grid-area: i-input;
+
+    display: grid;
+    align-items: center;
+}
+.inst_input select{
+    width: 220px;
+    height: auto;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.image{
+    grid-area: image;
+}
+.image_input{
+    grid-area: i-image;
 }
 
 .phone {
@@ -82,6 +100,12 @@ body{
 }
 .password_input {
     grid-area: p1-input;
+    position: relative;
+}
+#eye{
+    position: absolute;
+    right: 15px;
+    top: 5px;
 }
 
 .password2 {
@@ -90,6 +114,12 @@ body{
 }
 .password_input2 {
     grid-area: p2-input;
+    position: relative;
+}
+#eye1{
+    position: absolute;
+    right: 15px;
+    top: 5px;
 }
 
 .empty2 {

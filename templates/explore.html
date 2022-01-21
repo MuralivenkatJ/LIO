@@ -1,5 +1,4 @@
 {% load static %}
-{% static "images" as imageURL %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,37 +29,56 @@
         <div class="w3-bar w3-white">
             <img src="{% static 'images/logo1.png' %}" alt="logo" width="40px" height="40px" class="w3-bar-item logo  w3-margin-left" title="LIO">
             <a href="{% url 'explore' %}" class="w3-bar-item w3-hide-small w3-black with w3-opacity bar-item w3-margin-left w3-border w3-btn" title="Explore">Explore</a>
-            <a href="#" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="My courses">My courses</a>
-            <a href="{% url 'wishlist' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="Wishlist">Wishlist</a>
+            
             <a href="#" class="w3-bar-item w3-hide-small w3-right logo"><img src="{% static 'images/logo1.png' %}" alt="logo" width="40px" height="40px" class="logo w3-margin-right"></a>
-            <div class="w3-bar-item w3-hide-small bar-item w3-right w3-margin-right" id="dropdown1" style="padding: 0%;">
+
+            {% if s_id != 0 %}
+                <a href="{% url 'mycourses' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="My courses">My courses</a>
+                <a href="{% url 'wishlist' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="Wishlist">Wishlist</a>
+                <a href="{% url 'logout1' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn w3-right w3-margin-right" title="logout">logout</a>
+            {% elif f_id != 0 %}
+                <a href="{% url 'faculty' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="My courses">My courses</a>
+                <a href="{% url 'logout2' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn w3-right w3-margin-right" title="logout">logout</a>
+            {% else %}
+                <div class="w3-bar-item w3-hide-small bar-item w3-right w3-margin-right" id="dropdown1" style="padding: 0%;">
                 <div class="w3-dropdown-click" id="dropdown2">
                     <button onclick="dropdown()" class="w3-hover-black with w3-hover-opacity w3-border w3-btn" id="dropdown3">login</button>
                     <div id="dropdown-cont" class="w3-dropdown-content w3-bar-block w3-border">
                         <a href="{% url 'login1' %}" class="w3-bar-item w3-button" title="Student">Student</a>
                         <a href="{% url 'login2' %}" class="w3-bar-item w3-button" title="Faculty">Faculty</a>
+                        <a href="{% url 'register3' %}" class="w3-bar-item w3-button" title="Institute">Institute</a>
                     </div>
                 </div>
             </div>
-            
+            {% endif %}
+
             <a href="javascript:void(0)" class="w3-bar-item w3-hide-large w3-hide-medium w3-right" onclick="collapseBar()">&#9776;</a>
         </div>
 
         <div id="collapse" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium w3-white">
             <a href="{% url 'explore' %}" class="w3-bar-item mobile-bar w3-black with w3-opacity bar-item w3-border w3-btn" title="Explore">Explore</a>
-            <a href="#" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="My courses">My courses</a>
-            <a href="{% url 'wishlist' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="Wishlist">Wishlist</a>
+            
             <!-- <a href="{% url 'login1' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="login">login</a> -->
 
-            <div class="w3-bar-item bar-item w3-right" style="padding: 0%;">
+            {% if s_id != 0 %}
+                <a href="{% url 'mycourses' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="My courses">My courses</a>
+                <a href="{% url 'wishlist' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="Wishlist">Wishlist</a>
+                <a href="{% url 'logout1' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="logout">logout</a>
+            {% elif f_id != 0 %}
+                <a href="{% url 'faculty' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="My courses">My courses</a>
+                <a href="{% url 'logout2' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="logout">logout</a>
+            {% else %}
+                <div class="w3-bar-item bar-item w3-right" style="padding: 0%;">
                 <div class="w3-dropdown-click">
                     <button onclick="dropdownm()" class="w3-hover-black with w3-hover-opacity w3-border w3-btn" id="dropdown-btn-m">login</button>
                     <div id="dropdown-cont-m" class="w3-dropdown-content w3-bar-block w3-border">
                         <a href="{% url 'login1' %}" class="w3-bar-item w3-button" title="Student">Student</a>
                         <a href="{% url 'login2' %}" class="w3-bar-item w3-button" title="Faculty">Faculty</a>
+                        <a href="{% url 'register3' %}" class="w3-bar-item w3-button" title="Institute">Institute</a>
                     </div>
                 </div>
-            </div>
+                </div>
+            {% endif %}
 
             <a href="#" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn"><img src="{% static 'images/logo1.png' %}" alt="logo" width="40px" height="40px" style="float: right;" class="logo w3-margin-right"></a>
         </div>
@@ -69,62 +87,45 @@
     <br><br><br><br>
 
     <!-- SEARCH BAR -->
-    <div id="search" class="w3-panel">
-        <input type="text" placeholder="Search" id="search-input" class="w3-round w3-border">
-        <button id="search-btn" class="w3-border w3-round w3-hover-black with w3-hover-opacity w3-margin-left">Search</button>
-    </div>
+    <form action="{% url 'query' %}" method="get" id="search" class="w3-panel">
+
+        <input type="text" placeholder="Search" id="search-input" class="w3-round w3-border" name="search">
+        <button id="search-btn" class="w3-border w3-round w3-hover-black with w3-hover-opacity w3-margin-left" type="submit">Search</button>
+
+    </form>
 
     <br>
 
     <!-- SPECIALISATION -->
     <div class="w3-panel scroll specialisation">
-        {% for s in specialisation %}
-        <button class="w3-btn w3-round w3-margin-left scroll-item w3-red">s</button>
+        {% for s,c in specialisation %}
+        <a href="{% url 'query1' s %}" class="w3-btn w3-round w3-margin-left scroll-item w3-{{c}}">{{s}}</a>
         {% endfor %}
-        <!-- <button class="w3-btn w3-round w3-margin-left scroll-item w3-purple">App development</button>
-        <button class="w3-btn w3-round w3-margin-left scroll-item w3-indigo">Programming languages</button>
-        <button class="w3-btn w3-round w3-margin-left scroll-item w3-blue">Data structures and algorithms</button>
-        <button class="w3-btn w3-round w3-margin-left scroll-item w3-deep-orange">Machine learning</button>
-        <button class="w3-btn w3-round w3-margin-left scroll-item w3-blue-gray">Artificial intellegence</button>
-        <button class="w3-btn w3-round w3-margin-left scroll-item w3-dark-gray">Internet of things</button> -->
     </div>
 
-    <br>
+    {% if s_name == '' %}
+        <h3></h3>
+    {% else%}
+        <h3>Hello {{s_name}}</h3>
+    {% endif %}
 
-    <!-- TRENDING -->
-    <h2>Trending</h2>
+    <!-- INSTITUTE -->
+    {% if s_id != 0 %}
+    <h2>Free for {{i_name}}</h2>
     <div class="w3-panel scroll">
 
-        <a href="{% url 'enrolled' playlistid='PLsyeobzWxl7r2ukVgTqIQcl-1T0C2mzau' %}">
-            <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="{% static 'images/iot.jpg' %}" alt="python">
-                    </div>
-                    <div class="card-forWho">Beginners</div>
-                    <div class="card-empty1"></div>
-                    <div class="card-duration">5h 25m</div>
-                    <div class="card-title">Python for Beginners</div>
-                    <div class="card-description">This is a good course</div>
-                    <div class="card-price">&#8377;200</div>
-                    <div class="card-empty2"></div>
-                    <div class="card-rating">4.3</div>
-                </div>
-            </div>
-        </a>
-
-        {% for c in trending %}
-        <a href="{% url 'c.cid' %}">
+        {% for c in freec %}
+        <a href="{% url 'unenrolled' c.c_id %}">
         <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
             <div class="card">
                 <div class="card-image">
-                    <img src="{{imageURL}}/{{c.image}}" alt="python">
+                    <img src="{{ media }}/{{ c.image }}" alt="python">
                 </div>
-                <div class="card-forWho">{{c.forwho}}</div>
+                <div class="card-forWho">{{c.level}}</div>
                 <div class="card-empty1"></div>
-                <div class="card-duration">{{c.hour}}h {{c.minutes}}m</div>
-                <div class="card-title">{{c.title}}</div>
-                <div class="card-description">{{c.desc}}</div>
+                <div class="card-duration">{{c.duration}}</div>
+                <div class="card-title">{{c.c_name}}</div>
+                <div class="card-description">{{c.description}}</div>
                 <div class="card-price">&#8377;{{c.price}}</div>
                 <div class="card-empty2"></div>
                 <div class="card-rating">{{c.rating}}</div>
@@ -134,26 +135,27 @@
         {% endfor %}
 
     </div>
+    {% endif %}
 
     <br>
 
-    <!-- MOST POPULAR -->
-    <h2>Most Popular</h2>
+    <!-- MOST VIEWED -->
+    <h2>Most Viewed</h2>
     <div class="w3-panel scroll">
 
         {% for c in most_popular %}
-        <a href="{% url 'c.cid' %}">
+        <a href="{% url 'unenrolled' c.c_id %}">
         <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
             <div class="card">
                 <div class="card-image">
-                    <img src="{{imageURL}}/{{c.image}}" alt="python">
+                    <img src="{{ media }}/{{ c.image }}" alt="python">
                 </div>
-                <div class="card-forWho">{{c.forwho}}</div>
+                <div class="card-forWho">{{c.level}}</div>
                 <div class="card-empty1"></div>
-                <div class="card-duration">{{c.hour}}h {{c.minutes}}m</div>
-                <div class="card-title">{{c.title}}</div>
-                <div class="card-description">{{c.desc}}</div>
-                <div class="card-price">${{c.price}}</div>
+                <div class="card-duration">{{c.duration}}</div>
+                <div class="card-title">{{c.c_name}}</div>
+                <div class="card-description">{{c.description}}</div>
+                <div class="card-price">&#8377;{{c.price}}</div>
                 <div class="card-empty2"></div>
                 <div class="card-rating">{{c.rating}}</div>
             </div>
@@ -170,18 +172,18 @@
     <div class="w3-panel scroll">
 
         {% for c in recently_launched %}
-        <a href="{% url 'c.cid' %}">
+        <a href="{% url 'unenrolled' c.c_id %}">
         <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
             <div class="card">
                 <div class="card-image">
-                    <img src="{{imageURL}}/{{c.image}}" alt="python">
+                    <img src="{{ media }}/{{ c.image }}" alt="python">
                 </div>
-                <div class="card-forWho">{{c.forwho}}</div>
+                <div class="card-forWho">{{c.level}}</div>
                 <div class="card-empty1"></div>
-                <div class="card-duration">{{c.hour}}h {{c.minutes}}m</div>
-                <div class="card-title">{{c.title}}</div>
-                <div class="card-description">{{c.desc}}</div>
-                <div class="card-price">${{c.price}}</div>
+                <div class="card-duration">{{c.duration}}</div>
+                <div class="card-title">{{c.c_name}}</div>
+                <div class="card-description">{{c.description}}</div>
+                <div class="card-price">&#8377;{{c.price}}</div>
                 <div class="card-empty2"></div>
                 <div class="card-rating">{{c.rating}}</div>
             </div>
@@ -198,18 +200,18 @@
     <div class="w3-panel scroll">
 
         {% for c in guided_project %}
-        <a href="{% url 'c.cid' %}">
+        <a href="{% url 'unenrolled' c.c_id %}">
         <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
             <div class="card">
                 <div class="card-image">
-                    <img src="{{imageURL}}/{{c.image}}" alt="python">
+                    <img src="{{ media }}/{{ c.image }}" alt="python">
                 </div>
-                <div class="card-forWho">{{c.forwho}}</div>
+                <div class="card-forWho">{{c.level}}</div>
                 <div class="card-empty1"></div>
-                <div class="card-duration">{{c.hour}}h {{c.minutes}}m</div>
-                <div class="card-title">{{c.title}}</div>
-                <div class="card-description">{{c.desc}}</div>
-                <div class="card-price">${{c.price}}</div>
+                <div class="card-duration">{{c.duration}}</div>
+                <div class="card-title">{{c.c_name}}</div>
+                <div class="card-description">{{c.description}}</div>
+                <div class="card-price">&#8377;{{c.price}}</div>
                 <div class="card-empty2"></div>
                 <div class="card-rating">{{c.rating}}</div>
             </div>

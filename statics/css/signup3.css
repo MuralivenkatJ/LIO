@@ -1,0 +1,108 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.grid-cont{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    height: 100vh;
+}
+.grid{
+    display: grid;
+    grid-template-columns: 100px 120px 140px;
+    grid-template-rows: 100px 50px 50px 50px 50px 60px;
+    grid-template-areas: "a a a"
+                         "b c c"
+                         "d e e"
+                         "x y y"
+                         "f g g"
+                         "h i i"
+                         "j k l";
+    outline: 3px solid;
+    border-radius: 15px;
+    align-items: center;
+    justify-items: center; 
+}
+.register-form{
+      background-color: white;
+      grid-area: a;
+      font-size: 30px;
+      text-transform: uppercase;
+      text-shadow: 1px 1px;
+      }
+
+.name{
+    grid-area: b;
+    background: white;
+    
+}     
+.Name_input{
+    grid-area: c;
+    background: white;
+}
+.Name_input input{
+    width: 220px;
+}
+.address{
+    grid-area: d;
+    background: white;
+    
+}
+.address_input{
+    grid-area: e;
+    background: white;
+}
+
+.image{
+    grid-area: x;
+}
+.image_input{
+    grid-area: y;
+}
+
+.address_input input{
+    width: 220px;
+}
+.Email{
+    grid-area: f;
+    background: white;
+    
+}
+.email_id_input{
+    grid-area: g;
+    background: white;
+}
+.email_id_input input{
+    width: 220px;
+}
+.website{
+    grid-area: h;
+    background: white;
+
+}
+.website_input{
+    grid-area: i;
+    background: white;
+    position: relative;
+
+}
+.website_input input{
+    width: 220px;
+}
+
+.empty1{
+    grid-area: j;
+    background: white;
+}
+.sign-in{
+    grid-area: k;
+    background: white;
+    
+}
+.empty2{
+    grid-area: l;
+    background: white;
+}

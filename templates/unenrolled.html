@@ -18,46 +18,94 @@
 
 
         <!-- BUTTON AND IMAGE -->
-        <div class="back">
-            <button class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity">back</button>
+        <!-- <div class="back">
+            <a href="javascript:history.go(1)" class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity">back</a>
         </div>
         <div class="back-mobile">
-            <button class="w3-border w3-btn w3-hover-black with w3-hover-opacity">&#8592</button>
-        </div>
-        <img class="c-image" src="{% static 'images/java.jpg' %}" alt="Python">
+            <a href="javascript:history.go(1)" class="w3-border w3-btn w3-hover-black with w3-hover-opacity">&#8592</a>
+        </div> -->
+        <img class="c-image" src="{{media}}/{{course.image}}" alt="course-image">
 
 
-        <!-- TITLE AND DESCRIPTION -->
+        <!-- TITLE AND DESCRIPTION (course)-->
         <div class="title">
-            Object Oriented Programming in Java
+            {{course.c_name}}
         </div>
         <div class="desc">
             <div id="d-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, nam maxime? Dolore ad tenetur tempore voluptatem, error, quo in natus tempora dignissimos cupiditate voluptatum excepturi hic obcaecati molestiae quas delectus doloremque repellat rerum! Ipsam, consequatur quam. Unde, ex.
+                {{course.description}}
             </div>
             <div id="d-readmore" onclick="readMoreD()">Read more</div>
         </div>
 
-        <!-- PROFESSOR DETAILS -->
+        <!-- PROFESSOR DETAILS (faculty)-->
         <div class="professor">
-            <img class="p-image" src="{% static 'images/professor.png' %}" alt="Professor">
-            <div class="name">Professor</div>
+            <img class="p-image" src="{{media}}/{{faculty.image}}" alt="Faculty-image">
+            <div class="name">{{faculty.f_name}}</div>
             <div id="quali1">
                 <div id="q-text1">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, nam maxime? Dolore ad tenetur tempore voluptatem, error, quo in natus tempora dignissimos cupiditate voluptatum excepturi hic obcaecati molestiae quas delectus doloremque repellat rerum! Ipsam, consequatur quam. Unde, ex.
+                    {{faculty.qualification}}
                 </div>
                 <div id="q-readmore1" onclick="readMoreQ()">Read more</div>
             </div>
             <div id="quali2">
                 <div id="q-text2">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, nam maxime? Dolore ad tenetur tempore voluptatem, error, quo in natus tempora dignissimos cupiditate voluptatum excepturi hic obcaecati molestiae quas delectus doloremque repellat rerum! Ipsam, consequatur quam. Unde, ex.
+                    {{faculty.qualification}}
                 </div>
                 <div id="q-readmore2" onclick="readLessQ()">Read less</div>
             </div>
         </div>
 
+        <br>
+
+        <!-- INSTITUTE DETAILS (institute)-->
+        <div class="container">
+            <div class="Image">
+                <img src="{{media}}/{{institute.image}}" alt="Institute">
+            </div>
+            <div class="Title">{{institute.i_name}}</div>
+            <div class="mail">{{institute.email}}</div>
+            <div class="u-link">
+                <a href="{{institute.website}}" target="_blank">website</a>
+            </div>
+        </div>
+
+        <br>
+
+        <!-- SKILLS ACQUIRED (skills)-->
+        <div>
+            <ul>
+                <h3>Skills you are going to be acquired : </h3>
+                {% for skill in skills %}
+                    <li>{{skill.skills}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+        <!-- RATING (rates)-->
+        {% for r in rates %}
+        <div class="container2">
+            <div class="Image2">
+                <img src="r.image" alt="Student">
+            </div>
+            <div class="Student">
+                <h3>{{r.s_name}}</h3>
+            </div>
+            <div class="Rating">
+                <p>{{rates.rating}} - *****</p>
+            </div>
+            <div class="review">
+                <p>{{rates.desc}}</p>
+            </div>
+            
+        </div>
+        {% endfor %}
+
+
         <!-- ENROLL BUTTON -->
-        <button class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity">Enroll</button>
+        <a href="{% url 'enroll' course.c_id %}" class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity">Enroll</a>
+        <a href="{% url 'wish' course.c_id %}" class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity">Add to wishlist</a>
 
     </div>
 

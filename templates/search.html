@@ -1,0 +1,117 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="{% static 'images/logo1.png' %}" type = "image/x-icon">
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="{% static 'css/explore.css' %}">
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+
+    <title>Explore</title>
+</head>
+<body>
+
+    <!-- BACK -->
+    <div class="back" id="back">
+        <a href="{% url 'explore' %}" class="w3-hover-black with w3-hover-opacity w3-border w3-btn w3-round">back</a>
+    </div>
+    <div class="back-mobile">
+        <a href="{% url 'explore' %}" class="w3-hover-black with w3-hover-opacity w3-border w3-btn" title="back">&#8592</a>
+    </div>
+
+    <!-- SEARCH BAR -->
+    <form action="{% url 'query' %}" method="get" id="search" class="w3-panel">
+
+        <input type="text" placeholder="Search" id="search-input" class="w3-round w3-border" name="search">
+        <button id="search-btn" class="w3-border w3-round w3-hover-black with w3-hover-opacity w3-margin-left" type="submit">Search</button>
+
+    </form>
+
+    <br>
+
+    <div class="container">
+        {% for c in course %}
+        <a href="{% url 'unenrolled' c.c_id %}">
+        <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{{ media }}/{{ c.image }}" alt="python">
+                </div>
+                <div class="card-forWho">{{c.level}}</div>
+                <div class="card-empty1"></div>
+                <div class="card-duration">{{c.duration}}</div>
+                <div class="card-title">{{c.c_name}}</div>
+                <div class="card-description">{{c.description}}</div>
+                <div class="card-price">&#8377;{{c.price}}</div>
+                <div class="card-empty2"></div>
+                <div class="card-rating">{{c.rating}}</div>
+            </div>
+        </div>
+        </a>
+        {% endfor %}
+    </div>
+
+    <br>
+
+    <div class="container">
+        {% for f in f_courses %}
+            <h2>Courses by {{f.f_name}}</h2>
+            {% for c in f.course %}
+                <a href="{% url 'unenrolled' c.c_id %}">
+        <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{{ media }}/{{ c.image }}" alt="python">
+                </div>
+                <div class="card-forWho">{{c.level}}</div>
+                <div class="card-empty1"></div>
+                <div class="card-duration">{{c.duration}}</div>
+                <div class="card-title">{{c.c_name}}</div>
+                <div class="card-description">{{c.description}}</div>
+                <div class="card-price">&#8377;{{c.price}}</div>
+                <div class="card-empty2"></div>
+                <div class="card-rating">{{c.rating}}</div>
+            </div>
+        </div>
+                </a>
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <br>
+
+    <div class="container">
+        {% for i in i_courses %}
+            <h2>Courses by {{i.i_name}}</h2>
+            {% for c in i.course %}
+                <a href="{% url 'unenrolled' c.c_id %}">
+        <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{{ media }}/{{ c.image }}" alt="python">
+                </div>
+                <div class="card-forWho">{{c.level}}</div>
+                <div class="card-empty1"></div>
+                <div class="card-duration">{{c.duration}}</div>
+                <div class="card-title">{{c.c_name}}</div>
+                <div class="card-description">{{c.description}}</div>
+                <div class="card-price">&#8377;{{c.price}}</div>
+                <div class="card-empty2"></div>
+                <div class="card-rating">{{c.rating}}</div>
+            </div>
+        </div>
+                </a>
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <script src="{% static 'js/explore.js' %}"></script>
+
+</body>
+</html>

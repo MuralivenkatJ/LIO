@@ -1,0 +1,143 @@
+*{
+    padding: o;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+
+.grid-cont{
+            display: grid;
+            background:white;
+            align-items: center;
+            justify-items: center;
+            height: 100vh;
+            width: 100%;
+}
+.grid{
+            display: grid;
+            grid-template-columns: 160px 150px 150px;
+            grid-template-rows: 70px 50px 50px 50px 50px 50px 50px 70px 50px 50px;
+            grid-template-areas: "a a a"
+                                 "b c c"
+                                 "d e e"
+                                 "f g g"
+                                 "h i i"
+                                 "j k k"
+                                 "l m m"
+                                 "n o o"
+                                 "p q q"
+                                 "r s s"
+                                 "t u v";
+             height: 615px;                    
+            outline: 3px solid;
+            border-radius: 20px;
+            align-items: start;  
+            box-shadow: 10px 10px 15px gray;                  
+}
+.professor{
+    grid-area: a;
+    text-align: center;
+    text-justify: auto;
+    font-size: 30px;
+    text-transform: uppercase;
+    
+}
+.title{
+    grid-area: b;
+    font-size: 25px;
+    text-align: center;
+}
+.titles-input{
+    grid-area: c;
+    width: 95%;
+}
+.image{
+    grid-area: d;
+    text-align: center;
+    font-size: 19px;
+}
+.image-input{
+    grid-area: e;
+    width: 95%;
+}
+
+.specialization{
+    grid-area: f;
+    text-align: center;
+    font-size: 17px;
+}
+.specialization-input{
+    grid-area: g;
+    width: 95%;
+}
+.forwho{
+    grid-area: h;
+    text-align: center;
+    font-size: 20px;
+}
+.forwho-input{
+    grid-area: i;
+    width: 95%;
+}
+.playlist{
+    grid-area: j;
+    text-align: center;
+    font-size: 18px;
+}
+.playlist-input{
+    grid-area: k;
+    width: 95%;
+}
+.guidedproject{
+    grid-area: l;
+    text-align: center;
+    font-size: 15px;
+}
+.guidedproject-input{
+    grid-area: m;
+    width: 95%;
+}
+#switch{
+    position: absolute;
+    right: 20px;
+    top: 5px;
+}
+.descrption{
+    grid-area: n;
+    text-align: center;
+    font-size: 19px;
+}
+.descrption-input{
+    grid-area: o;
+    width: 95%;
+} 
+
+.skillacquired{
+    grid-area: p;
+    text-align: center;
+    font-size: 17px;
+}
+
+.chooseaskillacquired-input{
+    grid-area: q;
+    width: 95%;
+}
+.price{
+    grid-area: r;
+    text-align: center;
+    font-size: 20px;
+}
+.price-input{
+    grid-area: s;
+    width: 95%;
+}
+.empty{
+    grid-area: t;
+}
+.upload{
+    grid-area: u;
+    text-align: center;
+}
+.empty1{
+    grid-area: v;
+}

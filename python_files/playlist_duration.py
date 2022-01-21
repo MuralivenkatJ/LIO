@@ -6,10 +6,10 @@ hours_pattern = re.compile(r'(\d+)H')
 minutes_pattern = re.compile(r'(\d+)M')
 seconds_pattern = re.compile(r'(\d+)S')
 
-def duration():
+def duration(playlistid):
 
     api_key = 'AIzaSyAThwinMHqAPzectaIrV7-RdL8wkrpfLa0'
-    playlistid = 'PLsyeobzWxl7poL9JTVyndKe62ieoN-MZ3'
+    # playlistid = 'PLsyeobzWxl7poL9JTVyndKe62ieoN-MZ3'
 
     service = googleapiclient.discovery.build('youtube', 'v3', developerKey = api_key)
 
@@ -67,6 +67,4 @@ def duration():
 
     dura = str(hours) + ':' + str(minutes) + ':' + str(seconds)
 
-    print(dura)
-
-duration()
+    return dura

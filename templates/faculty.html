@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'css/faculty.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <title>Uploaded Courses</title>
+</head>
+<body>
+    
+    <div class="grid-cont">
+
+        {% if f_name != '' %}
+            <h3>Hello {{f_name}}</h3>
+        {% endif %}
+
+        {% for c,n in course %}
+        <div class="grid w3-border w3-round-large w3-hover-shadow">
+            <div class="image">
+                <img class="image" src="{{media}}/{{c.image}}" alt="course image">
+            </div>
+            <div class="title"><b>{{c.c_name}}</b></div>
+            <div class="desc">{{c.description}}</div>
+            <div class="duration">{{c.duration}}</div>
+            <div class="progess"> {{n.inprogress}} inprogress , {{n.complete}} completed</div>
+            <div class="level">no of student</div>
+        </div>
+        {% endfor %}
+
+        
+        <a href="{% url 'upload' %}" class="w3-bar-item w3-hover-black with w3-hover-opacity w3-border w3-round w3-btn" title="upload">Upload</a>
+
+    </div>
+
+</body>
+</html>
