@@ -24,7 +24,7 @@
         <div class="back-mobile">
             <a href="javascript:history.go(1)" class="w3-border w3-btn w3-hover-black with w3-hover-opacity">&#8592</a>
         </div> -->
-        <img class="c-image" src="{{media}}/{{course.image}}" alt="course-image">
+        <img class="c-image" src="{{media}}/media/{{course.image}}" alt="course-image">
 
 
         <!-- TITLE AND DESCRIPTION (course)-->
@@ -40,7 +40,7 @@
 
         <!-- PROFESSOR DETAILS (faculty)-->
         <div class="professor">
-            <img class="p-image" src="{{media}}/{{faculty.image}}" alt="Faculty-image">
+            <img class="p-image" src="{{media}}/media/{{faculty.image}}" alt="Faculty-image">
             <div class="name">{{faculty.f_name}}</div>
             <div id="quali1">
                 <div id="q-text1">
@@ -61,7 +61,7 @@
         <!-- INSTITUTE DETAILS (institute)-->
         <div class="container">
             <div class="Image">
-                <img src="{{media}}/{{institute.image}}" alt="Institute">
+                <img src="{{media}}/media/{{institute.image}}" alt="Institute">
             </div>
             <div class="Title">{{institute.i_name}}</div>
             <div class="mail">{{institute.email}}</div>
@@ -87,16 +87,16 @@
         {% for r in rates %}
         <div class="container2">
             <div class="Image2">
-                <img src="r.image" alt="Student">
+                <img src="{{media}}/media/{{r.image}}" alt="Student">
             </div>
             <div class="Student">
                 <h3>{{r.s_name}}</h3>
             </div>
             <div class="Rating">
-                <p>{{rates.rating}} - *****</p>
+                <p>{{r.rating}} - *****</p>
             </div>
             <div class="review">
-                <p>{{rates.desc}}</p>
+                <p>{{r.desc}}</p>
             </div>
             
         </div>
