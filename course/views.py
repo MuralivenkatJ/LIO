@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 import googleapiclient.discovery
 from django.contrib import messages
 from datetime import date
@@ -103,6 +103,7 @@ def enrolled(request, c_id):
         dictionary["title"] = i["snippet"]["title"]
         dictionary["desc"]  = i["snippet"]["description"]
         dictionary["image"] = i["snippet"]["thumbnails"]["medium"]["url"]
+        dictionary['index'] = index
 
         data.append(dictionary)
 
@@ -112,9 +113,48 @@ def enrolled(request, c_id):
     dura.extend(temp)
     vid_ids.clear()
 
+    # getting the list of watched videos
+    s_id = int(request.COOKIES['s_id'])
+
+    st = ''
+    for c in Enrolls.objects.raw(
+    ''' SELECT *
+        FROM student_enrolls
+        WHERE s_id_id = %s and c_id_id = %s''', [s_id, c_id]):
+        st = c.watched
+    
+    list = []
+    if len(st) > 0:
+        list = st.split(',')
+    for i in range(len(list)):
+        list[i] = int(list[i])
+
     zipped_data = zip(data, dura)
     
-    return render(request, 'course.html', {'z_data': zipped_data, 'data': data})
+    return render(request, 'course.html', {'z_data': zipped_data, 'data': data, 'course': course, 'watched': list})
+
+
+def watched(request, c_id, index):
+    s_id = int(request.COOKIES['s_id'])
+
+    st = ''
+    id = 0
+    for c in Enrolls.objects.raw(
+    ''' SELECT *
+        FROM student_enrolls
+        WHERE s_id_id = %s and c_id_id = %s''', [s_id, c_id]):
+        st = c.watched
+        id = c.id
+    
+    list = []
+    if len(st) > 0:
+        list = st.split(',')
+    list.append(str(index))
+    st = ','.join(list)
+
+    Enrolls.objects.filter(id=id).update(watched=st)
+
+    return HttpResponse(st)
 
 
 def upload(request):
@@ -122,25 +162,25 @@ def upload(request):
         req = request.POST.copy()
 
         playlistid = req['playlistid']
-        duration = playlist_duration.duration(playlistid)
-        req['duration'] = duration
+        dict = playlist_duration.duration(playlistid)
+        req['duration'] = dict['duration']
+        req['no_videos'] = dict['no_videos']
 
-        skills = req['skills']
-        skill_list = skills.split(',')
-        req.pop('skills')
+        today = date.today()
+        req['date'] = today
 
         f_id = request.COOKIES['f_id']
         req.update( {'f_id': f_id} )
 
-        today = date.today()
-        req['date'] = today
+        skills = req['skills']
+        skill_list = skills.split(',')
+        req.pop('skills')
 
         course = UploadForm(req, request.FILES)
         if course.is_valid():
             course.save()
 
             c_id = Course.objects.latest('c_id')
-            print(c_id)
 
             for skill in skill_list:
                 obj = Course_skills(skills=skill, c_id=c_id)

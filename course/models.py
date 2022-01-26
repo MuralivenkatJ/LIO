@@ -19,11 +19,12 @@ class Course(models.Model):
     total_views = models.IntegerField(default=0)
     rating = models.FloatField(default=0)
     f_id = models.ForeignKey(Faculty, on_delete=models.CASCADE)
+    no_videos = models.IntegerField(default=0)
 
     def __str__(self):
         return self.c_name
 
 class Course_skills(models.Model):
     id = models.AutoField(primary_key=True)
-    skills = models.CharField(max_length=50)
+    skills = models.CharField(max_length=100)
     c_id = models.ForeignKey(Course, on_delete=models.CASCADE)

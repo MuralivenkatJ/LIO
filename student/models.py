@@ -25,6 +25,7 @@ class Enrolls(models.Model):
     s_id = models.ForeignKey(Student, on_delete=models.CASCADE)
     c_id = models.ForeignKey(Course, on_delete=models.CASCADE)
     status = models.CharField(max_length=30, default='inprogress')
+    watched = models.CharField(max_length=500, default='')
 
     class Meta:
         unique_together = [['s_id', 'c_id']]

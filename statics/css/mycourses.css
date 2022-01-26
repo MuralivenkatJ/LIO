@@ -28,10 +28,10 @@ a{
     grid-area: image;
     
   }
-/* .item-a img{
+.item-a img{
   width: 250px;
   height: 100px;
-} */
+}
   .item-b {
     grid-area: complition;
     

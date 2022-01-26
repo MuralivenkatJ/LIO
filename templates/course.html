@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="{% static 'css/course.css' %}">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-    <title>Learn It Online</title>
+    <title>{{course.c_name}}</title>
 </head>
 <body>
 
@@ -26,22 +27,27 @@
             <div class="back-mobile">
                 <a href="{% url 'mycourses' %}" class="w3-hover-black with w3-hover-opacity w3-border w3-btn" title="My courses">&#8592</a>
             </div>
-            <img class="c-image" id="image" src="{% static 'images/java.jpg' %}" alt="Python">
+            <img class="c-image" id="image" src="{{media}}/media/{{course.image}}" alt="Python">
             <div id="video-cont">
-                <iframe type="text/html" src="https://www.youtube.com/embed/{{data.0.vidId}}?rel=0&modestbranding=1" frameborder="0" id="video" allow="autoplay;" allowfullscreen="true"></iframe>
+                <div id="player"></div>
             </div>
             <div id="title" title="{{data.0.title}}">{{data.0.title}}</div>
             <div id="desc"><span id="more" onclick="more()">&gt;</span>{{data.0.desc}}</div>
 
         </div>
 
-        <div class="content-container">
+        <div class="content-container" data-cId="{{course.c_id}}">
 
             {% for dict,dura in z_data %}
-            <div class="content w3-border w3-hover-grey" data-vId="{{dict.vidId}}" onclick="play(this)">
+            <div class="content w3-border w3-hover-grey" data-vId="{{dict.vidId}}" data-index={{dict.index}} onclick="play(this)">
                 <img src="{{dict.image}}" alt="thumbnail" class="t-image">
-                <!-- <a class="t-image" href="{{response.items.snippet.thumbnails.medium.url}}">click here</a> -->
-                <img src="{% static 'images/pending.png' %}" class="symbol" alt="symbol">
+                
+                {% if dict.index in watched %}
+                    <img src="{% static 'images/complete.png' %}" class="symbol" alt="symbol">
+                {% else %}
+                    <img src="{% static 'images/pending.png' %}" class="symbol" alt="symbol">
+                {% endif %}
+
                 <div class="title" id="t-1">{{dict.title}}</div>
                 <div class="empty1"></div>
                 <div class="description">&#09;{{dict.desc}}</div>

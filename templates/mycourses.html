@@ -45,7 +45,7 @@
 
     <div class="s">
 
-        {% for c in course %}
+        {% for c,per in data %}
         <a href="{% url 'enrolled' c.c_id %}">
         <div class="container">
             <div class="item-a">
@@ -54,7 +54,7 @@
             
             <div class="item-b">
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+                    <div class="progress-bar" role="progressbar" style="width: {{per}}%;" aria-valuenow="{{per}}" aria-valuemin="0" aria-valuemax="100">{{per}}%</div>
                 </div>
             </div>
             <div class="item-c">{{c.c_name}}</div>

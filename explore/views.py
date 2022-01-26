@@ -97,7 +97,6 @@ def explore(request):
 def query(request):
 
     str = request.GET['search']
-    print(str)
 
     course = Course.objects.filter(Q(c_name__icontains = str) | Q(description__icontains = str) | Q(specialization__icontains = str))
 

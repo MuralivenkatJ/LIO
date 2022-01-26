@@ -28,15 +28,32 @@ def mycourses(request):
         
         course = []
         for c in Course.objects.raw('''
-            SELECT c_id, C.image, c_name, C.date, f_name, price, playlistid
+            SELECT c_id, C.image, c_name, C.date, f_name, price, playlistid, no_videos
             FROM course_course C, faculty_faculty F
             WHERE C.f_id_id = F.f_id and C.c_id in 
                                 (SELECT c_id_id
                                 FROM student_enrolls
                                 WHERE s_id_id = %s)''', [s.s_id]):
                                 course.append(c)
+        
+        watched = []
+        for c in course:
+            for e in Enrolls.objects.raw('''
+                SELECT *
+                FROM student_enrolls
+                WHERE s_id_id = %s and c_id_id = %s''', [s_id, c.c_id]):
+                st = e.watched
+                list = []
+                if len(st) > 0:
+                    list = st.split(',')
+                length = len(list)
+                total = c.no_videos
+                per = int(length / total * 100)
+                watched.append(per)
+        
+        data = zip(course, watched)
 
-        return render(request, 'mycourses.html', {'course': course})
+        return render(request, 'mycourses.html', {'data': data})
 
 
 def reviews(request, c_id):

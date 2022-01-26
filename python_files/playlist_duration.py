@@ -9,11 +9,12 @@ seconds_pattern = re.compile(r'(\d+)S')
 def duration(playlistid):
 
     api_key = 'AIzaSyAThwinMHqAPzectaIrV7-RdL8wkrpfLa0'
-    # playlistid = 'PLsyeobzWxl7poL9JTVyndKe62ieoN-MZ3'
+    # playlistid = 'PLbVT2Xgpg0nz_WUxw9d49FZCulOBYxhgP'
 
     service = googleapiclient.discovery.build('youtube', 'v3', developerKey = api_key)
 
     total_seconds = 0
+    count = 0
 
     token = None
     while True:
@@ -29,6 +30,7 @@ def duration(playlistid):
         vid_ids = []
         for i in pl_response['items']:
             vid_ids.append(i['contentDetails']['videoId'])
+            count = count + 1
 
         v_request = service.videos().list(
             part = 'contentDetails',
@@ -67,4 +69,6 @@ def duration(playlistid):
 
     dura = str(hours) + ':' + str(minutes) + ':' + str(seconds)
 
-    return dura
+    dict = {'duration': dura, 'no_videos': count}
+
+    return dict
