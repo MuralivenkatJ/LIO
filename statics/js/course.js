@@ -38,6 +38,7 @@ window.onYouTubePlayerAPIReady = function() {
 };
 function onYouTubePlayer(videoId)
 {
+    console.log(typeof(YT.Player));
     player = new YT.Player("player", {
         videoId: videoId,
         playerVars: {

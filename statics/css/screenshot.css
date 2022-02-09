@@ -1,0 +1,66 @@
+.grid-cont {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.grid {
+        display: grid;
+        grid-template-columns:  260px 170px ;
+        grid-template-rows: 60px 40px 40px 40px 40px auto;
+        grid-template-areas: "title title " 
+                    "fn n1 " 
+                    "sn  n2 "
+                    "utr1 utr2"
+                    "amt1 amt2"
+                     "img img";
+        /* outline: 2px solid; */
+        margin-top: 30px;
+        margin-bottom: 30px;
+        align-items: center;
+        justify-items: center;
+        background: white;
+
+}   
+
+.title {
+grid-area:title;
+}
+
+.fname {
+grid-area:fn;
+}
+
+.name1 {
+grid-area:n1;
+}
+
+.sname {
+grid-area:sn;
+}
+.name2 {
+grid-area:n2;
+}
+.image {
+    grid-area:img;
+    padding: 10px;
+}
+.image img{
+    width: 300px;
+}
+.utr{
+grid-area: utr1;
+}   
+.utr_value{
+grid-area: utr2;
+}
+.amt{
+grid-area: amt1;
+} 
+.amt_value{
+grid-area: amt2;
+}
+
+.Approve a{
+    background: white;
+}

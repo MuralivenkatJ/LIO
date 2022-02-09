@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="icon" href="{% static 'images/logo.png' %}" type = "image/x-icon">
+    
+    <link rel="stylesheet" href="{% static 'css/paymentinfo.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    
+    <title>Fee payment</title>
+
+</head>
+<body>
+    <div class="grid-cont">
+
+        <form action="{% url 'paymentinfo' c.c_id %}" method="post" class="grid w3-border w3-round-large" enctype='multipart/form-data'>
+
+            {% csrf_token %}
+
+            <div class="payment-info">Payment info</div>
+
+            <div class="name">Account Number :</div>
+            <div class="acno_input">{{i.ac_no}}</div>
+
+            <div class="ifsc">IFSC  :</div>
+            <div class="ifsc_input">{{i.ifsc}}</div>
+
+            <div class="accountholder">Account Holder :</div>
+            <div class="accountholder_input">{{i.ac_name}}</div>
+
+            <div class="screenshot">Screenshot :</div>
+            <div class="screenshot_input">
+                <input type="file" id="upload" name="image">
+            </div>
+
+            <br>
+
+            <div class="utrid">UTR ID :</div>
+            <div class="utrid_input">
+                <input type="text" name="utr_no">
+            </div>
+
+             <div class="empty1"></div>
+
+            <div class="PaymentDone">
+                <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity">Payment Done</button>
+            </div>
+
+            <div class="empty2"></div>
+
+        </form>
+
+    </div>
+
+    {% if form.errors %}
+        {% for field, errors in form.errors.items %}
+            {% for error in errors %}
+                <b>{{ field }}</b>: {{ error }}
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+	            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+</body>
+</html>

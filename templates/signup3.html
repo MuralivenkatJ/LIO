@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" href="{% static 'images/logo.png' %}" type = "image/x-icon">
     
     <title>Institute Register</title>
     <link rel="stylesheet" href="{% static 'css/signup3.css' %}">
@@ -37,17 +38,54 @@
                 <input type="text"placeholder="Enter the email" name="email">
             </div>
 
-            <div class="website">website :</div>
+            <div class="website">Website :</div>
             <div class="website_input">
                 <input type="url" placeholder="Enter the website" name="website">
             </div>
+
+            <div class="BankName">Bank Name :</div>
+            <div class="bankname_input">
+                <input type="text" placeholder="Enter the Bank Name" name="b_name">
+            </div>
+
+            <div class="AccountHolder">Account Holder :</div>
+            <div class="AccountHolder_input">
+                <input type="text" placeholder="Enter the Account Holder" name="ac_name">
+            </div>
+
+            <div class="AccountNumber">Account Number :</div>
+            <div class="AccountNumber_input">
+                <input type="text" placeholder="Enter the Account Number" name="ac_no">
+            </div>
+
+            <div class="IFSCCode">IFSC Code :</div>
+            <div class="ifsccode_input">
+                <input type="text" placeholder="Enter the IFSC Code" name="ifsc">
+            </div>
+
+            <div class="password">password :</div>
+            <div class="password_input">
+                <input type="password" id="pass-input" placeholder="Enter the password" name="password">
+                <i class="fa fa-eye" id="eye"onclick="visible()"></i>
+            </div>
+
+            <div class="confirmpassword">confirm password :</div>
+            <div class="confirm_input">
+                <input type="password" id="pass-input1" placeholder="Enter the password" name="cpassword">
+                <i class="fa fa-eye" id="eye1"onclick="visible1()"></i>
+            </div>
+
             <div class="empty1"></div>
             <div class="sign-in">
                 <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity" type="submit">SIGN-IN</button>
             </div>
+
             <div class="empty2"></div>
+
         </form>
     </div>
+
+    <script src="{% static 'js/signup3.js' %}"></script>
     
 </body>
 </html>

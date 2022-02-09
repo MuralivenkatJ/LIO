@@ -7,8 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="{% static 'images/logo1.png' %}" type = "image/x-icon">
+    <link rel="icon" href="{% static 'images/logo.png' %}" type = "image/x-icon">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="{% static 'css/explore.css' %}">
     <link rel="stylesheet" href="{% static 'css/search.css' %}">
@@ -39,7 +40,7 @@
         {% for c in course %}
         <a href="{% url 'unenrolled' c.c_id %}">
         <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
-            <div class="card">
+            <div class="card w3-round-large">
                 <div class="card-image">
                     <img src="{{ media }}/media/{{ c.image }}" alt="python">
                 </div>
@@ -50,7 +51,7 @@
                 <div class="card-description">{{c.description}}</div>
                 <div class="card-price">&#8377;{{c.price}}</div>
                 <div class="card-empty2"></div>
-                <div class="card-rating">{{c.rating}}</div>
+                <div class="card-rating">{{c.rating}} <i class="fa fa-star-half-full"></i></div>
             </div>
         </div>
         </a>
@@ -65,7 +66,7 @@
             {% for c in f.course %}
                 <a href="{% url 'unenrolled' c.c_id %}">
         <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
-            <div class="card">
+            <div class="card w3-round-large">
                 <div class="card-image">
                     <img src="{{ media }}/media/{{ c.image }}" alt="python">
                 </div>
@@ -76,7 +77,7 @@
                 <div class="card-description">{{c.description}}</div>
                 <div class="card-price">&#8377;{{c.price}}</div>
                 <div class="card-empty2"></div>
-                <div class="card-rating">{{c.rating}}</div>
+                <div class="card-rating">{{c.rating}} <i class="fa fa-star-half-full"></i></div>
             </div>
         </div>
                 </a>
@@ -90,9 +91,9 @@
         {% for i in i_courses %}
             <h2>Courses by {{i.i_name}}</h2>
             {% for c in i.course %}
-                <a href="{% url 'unenrolled' c.c_id %}">
-        <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
-            <div class="card">
+            <a href="{% url 'unenrolled' c.c_id %}">
+                <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
+            <div class="card w3-round-large">
                 <div class="card-image">
                     <img src="{{ media }}/media/{{ c.image }}" alt="python">
                 </div>
@@ -103,11 +104,34 @@
                 <div class="card-description">{{c.description}}</div>
                 <div class="card-price">&#8377;{{c.price}}</div>
                 <div class="card-empty2"></div>
-                <div class="card-rating">{{c.rating}}</div>
+                <div class="card-rating">{{c.rating}} <i class="fa fa-star-half-full"></i></div>
+            </div>
+                </div>
+            </a>
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <div class="container">
+        {% for s in s_courses %}
+            <h2>Courses by which you can learn {{s.skill}}</h2>
+            <a href="{% url 'unenrolled' s.course.c_id %}">
+        <div class="scroll-item w3-margin-left w3-border w3-round-large w3-hover-shadow">
+            <div class="card w3-round-large">
+                <div class="card-image">
+                    <img src="{{ media }}/media/{{ s.course.image }}" alt="Course Image">
+                </div>
+                <div class="card-forWho">{{s.course.level}}</div>
+                <div class="card-empty1"></div>
+                <div class="card-duration">{{s.course.duration}}</div>
+                <div class="card-title">{{s.course.c_name}}</div>
+                <div class="card-description">{{s.course.description}}</div>
+                <div class="card-price">&#8377;{{s.course.price}}</div>
+                <div class="card-empty2"></div>
+                <div class="card-rating">{{s.course.rating}} <i class="fa fa-star-half-full"></i></div>
             </div>
         </div>
-                </a>
-            {% endfor %}
+            </a>
         {% endfor %}
     </div>
 

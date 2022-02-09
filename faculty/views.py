@@ -20,8 +20,8 @@ def login(request):
         passw = ''
         for row in Faculty.objects.raw(
             '''SELECT f_id 
-               FROM faculty_faculty F 
-               WHERE F.email=%s and F.password=%s''', [email, password]):
+               FROM faculty_faculty
+               WHERE email=%s and password=%s''', [email, password]):
             id = row.f_id
             passw = row.password
         if(id > 0):
@@ -31,7 +31,7 @@ def login(request):
             return response
         else:
             messages.error(request, 'incorrect email or password')
-            return render(request, 'login1.html')
+            return redirect('login2')
 
     else:
         return render(request, 'login2.html')
@@ -91,11 +91,8 @@ def faculty(request):
     # UPLOADED COURSES
     course = []
     number = []
-    for c in Course.objects.raw('''
-        SELECT c_id, image, c_name, description, duration
-        FROM course_course
-        WHERE f_id_id = %s''', [f_id]):
 
+    for c in Course.objects.filter(f_id_id = f_id):
         in_progress = 0
         complete = 0
         enroll = Enrolls.objects.filter(c_id=c.c_id)

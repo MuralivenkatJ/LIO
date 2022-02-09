@@ -1,0 +1,92 @@
+.card {
+    margin: 5% 15% 5% 15%;
+    transition: 0.3s;
+    width: 70%;
+    background: white;
+}
+  
+.container {
+    padding: 2px 16px;
+}
+.container1{
+    display: grid;
+    float: none;
+    padding: 10px;
+    grid-template-areas: "Course_name Course_name Time"
+                         "Faculty_name Student_name Date";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 2fr 1fr;
+    grid-row: 5px;
+    grid-column: 5px;
+}
+.Course_name{
+    text-align: center;
+    grid-area: Course_name;
+}
+.Time{
+    text-align: center;
+    grid-area: Time;
+}
+.Faculty_name{
+    text-align: center;
+    grid-area: Faculty_name;
+}
+.Student_name{
+    text-align: center;
+    grid-area: Student_name;
+}
+.Date{
+    text-align: center;
+    grid-area: Date;
+}
+
+@media screen and (max-width:600px){
+    .card {
+        margin: 10%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 80%;
+      }
+      
+      .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+      }
+      
+      .container {
+        padding: 2px 16px;
+      }
+      .container1{
+        display: grid;
+        float: none;
+       
+        grid-template-areas: "Course_name Course_name "
+                             "Faculty_name Student_name "
+                            "Time Date";
+        grid-template-columns: 1fr 1fr ;
+        grid-template-rows: 2fr 1fr 1fr;
+        row-gap: 2px;
+       
+    }
+    .Course_name{
+        text-align: center;
+        grid-area: Course_name;
+    }
+    .Time{
+        margin-top: 8px;
+        text-align: center;
+        grid-area: Time;
+    }
+    .Faculty_name{
+        text-align: center;
+        grid-area: Faculty_name;
+    }
+    .Student_name{
+        text-align: center;
+        grid-area: Student_name;
+    }
+    .Date{
+        margin-top: 8px;
+        text-align: center;
+        grid-area: Date;
+    }
+}

@@ -1,0 +1,78 @@
+body{
+    margin: 0;
+}
+
+.grid-cont {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    width: 100%;
+    height: 100vh;
+    background: rgb(228, 228, 228);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 120px 90px 150px;
+    grid-template-rows: 90px 50px 50px 30px 50px 50px;
+    grid-template-areas: "a a a" 
+                         "b c c" 
+                         "d e e" 
+                         "f f g" 
+                         "h i j"
+                         "k l l";
+
+    box-shadow: 10px 10px 15px grey;
+    background: white;
+
+    align-items: center;
+    justify-items: center;
+}
+
+.logo {
+    grid-area: a;
+    font-size: 24px;
+    font-weight: 500 !important;
+}
+
+.username {
+    grid-area: b;
+}
+
+.username_input {
+    grid-area: c;
+}
+
+.password {
+    grid-area: d;
+}
+
+.password_input {
+    grid-area: e;
+}
+
+.empty1 {
+    grid-area: f;
+}
+
+.forgot_password {
+    grid-area: g;
+    padding-bottom: 10px;
+    font-size: 12px;
+}
+
+.empty2 {
+    grid-area: h;
+}
+
+.login {
+    grid-area: i;
+}
+.empty3{
+    grid-area: j;
+}
+.create {
+    grid-area: l;
+    font-size: 12px;
+}

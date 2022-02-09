@@ -1,0 +1,105 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+body{
+    background: rgb(228, 228, 228) !important;
+}
+
+.grid-cont{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    height: 100vh;
+    background: rgb(228, 228, 228) !important;
+}
+.grid{
+    display: grid;
+    grid-template-columns: 130px 120px 140px;
+    grid-template-rows: 100px 50px 50px 50px 50px 50px 50px;
+    grid-template-areas: "a a a"
+                         "b c c"
+                         "d e e"
+                         "f g g"
+                         "h i i"
+                         "j k k"
+                         "l m n";
+    outline: 3px solid;
+    border-radius: 15px;
+    align-items: center;
+    justify-items: center; 
+    box-shadow: 10px 10px 15px gray;
+    background: white;  
+}
+.payment-info{
+    background-color: white;
+    grid-area: a;
+    font-size: 30px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px;
+}
+
+.name{
+    grid-area: b;
+}     
+.acno_input{
+    grid-area: c;
+}
+.acno_input input{
+    width: 220px;
+}
+.ifsc{
+    grid-area: d;
+    font-size: 17px;
+}
+.ifsc_input{
+    grid-area: e;
+}
+.ifsc_input input{
+    width: 220px;
+}
+.accountholder{
+    grid-area: f;
+}
+.accountholder_input{
+    grid-area: g;
+}
+.accountholder_input input{
+    width: 220px;
+}
+.screenshot{
+    grid-area: h;
+    font-size: 16px;
+}
+.screenshot_input{
+    grid-area: i;
+    width: 220px;
+}
+.utrid{
+    grid-area: j;
+    font-size: 16px;
+}
+.utrid_input{
+    grid-area: k;
+}
+.utrid_input input{
+    width: 220px;
+}
+
+
+
+.empty1{
+    grid-area: l;
+    background: white;
+}
+.PaymentDone{
+    grid-area: m;
+    background: white;
+    
+}
+.empty2{
+    grid-area: n;
+    background: white;
+}

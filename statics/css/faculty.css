@@ -2,20 +2,29 @@
     display: grid;
     align-items: center;
     justify-items: center;
-    
+}
+
+.name{
+    margin-bottom: 20px;
+}
+
+.upload{
+    background: white !important;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: 200px 350px 100px;
+    grid-template-columns: 200px 150px 150px 150px;
     grid-template-rows: 25px 80px 25px 25px;
-    grid-template-areas: "img tit dur" 
-                        "img descrip descrip" 
-                        "img h h" 
-                        "img j j";
-    
-    margin-top: 30px;
+    grid-template-areas: "img tit tit dur" 
+                        "img descrip descrip descrip" 
+                        "price n_views empty1 n_videos" 
+                        "rating progres empty2 complete";
     margin-bottom: 30px;
+    background: white;
+
+    align-items: center;
+    justify-items: center;
 }
 
 .image {
@@ -42,6 +51,8 @@
 
 .duration {
     grid-area: dur;
+    display: grid;
+    justify-items: center;
 }
 
 .desc {
@@ -60,10 +71,45 @@
     text-overflow: ellipsis;
 }
 
-.progress {
-    grid-area: h;
+.price{
+    grid-area: price;
+    display: grid;
+    justify-items: center;
 }
 
-.level {
-    grid-area: j;
+.views{
+    grid-area: n_views;
+    display: grid;
+    justify-items: center;
+}
+
+.videos{
+    grid-area: n_videos;
+    display: grid;
+    justify-items: center;
+}
+
+.rating{
+    grid-area: rating;
+    
+    font-size: 14px;
+}
+
+.progess{
+    grid-area: progres;
+    display: grid;
+    justify-items: center;
+}
+
+.complete{
+    grid-area: complete;
+    display: grid;
+    justify-items: center;
+}
+
+.empty1{
+    grid-area: empty1;
+}
+.empty2{
+    grid-area: empty2;
 }

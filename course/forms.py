@@ -1,6 +1,5 @@
 from django import forms
 from course.models import Course
-from python_files.playlist_duration import duration
 
 class UploadForm(forms.ModelForm):
     class Meta:

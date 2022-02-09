@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institute</title>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="stylesheet" href="{% static 'css/login3.css' %}">
+</head>
+
+<body>
+    <div class="grid-cont">
+    
+        <form action="{% url 'login3' %}" method="post" class="grid w3-border w3-round-large">
+
+            {% csrf_token %}
+
+            <div class="logo">Institute Login</div>
+            
+            <div class="username">email :</div>
+            <div class="username_input">
+                 <input type="text" name="email">
+            </div>
+            <div class="password">Password :</div>
+            <div class="password_input">
+                    <input type="password" name="password">
+            </div>
+            <div class="empty1"></div>
+            <div class="forgot_password">
+             <!-- forgot password? -->
+            </div>
+            <div class="empty2"></div>
+            <div class="login">
+                <button type="submit" class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity">Login</button>
+            </div>
+            <div class="empty3"></div>
+            <div class="create"><a href="{% url 'register3' %}">Create New Account</a></div>
+        </form>
+
+    </div>
+
+</body>
+</html>

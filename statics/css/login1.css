@@ -1,3 +1,11 @@
+.grid-cont{
+    background: rgb(228, 228, 228) !important;
+}
+
+.grid-cont form{
+    background: white;
+}
+
 *{
     padding: 0;
     margin: 0;

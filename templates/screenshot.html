@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="icon" href="{% static 'images/logo.png' %}" type = "image/x-icon">
+    
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/screenshot.css' %}">
+
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="grid-cont">
+        
+        <div class="grid w3-border w3-round-large w3-hover-shadow">
+            
+            <div class="title"><b>{{b.c_name}}</b></div>
+            
+            <div class="fname">Faculty name :  </div>
+            <div class="name1">{{b.f_name}}</div>
+
+            <div class="sname">Student name : </div>
+           <div class="name2">{{b.s_name}}</div> 
+
+           <div class="utr"> UTR No : </div> 
+           <div class="utr_value">{{a.utr_no}}</div> 
+
+           <div class="amt"> Amount to be paid : </div> 
+           <div class="amt_value">{{b.price}}</div>
+
+           <img class="image" src="{{media}}/media/{{a.image}}" alt="Python">
+           
+        </div>
+
+        <div class="Approve">
+            <a href="{% url 'approve' a.id %}" class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity">Approve</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

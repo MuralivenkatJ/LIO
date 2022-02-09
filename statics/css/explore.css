@@ -26,6 +26,9 @@ body{
 #search-btn:hover{
     box-shadow: 0 0 5px grey;
 }
+#search button{
+    background: white;
+}
 
 /* Specialisation */
 
@@ -63,6 +66,7 @@ div.scroll-item{
 }
 
 .card{
+    background: white;
     display: grid;
     grid-template-columns: 75px 100px 75px;
     grid-template-rows: 140px 25px 50px 75px 25px;

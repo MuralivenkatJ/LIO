@@ -1,6 +1,6 @@
 from xml.etree.ElementTree import tostring
 from django.shortcuts import render
-from course.models import Course
+from course.models import Course, Course_skills
 from faculty.models import Faculty
 from institute.models import Institute
 from django.db.models import Q
@@ -12,16 +12,18 @@ def explore(request):
     s_id = 0
     s_pass = ''
     f_id = 0
+    i_id = 0
 
     if 's_id' in request.COOKIES:
         s_id = request.COOKIES['s_id']
         s_pass = request.COOKIES['passw']
-    if 'f_id' in request.COOKIES:
+    elif 'f_id' in request.COOKIES:
         f_id = request.COOKIES['f_id']
+    elif 'i_id' in request.COOKIES:
+        i_id = request.COOKIES['i_id']
 
     color = ['red', 'purple', 'indigo', 'blue', 'deep-orange', 'blue-gray', 'dark-gray']
     i = 0
-    j = 0
     color1 = []
     specialisation = []
     for s in Course.objects.raw('''
@@ -33,7 +35,6 @@ def explore(request):
             temp = color[i]
             color1.append(temp)
             i = (i+1) % 7
-            j = j+1
     
     zip_specialisation = zip(specialisation, color1)
 
@@ -91,7 +92,7 @@ def explore(request):
         LIMIT 10;'''):
         guided_project.append(c)
 
-    return render(request, 'explore.html', {'s_id': s_id, 's_name': s_name, 'f_id': f_id, 'i_name': iname, 'specialisation': zip_specialisation, 'freec': free, 'most_popular': most_popular, 'recently_launched': recently_launched, 'guided_project': guided_project})
+    return render(request, 'explore.html', {'s_id': s_id, 's_name': s_name, 'f_id': f_id, 'i_id': i_id, 'i_name': iname, 'specialisation': zip_specialisation, 'freec': free, 'most_popular': most_popular, 'recently_launched': recently_launched, 'guided_project': guided_project})
 
 
 def query(request):
@@ -100,6 +101,18 @@ def query(request):
 
     course = Course.objects.filter(Q(c_name__icontains = str) | Q(description__icontains = str) | Q(specialization__icontains = str))
 
+    skill = Course_skills.objects.filter(Q(skills__icontains = str))
+    s_courses = []
+    c_ids = []
+    for s in skill:
+        dict = {}
+        dict['skill'] = s.skills
+
+        if s.c_id_id not in c_ids:
+            c_ids.append(s.c_id_id)
+            c = Course.objects.get(c_id = s.c_id_id)
+            dict['course'] = c
+            s_courses.append(dict)
 
     faculty = Faculty.objects.filter(Q(f_name__icontains = str) | Q(qualification__icontains = str))
 
@@ -130,7 +143,7 @@ def query(request):
         i_courses.append(dict)
 
 
-    return render(request, 'search.html', {'course': course, 'f_courses': f_courses, 'i_courses': i_courses})
+    return render(request, 'search.html', {'course': course, 'f_courses': f_courses, 'i_courses': i_courses, 's_courses': s_courses})
 
 
 def query1(request, str):

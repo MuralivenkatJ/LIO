@@ -1,3 +1,15 @@
+body{
+    background: rgb(228, 228, 228) !important;
+}
+
+.grid-cont{
+    background: rgb(228, 228, 228) !important;
+}
+
+.grid-cont form{
+    background: white;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -5,86 +17,90 @@
 }
 
 .grid-cont{
+    margin-top: 30px;
+    margin-bottom: 30px;
     display: grid;
     align-items: center;
     justify-items: center;
-    height: 100vh;
 }
 .grid{
     display: grid;
-    grid-template-columns: 100px 120px 140px;
-    grid-template-rows: 100px 50px 50px 50px 50px 60px;
+    grid-template-columns: 150px 120px 140px;
+    grid-template-rows: 100px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50PX 50PX;
     grid-template-areas: "a a a"
                          "b c c"
                          "d e e"
-                         "x y y"
                          "f g g"
                          "h i i"
-                         "j k l";
+                         "j k k"
+                         "l m m"
+                         "p q q"
+                         "r s s"
+                         "t u u"
+                         "v w w"
+                         "x y y"
+                         "z A B";
     outline: 3px solid;
     border-radius: 15px;
     align-items: center;
     justify-items: center; 
+    box-shadow: 10px 10px 15px gray;
+    background-color: white;
 }
 .register-form{
-      background-color: white;
-      grid-area: a;
-      font-size: 30px;
-      text-transform: uppercase;
-      text-shadow: 1px 1px;
-      }
+    grid-area: a;
+    font-size: 30px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px;
+}
 
 .name{
     grid-area: b;
-    background: white;
-    
 }     
 .Name_input{
     grid-area: c;
-    background: white;
 }
 .Name_input input{
     width: 220px;
 }
 .address{
     grid-area: d;
-    background: white;
-    
+    font-size: 17px;
 }
 .address_input{
     grid-area: e;
-    background: white;
 }
-
-.image{
-    grid-area: x;
-}
-.image_input{
-    grid-area: y;
-}
-
 .address_input input{
     width: 220px;
 }
-.Email{
+
+.image{
     grid-area: f;
+    font-size: 17px;
+}
+.image_input{
+    grid-area: g;
+    width: 220px;
+}
+.Email{
+    grid-area: h;
     background: white;
-    
+    font-size: 17px;
 }
 .email_id_input{
-    grid-area: g;
+    grid-area: i;
     background: white;
 }
 .email_id_input input{
     width: 220px;
 }
 .website{
-    grid-area: h;
+    grid-area: j;
     background: white;
-
+    font-size: 17px;
 }
 .website_input{
-    grid-area: i;
+    grid-area: k;
     background: white;
     position: relative;
 
@@ -92,17 +108,98 @@
 .website_input input{
     width: 220px;
 }
+.BankName{
+    grid-area: l;
+}
+.bankname_input{
+    grid-area: m;
+}
+.bankname_input input{
+    width: 220px;
+}
+/* .Bankaddress{
+    grid-area: n;
+}
+.Bankaddress_input{
+    grid-area: o;
+}
+.Bankaddress_input input{
+    width: 220px;
+} */
+.AccountHolder{
+    grid-area: p;
+}
+.AccountHolder_input{
+    grid-area: q;
+}
+.AccountHolder_input input{
+    width: 220px;
+}
+.AccountNumber{
+    grid-area: r;
+}
+.AccountNumber_input{
+    grid-area: s;
+}
+.AccountNumber_input input{
+    width: 220px;
+}
+.IFSCCode{
+    grid-area: t;
+}
+.ifsccode_input{
+    grid-area: u;
+}
+.ifsccode_input input{
+    width: 220px;
+}
+.password{
+    grid-area: v;
+}
+.password_input{
+    grid-area: w;
+    position: relative;
+}
+.password_input input{
+    width: 220px;
+}
+#eye{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+#eye:hover{
+    cursor: pointer;
+}
+.confirmpassword{
+    grid-area: x;
+}
+.confirm_input{
+    grid-area: y;
+    position: relative;
+}
+.confirm_input input{
+    width: 220px;
+}
 
+#eye1{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+#eye1:hover{
+    cursor: pointer;
+}
 .empty1{
-    grid-area: j;
+    grid-area: z;
     background: white;
 }
 .sign-in{
-    grid-area: k;
+    grid-area: A;
     background: white;
     
 }
 .empty2{
-    grid-area: l;
+    grid-area: B;
     background: white;
 }

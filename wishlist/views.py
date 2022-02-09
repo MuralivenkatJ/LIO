@@ -35,3 +35,44 @@ def wishlist(request):
                                 course.append(c)
 
         return render(request, 'wishlist.html', {'course': course})
+
+
+def add(request, c_id):
+    s_id = 0
+    s_pass = ''
+
+    if 's_id' in request.COOKIES:
+        s_id = int(request.COOKIES['s_id'])
+        s_pass = request.COOKIES['passw']
+    else:
+        return redirect('login1')
+
+    passw = ''
+    if s_id != 0:
+        s = Student.objects.get(s_id=s_id)
+        passw = s.password
+    
+    if s_pass != passw:
+        return redirect('login1')
+    else:
+        s = Student.objects.get(s_id=s_id)
+        c = Course.objects.get(c_id=c_id)
+    
+        wished = Wishlist.objects.create(s_id=s, c_id=c)
+        wished.save()
+
+    return redirect('wishlist')
+
+
+def delete(request, c_id):
+    s_id = 0
+
+    if 's_id' in request.COOKIES:
+        s_id = int(request.COOKIES['s_id'])
+    else:
+        return redirect('login1')
+
+    Wishlist.objects.filter(c_id_id=c_id, s_id_id=s_id).delete()
+
+    return redirect('wishlist')
+    
