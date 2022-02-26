@@ -23,7 +23,7 @@
             <img src="{% static 'images/logo.png' %}" alt="logo" width="40px" height="40px" class="w3-bar-item logo  w3-margin-left" title="LIO">
             <a href="{% url 'explore' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="Explore">Explore</a>
             
-            <a href="#" class="w3-bar-item w3-hide-small w3-right logo"><img src="{{media}}/media/student/default.jpg" alt="logo" width="40px" height="40px" class="logo w3-margin-right"></a>
+            <a href="#" class="w3-bar-item w3-hide-small w3-right logo"><img src="{{media}}/media/{{profile}}" alt="logo" width="40px" height="40px" class="logo w3-margin-right"></a>
 
             {% if f_id != 0 %}
                 <a href="{% url 'faculty' %}" class="w3-bar-item w3-hide-small  w3-black with w3-opacity bar-item w3-margin-left w3-border w3-btn" title="My courses">My courses</a>
@@ -45,7 +45,7 @@
         </div>
 
         <div id="collapse" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium w3-white">
-            <a href="{% url 'explore' %}" class="w3-bar-item mobile-bar w3-black with w3-opacity bar-item w3-border w3-btn" title="Explore">Explore</a>
+            <a href="{% url 'explore' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="Explore">Explore</a>
             
             <!-- <a href="{% url 'login1' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="login">login</a> -->
 
@@ -65,7 +65,7 @@
                 </div>
             {% endif %}
 
-            <a href="#" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn"><img src="{% static 'images/logo.png' %}" alt="logo" width="40px" height="40px" style="float: right;" class="logo w3-margin-right"></a>
+            <a href="#" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn"><img src="{{media}}/media/{{profile}}" alt="logo" width="40px" height="40px" style="float: right;" class="logo w3-margin-right"></a>
         </div>
     </div>
 
@@ -104,6 +104,8 @@
         <a href="{% url 'upload' %}" class="upload w3-bar-item w3-hover-black with w3-hover-opacity w3-border w3-round w3-btn" title="upload">Upload</a>
 
     </div>
+
+    <script src="{% static 'js/nav.js' %}"></script>
 
 </body>
 </html>

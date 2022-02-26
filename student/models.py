@@ -11,7 +11,7 @@ class Student(models.Model):
     s_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=10)
     email = models.EmailField()
-    image = models.ImageField(upload_to='media/student', default='media/student/default.jpg')
+    image = models.ImageField(upload_to='media/student', default='student/default.jpg')
     password = models.CharField(max_length=200)
     i_id = models.ForeignKey(Institute, on_delete=models.CASCADE)
 

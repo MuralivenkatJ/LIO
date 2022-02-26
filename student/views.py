@@ -47,13 +47,18 @@ def register(request):
             messages.error(request, "Password didn't match")
             return render(request, 'signup1.html')
         else:
-            password = hashlib.md5(password.encode('utf-8')).hexdigest()
+            if password != '':
+                password = hashlib.md5(password.encode('utf-8')).hexdigest()
             req = request.POST.copy()
             req['password'] = password
             form = studentForm(req, request.FILES)
             if form.is_valid():
                 form.save()
                 return redirect('explore')
+            else:
+                # messages.error(request, form.errors)
+                institutes = Institute.objects.all()
+                return render(request, 'signup1.html', {'institute': institutes, 'form': form})
 
     else:
 
@@ -89,7 +94,6 @@ def payment(request, c_id):
                 form.save()
                 return redirect('mycourses')
             else:
-                messages.error(request, "Something is wrong")
                 return render(request, 'paymentinfo.html', {'i': i, 'c': c, 'form': form})
         return redirect('paymentinfo', c_id=c_id)
 

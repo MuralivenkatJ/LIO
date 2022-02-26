@@ -31,7 +31,7 @@
             <img src="{% static 'images/logo.png' %}" alt="logo" width="40px" height="40px" class="w3-bar-item logo  w3-margin-left" title="LIO">
             <a href="{% url 'explore' %}" class="w3-bar-item w3-hide-small w3-black with w3-opacity bar-item w3-margin-left w3-border w3-btn" title="Explore">Explore</a>
             
-            <a href="#" class="w3-bar-item w3-hide-small w3-right logo"><img src="{{media}}/media/student/default.jpg" alt="logo" width="40px" height="40px" class="logo w3-margin-right"></a>
+            <a href="#" class="w3-bar-item w3-hide-small w3-right logo"><img src="{{media}}/media/{{profile}}" alt="logo" width="40px" height="40px" class="logo w3-margin-right"></a>
 
             {% if s_id != 0 %}
                 <a href="{% url 'mycourses' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="My courses">My courses</a>
@@ -87,7 +87,7 @@
                 </div>
             {% endif %}
 
-            <a href="#" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn"><img src="{% static 'images/logo.png' %}" alt="logo" width="40px" height="40px" style="float: right;" class="logo w3-margin-right"></a>
+            <a href="#" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn"><img src="{{media}}/media/{{profile}}" alt="logo" width="40px" height="40px" style="float: right;" class="logo w3-margin-right"></a>
         </div>
     </div>
 
@@ -118,7 +118,7 @@
 
     <!-- INSTITUTE -->
     {% if s_id != 0 %}
-    <h2>Free for {{i_name}}</h2>
+    <h2>Free for {{iname}}</h2>
     <div class="w3-panel scroll">
 
         {% for c in freec %}

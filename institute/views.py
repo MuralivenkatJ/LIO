@@ -19,13 +19,17 @@ def register(request):
         if password != cpassword:
             messages.error(request, "Password didn't match")
         else:
-            password = hashlib.md5(password.encode('utf-8')).hexdigest()
+            if password != '':
+                password = hashlib.md5(password.encode('utf-8')).hexdigest()
             req = request.POST.copy()
             req['password'] = password
             form = instituteForm(req, request.FILES)
             if form.is_valid():
                 form.save()
                 return redirect('explore')
+            else:
+                # messages.error(request, form.errors)
+                return render(request, 'signup3.html', {'form': form})
         return redirect('register3')
     else:
         return render(request, 'signup3.html')
@@ -76,10 +80,12 @@ def approvals(request):
     
     passw = ''
     i_name = ''
+    profile = ''
     if i_id != 0:
         insti = Institute.objects.get(i_id=i_id)
         passw = insti.password
         i_name = insti.i_name
+        profile = insti.image
 
     if i_pass != passw:
         return redirect('login3')
@@ -104,7 +110,7 @@ def approvals(request):
 
     list = zip(list1, list2)
 
-    return render(request, 'institute.html', {'i_id': i_id, 'i_name': i_name, 'list': list})
+    return render(request, 'institute.html', {'i_id': i_id, 'i_name': i_name, 'profile': profile, 'list': list})
 
 
 def screenshot(request, id):

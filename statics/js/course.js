@@ -17,6 +17,20 @@ function size()
     player.setSize(width=w, height=h)
 }
 
+function secondsToMinutes(duration)
+{
+    let hour = Math.floor(duration / 3600);
+    let minute = Math.floor( (duration - hour*3600) / 60);
+    let seconds = duration - (hour*3600) - (minute*60);
+
+    let total_duration = ""
+    if(hour > 0)
+        total_duration += hour.toString() + ":";
+    total_duration += minute.toString() + ":" + seconds.toString();
+
+    return total_duration;
+}
+
 /* PLAYER API */ 
 // 1. Loading the script
 function loadScript() {
@@ -43,7 +57,8 @@ function onYouTubePlayer(videoId)
         videoId: videoId,
         playerVars: {
             rel: 0,
-            autoplay: 1
+            autoplay: 1,
+            controls: 0
         }
     });
 
@@ -55,11 +70,22 @@ loadScript();
 // Time tracker (if video is 90% completed then )
 function timeTracker(index)
 {
+    var progress_bar = document.getElementsByClassName("progress-bar")[0];
+    var percent = 0;
+    var time = document.getElementsByClassName("time")[0];
+
     timeInterval = setInterval(function(){
         if(duration == undefined || duration == 0)
             duration = parseInt(player.getDuration());
         currentTime = parseInt(player.getCurrentTime());
         // console.log(currentTime, duration);
+
+        percent = (currentTime / duration) * 100;
+        progress_bar.style.width = percent.toString() + "%";
+
+        let t1 = secondsToMinutes(currentTime)
+        let t2 = secondsToMinutes(duration)
+        time.innerHTML = t1 + "/" + t2;
 
         if( (currentTime >= (0.95*duration)) && index != -1)
         {
@@ -92,6 +118,8 @@ function play(details)
     image.style.display = "none";
     video_cont.style.display = "block";
 
+    if(prev == null)
+        controllsOffTimeout = setTimeout(controlsOff1, 5000);
 
     //Creating player for the first time
     let v_id = details.getAttribute("data-vId");
@@ -184,8 +212,7 @@ function loadvideo()
 }
 
 $(window).resize(function() 
-{ 
-    location.reload()
+{
 });
 
 function more()
@@ -223,4 +250,111 @@ function more()
         }
     }
     
+}
+
+
+
+// CONTROLS
+function pauseplay()
+{
+    let status = player.getPlayerState();
+    let icon = document.getElementById("pauseplay-icon");
+    let className = icon.getAttribute("class");
+    let newClassName = '';
+
+    if(status == 2)
+    {
+        player.playVideo()
+        if(className.indexOf("fa-pause-circle") == -1)
+        {
+            newClassName = className.replace("fa-play-circle", "fa-pause-circle");
+            icon.setAttribute("class", newClassName);
+        }
+    }
+    else if(status == 1)
+    {
+        player.pauseVideo()
+        if(className.indexOf("fa-play-circle") == -1)
+        {
+            newClassName = className.replace("fa-pause-circle", "fa-play-circle");
+            icon.setAttribute("class", newClassName);
+        }
+    }
+
+    clearTimeout(controllsOffTimeout);
+    controllsOffTimeout = setTimeout(controlsOff1, 5000);
+}
+
+var seekInterval;
+var seekToTime;
+function previous10s()
+{
+    seekToTime = parseInt(player.getCurrentTime());
+    seekToTime -= 10;
+    player.seekTo(seekToTime, true);
+
+    clearTimeout(controllsOffTimeout);
+    controllsOffTimeout = setTimeout(controlsOff1, 5000);
+}
+
+function next10s()
+{
+    seekToTime = parseInt(player.getCurrentTime());
+    seekToTime += 10;
+    player.seekTo(seekToTime, true);
+    
+    clearTimeout(controllsOffTimeout);
+    controllsOffTimeout = setTimeout(controlsOff1, 5000);
+}
+
+// CONTROLS ON
+let layer = document.getElementsByClassName("layer")[0];
+layer.addEventListener('click', function(e){
+    controlsOn(e)
+});
+function controlsOn(e)
+{
+    let controls_cont = document.getElementById("controls-cont");
+    controls_cont.style.zIndex = "2";
+    var controllsOffTimeout = setTimeout(controlsOff1, 5000);
+}
+
+// CONTROLS OFF
+let previous = document.getElementById("previous10s");
+previous.addEventListener('click', function(e){
+    controlsOff(e);
+});
+let pause = document.getElementById("pauseplay");
+pause.addEventListener('click', function(e){
+    controlsOff(e);
+});
+let next = document.getElementById("next10s");
+next.addEventListener('click', function(e){
+    controlsOff(e);
+});
+function controlsOff(e)
+{
+    if(controllsOffTimeout)
+        clearTimeout(controllsOffTimeout);
+    let rect = document.getElementsByClassName("fa")[0].getBoundingClientRect();
+
+    if(e.clientX>rect.left && e.clientX<rect.right && e.clientY>rect.top && e.clientY<rect.bottom)
+        return;
+
+    rect = document.getElementsByClassName("fa")[1].getBoundingClientRect();
+    if(e.clientX>rect.left && e.clientX<rect.right && e.clientY>rect.top && e.clientY<rect.bottom)
+        return;
+    
+    rect = document.getElementsByClassName("fa")[2].getBoundingClientRect();
+    if(e.clientX>rect.left && e.clientX<rect.right && e.clientY>rect.top && e.clientY<rect.bottom)
+        return;
+    
+    let controls_cont = document.getElementById("controls-cont");
+    controls_cont.style.zIndex = "-1";
+}
+
+function controlsOff1()
+{
+    let controls_cont = document.getElementById("controls-cont");
+    controls_cont.style.zIndex = "-1";
 }

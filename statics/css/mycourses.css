@@ -91,7 +91,7 @@ a{
 }
 
 
-  @media screen and (min-width:300px) and (max-width:400px){
+  @media screen and (min-width:400px) and (max-width:500px){
     .container {
         width: 400px !important;
         display: grid;
@@ -104,8 +104,6 @@ a{
           "rate name"
           "emty emty"
           ;
-          row-gap: 2px;
-        column-gap: 2px;  
       }
       .item-a img{
         width: 180px;
@@ -120,7 +118,7 @@ a{
         height: 50px;
       }
     }
-  @media screen and (min-width:400px) and (max-width:600px){
+  @media screen and (min-width:500px) and (max-width:600px){
     .container {
         width: 410px !important;
         display: grid;
@@ -129,8 +127,7 @@ a{
         grid-template-areas: 
           "img progress progress"
           "img title title"
-          "rate emty name"
-          ;
+          "rate emty name";
           row-gap: 3px;
         column-gap: 2px;  
       }
@@ -147,7 +144,7 @@ a{
         height: 50px;
       }
     }
-    @media screen and (min-width:600px) and (max-width:800px){
+    @media screen and (min-width:610px) and (max-width:800px){
         .container {
             width: 610px !important;
             display: grid;
@@ -174,7 +171,7 @@ a{
             height: 50px;
           }
         }
-  @media screen and (min-width:800px) {
+  @media screen and (min-width:810px) {
     .container{
         width: 810px !important;
         display: grid;

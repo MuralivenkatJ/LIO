@@ -15,9 +15,11 @@ def wishlist(request):
         return redirect('login1')
 
     passw = ''
+    profile = ''
     if s_id != 0:
         s = Student.objects.get(s_id=s_id)
         passw = s.password
+        profile = s.image
     
     if s_pass != passw:
         return redirect('login1')
@@ -34,7 +36,7 @@ def wishlist(request):
                                 WHERE s_id_id = %s)''', [s.s_id]):
                                 course.append(c)
 
-        return render(request, 'wishlist.html', {'course': course})
+        return render(request, 'wishlist.html', {'course': course, 'profile': profile})
 
 
 def add(request, c_id):

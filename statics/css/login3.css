@@ -50,6 +50,12 @@ body{
 
 .password_input {
     grid-area: e;
+    position: relative;
+}
+#eye{
+    position: absolute;
+    right: 15px;
+    top: 5px;
 }
 
 .empty1 {

@@ -40,11 +40,23 @@ def explore(request):
 
     # FINDING THE NAME OF THE STUDENT
     s_name = ''
+    f_name = ''
+    i_name = ''
     passw = ''
+    profile = 'student/default.jpg'
     if s_id != 0:
         s = Student.objects.get(s_id=s_id)
         s_name = s.s_name
         passw = s.password
+        profile = s.image
+    elif f_id != 0:
+        f = Faculty.objects.get(f_id=f_id)
+        f_name = f.f_name
+        profile = f.image
+    elif i_id != 0:
+        i = Institute.objects.get(i_id=i_id)
+        i_name = i.i_name
+        profile = i.image
 
     # FINDING INSTITUTE NAME AND INSTITUTE ID and FREE COURSES
     iname = ''
@@ -92,7 +104,7 @@ def explore(request):
         LIMIT 10;'''):
         guided_project.append(c)
 
-    return render(request, 'explore.html', {'s_id': s_id, 's_name': s_name, 'f_id': f_id, 'i_id': i_id, 'i_name': iname, 'specialisation': zip_specialisation, 'freec': free, 'most_popular': most_popular, 'recently_launched': recently_launched, 'guided_project': guided_project})
+    return render(request, 'explore.html', {'s_id': s_id, 's_name': s_name, 'f_id': f_id, 'f_name': f_name, 'i_id': i_id, 'i_name': i_name, 'profile': profile, 'iname': iname, 'specialisation': zip_specialisation, 'freec': free, 'most_popular': most_popular, 'recently_launched': recently_launched, 'guided_project': guided_project})
 
 
 def query(request):

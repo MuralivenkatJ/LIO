@@ -15,12 +15,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" title="" type=""/>
 
     <link rel="stylesheet" href="{% static 'css/signup2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/error.css' %}">
 </head>
 
 <body>
      <div class="grid-cont">
     
-        <form action="" method="POST" class="grid w3-border w3-round-xlarge" enctype="multipart/form-data">
+        <form action="{% url 'register2' %}" method="POST" class="grid w3-border w3-round-xlarge" enctype="multipart/form-data">
 
             {% csrf_token %}
 
@@ -81,15 +82,29 @@
         </form>
     </div>
 
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-	            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
+    {% if messages or form.errors %}
+        <div class="error-cont" id="error_cont" style="z-index: 1;">
+            <div class="errors w3-border w3-round-large w3-hover-shadow w3-red w3-text-black" onclick="error()">
+                <span style="font-weight: 800;">&#x26A0; ERROR &#x26A0;</span> 
+                <br/>
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+                {% for field in form %}
+                    {% if field.errors %}
+                        <p> <strong>{{field.label}} :</strong> 
+                            {% for error in field.errors %}
+                                {{error|striptags}}
+                            {% endfor %}
+                        </p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
     {% endif %}
 
     <script src="{% static 'js/signup2.js' %}"></script>
+    <script src="{% static 'js/error.js' %}"></script>
 
 </body>
 </html>

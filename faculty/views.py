@@ -44,15 +44,19 @@ def register(request):
         cpassword = request.POST.get('cpassword')
         if password != cpassword:
             messages.error(request, "Password didn't match")
+            return redirect('register2')
         else:
-            password = hashlib.md5(password.encode('utf-8')).hexdigest()
+            if password != '':
+                password = hashlib.md5(password.encode('utf-8')).hexdigest()
             req = request.POST.copy()
             req['password'] = password
             form = facultyForm(req, request.FILES)
             if form.is_valid():
                 form.save()
                 return redirect('explore')
-        return redirect('register2') 
+            else:
+                # messages.error(request, form.errors)
+                return render(request, 'signup2.html', {'form': form})
 
     else:
         institutes = Institute.objects.all()
@@ -80,10 +84,12 @@ def faculty(request):
     
     passw = ''
     f_name = ''
+    profile = ''
     if f_id != 0:
         f = Faculty.objects.get(f_id=f_id)
         passw = f.password
         f_name = f.f_name
+        profile = f.image
 
     if f_pass != passw:
         return redirect('login2')
@@ -112,5 +118,5 @@ def faculty(request):
 
     zippedData = zip(course, number)
 
-    return render(request, 'faculty.html', {'f_name': f_name, 'course': zippedData})
+    return render(request, 'faculty.html', {'f_name': f_name, 'profile': profile, 'course': zippedData})
     

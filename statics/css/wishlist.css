@@ -53,7 +53,7 @@ a{
         max-width: 360px;
         display: grid;
         grid-template-columns: 350px;
-        grid-template-rows: 190px 50px 25px 25px 25px 25px;
+        grid-template-rows: 190px 50px 25px 25px 50px 50px;
         grid-template-areas: 
           "Image"
           "Title"
@@ -76,7 +76,7 @@ a{
             max-width: 360px;
             display: grid;
             grid-template-columns: 350px;
-            grid-template-rows: 190px 50px 25px 25px 25px 25px;
+            grid-template-rows: 190px 50px 25px 25px 50px 50px;
             grid-template-areas: 
               "Image"
               "Title"

@@ -10,8 +10,10 @@
     <title>Institute</title>
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" title="" type=""/>
 
     <link rel="stylesheet" href="{% static 'css/login3.css' %}">
+    <link rel="stylesheet" href="{% static 'css/error.css' %}">
 </head>
 
 <body>
@@ -29,7 +31,8 @@
             </div>
             <div class="password">Password :</div>
             <div class="password_input">
-                    <input type="password" name="password">
+                    <input type="password" name="password" id="pass-input">
+                    <i class="fa fa-eye" id="eye" onclick="visible()"></i>
             </div>
             <div class="empty1"></div>
             <div class="forgot_password">
@@ -45,5 +48,19 @@
 
     </div>
 
+    {% if messages %}
+        <div class="error-cont" id="error_cont" style="z-index: 1;">
+            <div class="errors w3-border w3-round-large w3-hover-shadow w3-red w3-text-black" onclick="error()">
+                <span style="font-weight: 800;">&#x26A0; ERROR &#x26A0;</span> 
+                <br/>
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <script src="{% static 'js/login3.js' %}"></script>
+    <script src="{% static 'js/error.js' %}"></script>
 </body>
 </html>

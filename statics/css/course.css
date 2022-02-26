@@ -85,11 +85,8 @@ body{
 }
 #player{
     display: inline-block;
-    width: 100%;
+    width: 100% !important;
     height: 100%;
-
-    margin-top: 10px;
-    margin-bottom: 10px;
 
     position: absolute;
     top: 0;
@@ -98,6 +95,90 @@ body{
     right: 0;
 }
 
+
+/* LAYER */
+.layer{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+
+    width: 100%;
+    height: 100%;
+}
+
+/* CONTROLS */
+.controls-cont{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto 5px 30px;
+    grid-template-areas: 'previous pause next'
+                         'progres progres progres'
+                         'time empty10 empty20';
+
+    color: white;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    box-shadow: inset 0 0 25px #000000;
+}
+.previous10s{
+    grid-area: previous;
+
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    color: grey;
+}
+.pauseplay{
+    grid-area: pause;
+
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    color: grey;
+}
+.next10s{
+    grid-area: next;
+
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    color: grey;
+}
+.controls-cont i{
+    cursor: pointer;
+}
+
+
+.progress{
+    grid-area: progres;
+    width: 95%;
+    margin-bottom: 0%; 
+    background-color: grey;
+}
+.time{
+    grid-area: time;
+}
+.empty10{
+    grid-area: empty10;
+}
+.empty20{
+    grid-area: empty20;
+}
 
 
 
@@ -257,8 +338,6 @@ div #desc{
     }
     #player{
         width: 95%;
-
-        margin-top: 10px;
 
         position: absolute;
         top: 0;

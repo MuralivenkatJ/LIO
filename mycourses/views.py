@@ -18,9 +18,11 @@ def mycourses(request):
         return redirect('login1')
 
     passw = ''
+    profile = 'student/default.jpg'
     if s_id != 0:
         s = Student.objects.get(s_id=s_id)
         passw = s.password
+        profile = s.image
     
     if s_pass != passw:
         return redirect('login1')
@@ -54,7 +56,7 @@ def mycourses(request):
         
         data = zip(course, watched)
 
-        return render(request, 'mycourses.html', {'data': data})
+        return render(request, 'mycourses.html', {'data': data, 'profile': profile})
 
 
 def reviews(request, c_id):
