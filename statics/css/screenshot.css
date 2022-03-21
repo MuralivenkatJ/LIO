@@ -46,7 +46,8 @@ grid-area:n2;
     padding: 10px;
 }
 .image img{
-    width: 300px;
+    max-width: 430px !important;
+    max-height: 430px !important;
 }
 .utr{
 grid-area: utr1;

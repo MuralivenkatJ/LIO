@@ -64,9 +64,9 @@ def explore(request):
     free = []
     if s_pass == passw:
         for s in Institute.objects.raw('''
-        SELECT i_name, I.i_id
-        FROM student_student S, institute_institute I
-        WHERE S.i_id_id = I.i_id;'''):
+            SELECT i_name, I.i_id
+            FROM student_student S, institute_institute I
+            WHERE S.i_id_id = I.i_id AND S.s_id = %s;''', [s_id]):
             iname = s.i_name
             iid = s.i_id
     
@@ -104,7 +104,60 @@ def explore(request):
         LIMIT 10;'''):
         guided_project.append(c)
 
-    return render(request, 'explore.html', {'s_id': s_id, 's_name': s_name, 'f_id': f_id, 'f_name': f_name, 'i_id': i_id, 'i_name': i_name, 'profile': profile, 'iname': iname, 'specialisation': zip_specialisation, 'freec': free, 'most_popular': most_popular, 'recently_launched': recently_launched, 'guided_project': guided_project})
+    institutes = Institute.objects.all()
+
+    return render(request, 'explore.html', {'s_id': s_id, 's_name': s_name, 'f_id': f_id, 'f_name': f_name, 'i_id': i_id, 'i_name': i_name, 'profile': profile, 'iname': iname, 'specialisation': zip_specialisation, 'freec': free, 'most_popular': most_popular, 'recently_launched': recently_launched, 'guided_project': guided_project, 'institute': institutes})
+
+
+def getExploreData():
+    color = ['red', 'purple', 'indigo', 'blue', 'deep-orange', 'blue-gray', 'dark-gray']
+    i = 0
+    color1 = []
+    specialisation = []
+    for s in Course.objects.raw('''
+        SELECT c_id, specialization
+        FROM course_course
+        LIMIT 10;'''):
+        if s.specialization not in specialisation:
+            specialisation.append(s.specialization)
+            temp = color[i]
+            color1.append(temp)
+            i = (i+1) % 7
+    
+    zip_specialisation = zip(specialisation, color1)
+
+    # MOST POPULAR
+    most_popular = []
+    for c in Course.objects.raw('''
+        SELECT *
+        FROM course_course
+        ORDER BY total_views DESC
+        LIMIT 10;'''):
+        most_popular.append(c)
+
+    # RECENTLY LAUNCHED
+    recently_launched = []
+    for c in Course.objects.raw('''
+        SELECT *
+        FROM course_course
+        ORDER BY date DESC, c_id DESC
+        LIMIT 10;'''):
+        recently_launched.append(c)
+
+    # GUIDED PROJECT
+    guided_project = []
+    for c in Course.objects.raw('''
+        SELECT *
+        FROM course_course
+        WHERE guided_project = 1
+        LIMIT 10;'''):
+        guided_project.append(c)
+
+    institutes = Institute.objects.all()
+    
+    d = {'s_id': 0, 's_name': '', 'f_id': 0, 'f_name': '', 'i_id': 0, 'i_name': '', 'profile': 'student/default.jpg', 'iname': '', 'specialisation': zip_specialisation, 'freec': [], 'most_popular': most_popular, 'recently_launched': recently_launched, 'guided_project': guided_project, 'institute': institutes}
+
+    return d
 
 
 def query(request):

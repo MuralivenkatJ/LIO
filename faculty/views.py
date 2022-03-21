@@ -2,6 +2,7 @@ import hashlib
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from course.models import Course
+from explore.views import getExploreData
 
 from faculty.forms import facultyForm
 from faculty.models import Faculty
@@ -31,10 +32,9 @@ def login(request):
             return response
         else:
             messages.error(request, 'incorrect email or password')
-            return redirect('login2')
-
-    else:
-        return render(request, 'login2.html')
+            d = getExploreData()
+            d.update({'top': 'l2'})
+            return render(request, 'explore.html', d)
 
 
 
@@ -44,7 +44,9 @@ def register(request):
         cpassword = request.POST.get('cpassword')
         if password != cpassword:
             messages.error(request, "Password didn't match")
-            return redirect('register2')
+            d = getExploreData()
+            d.update({'top': 's2'})
+            return render(request, 'explore.html', d)
         else:
             if password != '':
                 password = hashlib.md5(password.encode('utf-8')).hexdigest()
@@ -56,12 +58,9 @@ def register(request):
                 return redirect('explore')
             else:
                 # messages.error(request, form.errors)
-                return render(request, 'signup2.html', {'form': form})
-
-    else:
-        institutes = Institute.objects.all()
-
-        return render(request, 'signup2.html', {'institute': institutes})
+                d = getExploreData()
+                d.update({'form': form, 'top': 's2'})
+                return render(request, 'explore.html', d)
 
 
 
@@ -119,4 +118,34 @@ def faculty(request):
     zippedData = zip(course, number)
 
     return render(request, 'faculty.html', {'f_name': f_name, 'profile': profile, 'course': zippedData})
-    
+
+
+def getFacultyData(f_id):
+    f = Faculty.objects.get(f_id=f_id)
+    f_name = f.f_name
+    profile = f.image
+
+    course = []
+    number = []
+
+    for c in Course.objects.filter(f_id_id = f_id):
+        in_progress = 0
+        complete = 0
+        enroll = Enrolls.objects.filter(c_id=c.c_id)
+
+        for e in enroll:
+            if e.status == "inprogress":
+                in_progress = in_progress + 1
+            elif e.status == "complete":
+                complete = complete + 1
+        
+        dict = {}
+        dict['inprogress'] = in_progress
+        dict['complete'] = complete
+
+        course.append(c)
+        number.append(dict)
+
+    zippedData = zip(course, number)
+
+    return {'f_name': f_name, 'profile': profile, 'course': zippedData}

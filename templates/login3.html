@@ -17,35 +17,33 @@
 </head>
 
 <body>
-    <div class="grid-cont">
-    
-        <form action="{% url 'login3' %}" method="post" class="grid w3-border w3-round-large">
+    <div class="l3-grid-cont">
+        <form action="{% url 'login3' %}" method="post" class="l3-grid w3-border w3-round-large">
 
             {% csrf_token %}
 
-            <div class="logo">Institute Login</div>
+            <div class="l3-logo">Institute Login</div>
             
-            <div class="username">email :</div>
-            <div class="username_input">
+            <div class="l3-username">email :</div>
+            <div class="l3-username_input">
                  <input type="text" name="email">
             </div>
-            <div class="password">Password :</div>
-            <div class="password_input">
-                    <input type="password" name="password" id="pass-input">
-                    <i class="fa fa-eye" id="eye" onclick="visible()"></i>
+            <div class="l3-password">Password :</div>
+            <div class="l3-password_input">
+                    <input type="password" name="password" id="l3-pass-input">
+                    <i class="fa fa-eye" id="l3-eye" onclick="visible()"></i>
             </div>
-            <div class="empty1"></div>
-            <div class="forgot_password">
+            <div class="l3-empty1"></div>
+            <div class="l3-forgot_password">
              <!-- forgot password? -->
             </div>
-            <div class="empty2"></div>
-            <div class="login">
+            <div class="l3-empty2"></div>
+            <div class="l3-login">
                 <button type="submit" class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity">Login</button>
             </div>
-            <div class="empty3"></div>
-            <div class="create"><a href="{% url 'register3' %}">Create New Account</a></div>
+            <div class="l3-empty3"></div>
+            <div class="l3-create"><a href="{% url 'register3' %}">Create New Account</a></div>
         </form>
-
     </div>
 
     {% if messages %}

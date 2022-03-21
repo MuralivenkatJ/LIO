@@ -2,20 +2,27 @@ body{
     margin: 0;
 }
 
-.grid-cont {
+.s2-grid-cont {
+    background: rgba(255, 244, 244, 0.289) !important;
+    z-index: -2;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
     display: grid;
     align-items: center;
     justify-items: center;
 
     width: 100%;
-    height: 100vh;
-    background: rgb(228, 228, 228);
+    min-height: 100vh;
+    cursor: pointer;
 }
 
-.grid {
+.s2-grid {
     display: grid;
     grid-template-columns: 130px 100px 150px;
-    grid-template-rows: 90px 50px 50px 80px 50px 50px 50px 50px 60px 60px;
+    grid-template-rows: 90px 50px 50px 50px 50px 50px 50px 50px 60px 60px;
     grid-template-areas: "title title title"
                          "name n-input n-input"
                          "email e-input e-input"
@@ -34,45 +41,47 @@ body{
 
     align-items: center;
     justify-items: center;
+
+    cursor: auto;
 }
 
-.logo {
+.s2-logo {
     grid-area: title;
     font-size: 24px;
     font-weight: 500 !important;
 }
 
-.name {
+.s2-name {
     grid-area: name;
 }
-.name_input {
+.s2-name_input {
     grid-area: n-input;
 }
 
-.email {
+.s2-email {
     grid-area: email;
 }
-.email_input {
+.s2-email_input {
     grid-area: e-input;
 }
 
-.qual {
+.s2-qual {
     grid-area: qualification;
 }
-.qual_input {
+.s2-qual_input {
     grid-area: q-input;
 }
 
-.inst {
+.s2-inst {
     grid-area: institute;
 }
-.inst_input {
+.s2-inst_input {
     grid-area: i-input;
 
     display: grid;
     align-items: center;
 }
-.inst_input select{
+.s2-inst_input select{
     width: 220px;
     height: auto;
     
@@ -80,54 +89,54 @@ body{
     text-overflow: ellipsis;
 }
 
-.image{
+.s2-image{
     grid-area: image;
 }
-.image_input{
+.s2-image_input{
     grid-area: i-image;
 }
 
-.phone {
+.s2-phone {
     grid-area: phone;
 }
-.ph_input {
+.s2-ph_input {
     grid-area: p-input;
 }
 
 
-.password {
+.s2-password {
     grid-area: pass1;
 }
-.password_input {
+.s2-password_input {
     grid-area: p1-input;
     position: relative;
 }
-#eye{
+#s2-eye{
     position: absolute;
     right: 15px;
     top: 5px;
 }
 
-.password2 {
+.s2-password2 {
     grid-area: pass2;
     text-align: center;
 }
-.password_input2 {
+.s2-password_input2 {
     grid-area: p2-input;
     position: relative;
 }
-#eye1{
+#s2-eye1{
     position: absolute;
     right: 15px;
     top: 5px;
 }
 
-.empty2 {
+.s2-empty2 {
     grid-area: empty2;
 }
-.submit {
+.s2-submit {
     grid-area: submit;
 }
-.empty3 {
+.s2-empty3 {
     grid-area: empty3;
 }

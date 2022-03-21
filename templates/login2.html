@@ -19,32 +19,31 @@
 </head>
 
 <body>
-    <div class="grid-cont">
-    
-        <form action="{% url 'login2' %}" method="POST" class="grid w3-border w3-round-large">
+    <div class="l2-grid-cont">
+        <form action="{% url 'login2' %}" method="POST" class="l2-grid w3-border w3-round-large">
 
             {% csrf_token %}
 
-            <div class="logo">Faculty Login</div>
+            <div class="l2-logo">Faculty Login</div>
             
-            <div class="username">email :</div>
-            <div class="username_input">
+            <div class="l2-username">email :</div>
+            <div class="l2-username_input">
                  <input type="email" name="email">
             </div>
-            <div class="password">Password :</div>
-            <div class="password_input">
-                <input type="password" name="password" id="pass-input">
-                <i class="fa fa-eye" id="eye" onclick="visible()"></i>
+            <div class="l2-password">Password :</div>
+            <div class="l2-password_input">
+                <input type="password" name="password" id="l2-pass-input">
+                <i class="fa fa-eye" id="l2-eye" onclick="visible()"></i>
             </div>
-            <div class="empty1"></div>
-            <div class="forgot_password">
+            <div class="l2-empty1"></div>
+            <div class="l2-forgot_password">
              <!-- forgot password? -->
             </div>
-            <div class="empty2"></div>
-            <div class="login">
+            <div class="l2-empty2"></div>
+            <div class="l2-login">
                 <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity" type="submit">Login</button></div>
-            <div class="empty3"></div>
-            <a class="create" href="{% url 'register2' %}">Create New Account</a>
+            <div class="l2-empty3"></div>
+            <a class="l2-create" href="{% url 'register2' %}">Create New Account</a>
         </form>
     </div>
 

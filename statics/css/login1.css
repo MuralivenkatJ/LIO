@@ -1,9 +1,20 @@
-.grid-cont{
-    background: rgb(228, 228, 228) !important;
+.l1-grid-cont{
+    background: rgba(255, 244, 244, 0.289) !important;
+    z-index: -2;
+
+    min-height: 100vh;
+    width: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    cursor: pointer;
 }
 
-.grid-cont form{
+.l1-grid-cont form{
     background: white;
+    cursor: auto;
 }
 
 *{
@@ -16,15 +27,13 @@ a{
     text-decoration: none;
 }
 
-.grid-cont{
+.l1-grid-cont{
             display: grid;
             background:white;
             align-items: center;
             justify-items: center;
-            height: 100vh;
-            width: 100%;
 }
-.grid{
+.l1-grid{
             display: grid;
             grid-template-columns: 100px 75px 95px;
             grid-template-rows: 100px 50px 30px 30px 50px 50px;
@@ -40,7 +49,7 @@ a{
             border-radius: 15px;
             align-items: start;                    
 }
- .login-form{
+ .l1-login-form{
               background-color: white;
               grid-area: a;
               text-align: center;
@@ -51,57 +60,57 @@ a{
               
       
 }
-.username{
+.l1-username{
             background: white;
             grid-area: b;
             text-align: center;
             font-size: 19px;
  }
- .username_input{
+ .l1-username_input{
             background: #ffffff;
             grid-area: c;
             
 
  }        
-  .username_input input{
+  .l1-username_input input{
       width: 160px;
   }      
 
     
 
-        .password{
+        .l1-password{
             background: white;
             grid-area: d;
             text-align: center;
             font-size: 19px;
         }
-        .password_input{
+        .l1-password_input{
             background: white;
             grid-area: e;
             position: relative;
         }
-        .password_input input{
+        .l1-password_input input{
             width: 160px;
         }
-        #eye{
+        #l1-eye{
             position: absolute;
             right: 15px;
             top: 5px;
         }
-        .empty1{
+        .l1-empty1{
             background: white;
             grid-area: f;
         }
-        .forgot_password{
+        .l1-forgot_password{
             background: white;
             grid-area: g;
             font-size: 12.5px;
         }
-        .empty2{
+        .l1-empty2{
             background: white;
             grid-area: h;
         }
-        .login{
+        .l1-login{
             background: white;
             grid-area: i;
             font-size: 15px;
@@ -110,29 +119,29 @@ a{
             
             
         }
-        .empty3{
+        .l1-empty3{
             grid-area: j;
             background: white;
         }
-.empty4{
+.l1-empty4{
     grid-area: k;
     background: white;
 }
-.donothaveaccount{
+.l1-donothaveaccount{
     grid-area: l;
     background: white;
     font-size: 16px;
     
 }
-.empty5{
+.l1-empty5{
     grid-area: m;
     background: white;
 }
-.empty6{
+.l1-empty6{
     grid-area: n;
     background: white;
 }
-.sign-up{
+.l1-sign-up{
     grid-area: o;
     background: white;
     text-align: center;
@@ -140,7 +149,7 @@ a{
     
     
 }
-.empty7{
+.l1-empty7{
     grid-area: p;
     background: white;
 }
@@ -148,10 +157,10 @@ a{
     body{
         width: 100%;
     }
-    .grid-cont{
+    .l1-grid-cont{
         width: 100%;
     }
-    .grid{
+    .l1-grid{
         width: 90%;
         border: 2px solid black;
         display: grid;

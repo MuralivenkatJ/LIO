@@ -9,103 +9,209 @@
     <link rel="icon" href="{% static 'images/logo.png' %}" type = "image/x-icon">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" href="{% static 'css/faculty.css' %}">
     <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    <link rel="stylesheet"  href="{% static 'css/upload.css' %}">
+    <link rel="stylesheet"  href="{% static 'css/error.css' %}">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <title>Uploaded Courses</title>
+
+    {% if form %}
+    <style>
+        .grid-cont{
+            z-index: 2;
+        }
+        .main{
+            position: fixed;
+        }
+    </style>
+    {% endif %}
 </head>
 <body>
+    <!-- MAIN -->
+    <div class="main" style="z-index: 1;">
 
-    <!-- MENU BAR -->
-    <div class="w3-top">
-        <div class="w3-bar w3-white">
-            <img src="{% static 'images/logo.png' %}" alt="logo" width="40px" height="40px" class="w3-bar-item logo  w3-margin-left" title="LIO">
-            <a href="{% url 'explore' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="Explore">Explore</a>
-            
-            <a href="#" class="w3-bar-item w3-hide-small w3-right logo"><img src="{{media}}/media/{{profile}}" alt="logo" width="40px" height="40px" class="logo w3-margin-right"></a>
+        <!-- MENU BAR -->
+        <div class="w3-top">
+            <div class="w3-bar w3-white">
+                <img src="{% static 'images/logo.png' %}" alt="logo" width="40px" height="40px" class="w3-bar-item logo  w3-margin-left" title="LIO">
+                <a href="{% url 'explore' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="Explore">Explore</a>
+                
+                <a href="#" class="w3-bar-item w3-hide-small w3-right logo"><img src="{{media}}/media/{{profile}}" alt="logo" width="40px" height="40px" class="logo"></a>
 
-            {% if f_id != 0 %}
-                <a href="{% url 'faculty' %}" class="w3-bar-item w3-hide-small  w3-black with w3-opacity bar-item w3-margin-left w3-border w3-btn" title="My courses">My courses</a>
-                <a href="{% url 'logout2' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn w3-right w3-margin-right" title="logout">logout</a>
-            {% else %}
-                <div class="w3-bar-item w3-hide-small bar-item w3-right w3-margin-right" id="dropdown1" style="padding: 0%;">
-                <div class="w3-dropdown-click" id="dropdown2">
-                    <button onclick="dropdown()" class="w3-hover-black with w3-hover-opacity w3-border w3-btn" id="dropdown3">login</button>
-                    <div id="dropdown-cont" class="w3-dropdown-content w3-bar-block w3-border">
-                        <a href="{% url 'login1' %}" class="w3-bar-item w3-button" title="Student">Student</a>
-                        <a href="{% url 'login2' %}" class="w3-bar-item w3-button" title="Faculty">Faculty</a>
-                        <a href="{% url 'register3' %}" class="w3-bar-item w3-button" title="Institute">Institute</a>
+                {% if f_id != 0 %}
+                    <a href="{% url 'faculty' %}" class="w3-bar-item w3-hide-small  w3-black with w3-opacity bar-item w3-margin-left w3-border w3-btn" title="My courses">My courses</a>
+                    <a href="{% url 'logout2' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn w3-right w3-margin-right" title="logout">logout</a>
+                {% else %}
+                    <div class="w3-bar-item w3-hide-small bar-item w3-right w3-margin-right" id="dropdown1" style="padding: 0%;">
+                    <div class="w3-dropdown-click" id="dropdown2">
+                        <button onclick="dropdown()" class="w3-hover-black with w3-hover-opacity w3-border w3-btn" id="dropdown3">login</button>
+                        <div id="dropdown-cont" class="w3-dropdown-content w3-bar-block w3-border">
+                            <a href="{% url 'login1' %}" class="w3-bar-item w3-button" title="Student">Student</a>
+                            <a href="{% url 'login2' %}" class="w3-bar-item w3-button" title="Faculty">Faculty</a>
+                            <a href="{% url 'register3' %}" class="w3-bar-item w3-button" title="Institute">Institute</a>
+                        </div>
                     </div>
                 </div>
+                {% endif %}
+
+                <a href="javascript:void(0)" class="w3-bar-item w3-hide-large w3-hide-medium w3-right" onclick="collapseBar()">&#9776;</a>
             </div>
-            {% endif %}
 
-            <a href="javascript:void(0)" class="w3-bar-item w3-hide-large w3-hide-medium w3-right" onclick="collapseBar()">&#9776;</a>
-        </div>
+            <div id="collapse" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium w3-white">
+                <a href="{% url 'explore' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="Explore">Explore</a>
+                
+                <!-- <a href="{% url 'login1' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="login">login</a> -->
 
-        <div id="collapse" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium w3-white">
-            <a href="{% url 'explore' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="Explore">Explore</a>
-            
-            <!-- <a href="{% url 'login1' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="login">login</a> -->
-
-            {% if f_id != 0 %}
-                <a href="{% url 'faculty' %}" class="w3-bar-item mobile-bar w3-black with w3-opacity bar-item w3-border w3-btn" title="My courses">My courses</a>
-                <a href="{% url 'logout2' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="logout">logout</a>
-            {% else %}
-                <div class="w3-bar-item bar-item w3-right" style="padding: 0%;">
-                <div class="w3-dropdown-click">
-                    <button onclick="dropdownm()" class="w3-hover-black with w3-hover-opacity w3-border w3-btn" id="dropdown-btn-m">login</button>
-                    <div id="dropdown-cont-m" class="w3-dropdown-content w3-bar-block w3-border">
-                        <a href="{% url 'login1' %}" class="w3-bar-item w3-button" title="Student">Student</a>
-                        <a href="{% url 'login2' %}" class="w3-bar-item w3-button" title="Faculty">Faculty</a>
-                        <a href="{% url 'register3' %}" class="w3-bar-item w3-button" title="Institute">Institute</a>
+                {% if f_id != 0 %}
+                    <a href="{% url 'faculty' %}" class="w3-bar-item mobile-bar w3-black with w3-opacity bar-item w3-border w3-btn" title="My courses">My courses</a>
+                    <a href="{% url 'logout2' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="logout">logout</a>
+                {% else %}
+                    <div class="w3-bar-item bar-item w3-right" style="padding: 0%;">
+                    <div class="w3-dropdown-click">
+                        <button onclick="dropdownm()" class="w3-hover-black with w3-hover-opacity w3-border w3-btn" id="dropdown-btn-m">login</button>
+                        <div id="dropdown-cont-m" class="w3-dropdown-content w3-bar-block w3-border">
+                            <a href="{% url 'login1' %}" class="w3-bar-item w3-button" title="Student">Student</a>
+                            <a href="{% url 'login2' %}" class="w3-bar-item w3-button" title="Faculty">Faculty</a>
+                            <a href="{% url 'register3' %}" class="w3-bar-item w3-button" title="Institute">Institute</a>
+                        </div>
                     </div>
-                </div>
-                </div>
-            {% endif %}
+                    </div>
+                {% endif %}
 
-            <a href="#" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn"><img src="{{media}}/media/{{profile}}" alt="logo" width="40px" height="40px" style="float: right;" class="logo w3-margin-right"></a>
-        </div>
-    </div>
-
-    <br><br><br><br>
-    
-    <div class="grid-cont">
-
-        <div class="name">
-        {% if f_name != '' %}
-            <h3>Hello {{f_name}}</h3>
-        {% endif %}
-        </div>
-
-        {% for c,n in course %}
-        <div class="grid w3-border w3-round-large w3-hover-shadow">
-            <div class="image">
-                <img class="image" src="{{media}}/media/{{c.image}}" alt="course image">
+                <a href="#" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn"><img src="{{media}}/media/{{profile}}" alt="logo" width="40px" height="40px" style="float: right;" class="logo w3-margin-right"></a>
             </div>
-            <div class="title"><b>{{c.c_name}}</b></div>
-            <div class="desc">{{c.description}}</div>
-            <div class="duration">{{c.duration}}</div>
-            <div class="price">&#8377;{{c.price}}</div>
-            <div class="views">{{c.total_views}} views</div>
-            <div class="empty1"></div>
-            <div class="videos">{{c.no_videos}} videos</div>
-            <div class="rating">
-                <span>{{c.rating}}</span> <i class="fa fa-star-half-full"></i>
-            </div>
-            <div class="progess">{{n.inprogress}} inprogress</div>
-            <div class="empty2"></div>
-            <div class="complete">{{n.complete}} completed</div>
         </div>
-        {% endfor %}
 
+        <br><br><br><br>
         
-        <a href="{% url 'upload' %}" class="upload w3-bar-item w3-hover-black with w3-hover-opacity w3-border w3-round w3-btn" title="upload">Upload</a>
+        <div class="container">
 
+            <div class="name">
+            {% if f_name != '' %}
+                <h3>Hello {{f_name}}</h3>
+            {% endif %}
+            </div>
+
+            <!-- Courses -->
+            {% for c,n in course %}
+            <div class="c-grid w3-border w3-round-large w3-hover-shadow">
+                <div class="c-image">
+                    <img class="c-image" src="{{media}}/media/{{c.image}}" alt="course image">
+                </div>
+                <div class="c-title"><b>{{c.c_name}}</b></div>
+                <div class="desc">{{c.description}}</div>
+                <div class="duration">{{c.duration}}</div>
+                <div class="c-price">&#8377;{{c.price}}</div>
+                <div class="views">{{c.total_views}} views</div>
+                <div class="c-empty1"></div>
+                <div class="videos">{{c.no_videos}} videos</div>
+                <div class="rating">
+                    <span>{{c.rating}}</span> <i class="fa fa-star-half-full"></i>
+                </div>
+                <div class="progess">{{n.inprogress}} inprogress</div>
+                <div class="c-empty2"></div>
+                <div class="complete">{{n.complete}} completed</div>
+            </div>
+            {% endfor %}
+
+            
+            <button class="c-upload w3-bar-item w3-hover-black with w3-hover-opacity w3-border w3-round w3-btn w3-white" title="upload" onclick="open_form()">Upload</button>
+
+        </div>
     </div>
+
+    <!-- SCREEN -->
+    <div class="screen" style="z-index: -1"></div>
+
+    <!-- UPLOAD FORM -->
+    <div class="grid-cont">
+        <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data" class="grid">
+    
+            {% csrf_token %}
+    
+            <div class="professor">Upload Course</div>
+            <div class="title">Title : </div>
+            <div class="titles-input">
+                <input type="text" name="c_name">
+            </div>
+            <div class="image">image : </div>
+            <div class='image-input'>
+                <input type="file" id="upload" name="image">
+            </div>
+            <div class="specialization">specialization : </div>
+            <div class="specialization-input">
+                <input type="text" name="specialization">
+            </div>
+            <div class="forwho">Forwho : </div>
+            <div class="forwho-input">
+                <select name="level">
+                    <option value="Beginners">Beginners</option>
+                    <option value="Intermdiate">Intermdiate</option>
+                    <option value="Advanced">Advanced</option>
+                </select>
+            </div>
+            <div class="playlist">Playlist_id : </div>
+            <div class="playlist-input">
+                <input type="text" name="playlistid">
+            </div>
+            <div class="guidedproject">Type : </div>
+            <div class="guidedproject-input">
+                <input type="radio" name="guided_project" value="False">Course
+                &nbsp;
+                <input type="radio" name="guided_project" value="True">Guided Project
+            </div>
+            <div class="descrption">descrption : </div>
+            <div class="descrption-input">
+                <input type="text" name="description">
+            </div>
+            <div class="skillacquired">skill Acquired : </div>
+           <div class="chooseaskillacquired-input"> 
+               <input type="text" multiple name="skills">
+           </div>
+                 
+            <div class="price">Price : </div>
+            <div class="price-input">
+                <input type="number" name="price">
+            </div>
+            <div class="empty"></div>
+            <div class="upload"> 
+                <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity" type="submit">UPLOAD</button>
+            </div>
+            <div class="empty1"></div>
+        </form>
+    </div>
+
+
+    <!-- ERRORS -->
+    {% if messages or form.errors %}
+        <div class="error-cont" id="error_cont" style="z-index: 5;">
+            <div class="errors w3-border w3-round-large w3-hover-shadow w3-red w3-text-black" onclick="error()">
+                <span style="font-weight: 800;">&#x26A0; ERROR &#x26A0;</span> 
+                <br/>
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+                {% for field in form %}
+                    {% if field.errors %}
+                        <p> <strong>{{field.label}} :</strong> 
+                            {% for error in field.errors %}
+                                {{error|striptags}}
+                            {% endfor %}
+                        </p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 
     <script src="{% static 'js/nav.js' %}"></script>
+    <script src="{% static 'js/error.js' %}"></script>
+    <script src="{% static 'js/upload.js' %}"></script>
 
 </body>
 </html>

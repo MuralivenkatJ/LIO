@@ -19,31 +19,30 @@
 </head>
 
 <body>
-     <div class="grid-cont">
-    
-        <form action="{% url 'register2' %}" method="POST" class="grid w3-border w3-round-xlarge" enctype="multipart/form-data">
+    <div class="s2-grid-cont">
+        <form action="{% url 'register2' %}" method="POST" class="s2-grid w3-border w3-round-xlarge" enctype="multipart/form-data">
 
             {% csrf_token %}
 
-            <div class="logo">Faculty Register</div>
+            <div class="s2-logo">Faculty Register</div>
 
-            <div class="name">Name :</div>
-            <div class="name_input">
+            <div class="s2-name">Name :</div>
+            <div class="s2-name_input">
                 <input type="text" name="f_name">
              </div>
 
-            <div class="email">Email :</div>
-            <div class="email_input">
+            <div class="s2-email">Email :</div>
+            <div class="s2-email_input">
                 <input type="text" placeholder="email123@gmail.com" name="email">
             </div>
 
-            <div class="qual">Qualification :</div>
-            <div class="qual_input">
+            <div class="s2-qual">Qualification :</div>
+            <div class="s2-qual_input">
                 <input type="text" name="qualification">
             </div>
 
-            <div class="inst">Institute Name :</div>
-            <div class="inst_input">
+            <div class="s2-inst">Institute Name :</div>
+            <div class="s2-inst_input">
                 <select name="i_id" id="">
                     {% for i in institute %}
                         <option value="{{i.i_id}}">{{i.i_name}}</option>
@@ -51,33 +50,33 @@
                 </select>
             </div>
             
-            <div class="image">Image :</div>
-            <div class="image_input">
+            <div class="s2-image">Image :</div>
+            <div class="s2-image_input">
                 <input type="file" name="image">
             </div>
 
-            <div class="phone">Phone no :</div>
-            <div class="ph_input">
+            <div class="s2-phone">Phone no :</div>
+            <div class="s2-ph_input">
                 <input type="text" name="phone">
             </div>
 
-            <div class="password">Password :</div>
-            <div class="password_input">
-                <input type="password" id="pass-input" name="password">
-                <i class="fa fa-eye" id="eye" onclick="visible()"></i>
+            <div class="s2-password">Password :</div>
+            <div class="s2-password_input">
+                <input type="password" id="s2-pass-input" name="password">
+                <i class="fa fa-eye" id="s2-eye" onclick="s2_visible()"></i>
             </div>
 
-            <div class="password2">Confirm Password :</div>
-            <div class="password_input2">
-                <input type="password" id="c_pass-input" name="cpassword">
-                <i class="fa fa-eye" id="eye1" onclick="visible1()"></i>
+            <div class="s2-password2">Confirm Password :</div>
+            <div class="s2-password_input2">
+                <input type="password" id="s2-c_pass-input" name="cpassword">
+                <i class="fa fa-eye" id="s2-eye1" onclick="s2_visible1()"></i>
             </div>
 
-            <div class="empty2"></div>
-            <div class="submit">
+            <div class="s2-empty2"></div>
+            <div class="s2-submit">
                 <button class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity" type="submit" >Submit</button>
             </div>
-            <div class="empty3"></div>
+            <div class="s2-empty3"></div>
             
         </form>
     </div>

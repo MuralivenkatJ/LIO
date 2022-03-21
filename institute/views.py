@@ -4,6 +4,7 @@ from stat import S_IFDIR
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from course.models import Course
+from explore.views import getExploreData
 from faculty.models import Faculty
 
 from institute.models import Institute
@@ -18,6 +19,9 @@ def register(request):
         cpassword = request.POST.get('cpassword')
         if password != cpassword:
             messages.error(request, "Password didn't match")
+            d = getExploreData()
+            d.update({'top': 's3'})
+            return render(request, 'explore.html', d)
         else:
             if password != '':
                 password = hashlib.md5(password.encode('utf-8')).hexdigest()
@@ -29,10 +33,9 @@ def register(request):
                 return redirect('explore')
             else:
                 # messages.error(request, form.errors)
-                return render(request, 'signup3.html', {'form': form})
-        return redirect('register3')
-    else:
-        return render(request, 'signup3.html')
+                d = getExploreData()
+                d.update({'form': form, 'top': 's3'})
+                return render(request, 'explore.html', d)
 
 
 def login(request):
@@ -57,10 +60,9 @@ def login(request):
             return response
         else:
             messages.error(request, 'incorrect email or password')
-            return redirect('login3')
-
-    else:
-        return render(request, 'login3.html')
+            d = getExploreData()
+            d.update({'top': 'l3'})
+            return render(request, 'explore.html', d)
 
 
 def logout(request):

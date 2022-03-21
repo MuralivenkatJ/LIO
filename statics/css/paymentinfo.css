@@ -9,17 +9,29 @@ body{
 }
 
 .grid-cont{
+    background: rgba(255, 244, 244, 0.289) !important;
+    z-index: -1;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    min-height: 100vh;
+
     display: grid;
     align-items: center;
     justify-items: center;
-    height: 100vh;
-    background: rgb(228, 228, 228) !important;
+
+    cursor: pointer;
 }
 .grid{
     display: grid;
     grid-template-columns: 130px 120px 140px;
-    grid-template-rows: 100px 50px 50px 50px 50px 50px 50px;
+    grid-template-rows: 100px 50px 50px 50px 50px 50px 50px 50px 50px;
     grid-template-areas: "a a a"
+                         "u v v"
+                         "p q q"
                          "b c c"
                          "d e e"
                          "f g g"
@@ -32,6 +44,8 @@ body{
     justify-items: center; 
     box-shadow: 10px 10px 15px gray;
     background: white;  
+
+    cursor: auto;
 }
 .payment-info{
     background-color: white;
@@ -41,7 +55,21 @@ body{
     text-shadow: 1px 1px;
 }
 
-.name{
+.c_name{
+    grid-area: u;
+}
+.c_name_input{
+    grid-area: v;
+}
+
+.amount{
+    grid-area: p;
+}
+.amount_input{
+    grid-area: q;
+}
+
+.acno{
     grid-area: b;
 }     
 .acno_input{

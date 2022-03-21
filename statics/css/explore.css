@@ -3,6 +3,19 @@ body{
     margin-right: 10px;
 }
 
+.screen{
+    background: rgb(228, 228, 228) !important;
+    z-index: -1;
+
+    width: 100%;
+    height: 100vh;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+
 /* Search */
 
 #search{

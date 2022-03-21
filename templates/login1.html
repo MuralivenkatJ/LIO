@@ -19,39 +19,39 @@
    
  <body>
    
-    <div class="grid-cont">
-        <form action="{% url 'login1' %}" method="POST" class="grid w3-border w3-round-large">
+    <div class="l1-grid-cont">
+        <form action="{% url 'login1' %}" method="POST" class="l1-grid w3-border w3-round-large">
             
             {% csrf_token %}
 
-            <div class="login-form">Student Login</div>
-            <div class="username">email :</div>
-            <div class="username_input">
+            <div class="l1-login-form">Student Login</div>
+            <div class="l1-username">email :</div>
+            <div class="l1-username_input">
                 <input type="email" placeholder="Enter the email" name="email">
             </div>
-            <div class="password">Password :</div>
-            <div class="password_input">
-                <input type="password" id="pass-input" placeholder="Enter the Password" name="password">
-                <i class="fa fa-eye" id="eye"onclick="visible()"></i>
+            <div class="l1-password">Password :</div>
+            <div class="l1-password_input">
+                <input type="password" id="l1-pass-input" placeholder="Enter the Password" name="password">
+                <i class="fa fa-eye" id="l1-eye"onclick="visible()"></i>
             </div>
-            <div class="empty1"></div>
-            <div class="forgot_password">
+            <div class="l1-empty1"></div>
+            <div class="l1-forgot_password">
                 <!-- <a href="#">forgot_password</a>  -->
             </div>
-            <div class="empty2"></div>
-            <div class="login">
+            <div class="l1-empty2"></div>
+            <div class="l1-login">
                 <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity" type="submit">LOGIN</button>
             </div>
-            <div class="empty3"></div>
-            <div class="empty4"></div>
-            <div class="donothaveaccount"> 
+            <div class="l1-empty3"></div>
+            <div class="l1-empty4"></div>
+            <div class="l1-donothaveaccount"> 
                 <a href="{% url 'register1' %}">don't have account?</a> 
             </div>
-            <div class="empty6"></div>
-            <div class="sign-up">
+            <div class="l1-empty6"></div>
+            <div class="l1-sign-up">
                 
             </div>
-            <div class="empty7"></div>
+            <div class="l1-empty7"></div>
         </form>
     </div>
 
@@ -67,8 +67,7 @@
         </div>
     {% endif %}
 
-    <script type="text/javascript" src="{% static 'js/login1.js' %}" charset="utf-8">
-    </script>
+    <script src="{% static 'js/login1.js' %}"></script>
     <script src="{% static 'js/error.js' %}"></script>
     
 </body>

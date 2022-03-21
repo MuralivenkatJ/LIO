@@ -14,10 +14,73 @@
     <link rel="stylesheet" href="{% static 'css/nav.css' %}">
     <link rel="stylesheet" href="{% static 'css/explore.css' %}">
 
+    <link rel="stylesheet"  href="{% static 'css/login1.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login3.css' %}">
+    <link rel="stylesheet" href="{% static 'css/signup1.css' %}">
+    <link rel="stylesheet" href="{% static 'css/signup2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/signup3.css' %}">
+    <link rel="stylesheet" href="{% static 'css/error.css' %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <title>Explore</title>
+
+    {% if top %}
+        <style>
+            .main{
+                position: fixed;
+            }
+        </style>
+        {% if top == "l1" %}
+            <style>
+                .l1-grid-cont{
+                    z-index: 1;
+                    position: absolute;
+                }
+            </style>
+        {% elif top == "l2" %}
+            <style>
+                .l2-grid-cont{
+                    z-index: 1;
+                    position: absolute;
+                }
+            </style>
+        {% elif top == "l3" %}
+            <style>
+                .l3-grid-cont{
+                    z-index: 1;
+                    position: absolute;
+                }
+            </style>
+        {% elif top == "s1" %}
+            <style>
+                .s1-grid-cont{
+                    z-index: 1;
+                    position: absolute;
+                }
+            </style>
+        {% elif top == "s2" %}
+            <style>
+                .s2-grid-cont{
+                    z-index: 1;
+                    position: absolute;
+                }
+            </style>
+        {% elif top == "s3" %}
+            <style>
+                .s3-grid-cont{
+                    z-index: 1;
+                    position: absolute;
+                }
+            </style>
+        {% endif %}
+    {% endif %}
 </head>
 <body>
     
+    <div class="main">  <!--  MAIN OPEN  -->
+
     <!-- in anchor tag we can add javascript in 'href' attribute 
     eg :- <a href="javascript:console.log('attitude');">link</a>
             in this example 'attitude' will be printed in console on clicking 'link'
@@ -31,8 +94,8 @@
             <img src="{% static 'images/logo.png' %}" alt="logo" width="40px" height="40px" class="w3-bar-item logo  w3-margin-left" title="LIO">
             <a href="{% url 'explore' %}" class="w3-bar-item w3-hide-small w3-black with w3-opacity bar-item w3-margin-left w3-border w3-btn" title="Explore">Explore</a>
             
-            <a href="#" class="w3-bar-item w3-hide-small w3-right logo"><img src="{{media}}/media/{{profile}}" alt="logo" width="40px" height="40px" class="logo w3-margin-right"></a>
-
+            <a href="#" class="w3-bar-item w3-hide-small w3-right logo"><img class="logo" src="{{media}}/media/{{profile}}" alt="logo" width="40px" height="40px"></a>
+            
             {% if s_id != 0 %}
                 <a href="{% url 'mycourses' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="My courses">My courses</a>
                 <a href="{% url 'wishlist' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="Wishlist">Wishlist</a>
@@ -45,15 +108,15 @@
                 <a href="{% url 'logout3' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn w3-right w3-margin-right" title="logout">logout</a>
             {% else %}
                 <div class="w3-bar-item w3-hide-small bar-item w3-right w3-margin-right" id="dropdown1" style="padding: 0%;">
-                <div class="w3-dropdown-click" id="dropdown2">
-                    <button onclick="dropdown()" class="w3-hover-black with w3-hover-opacity w3-border w3-btn" id="dropdown3">login</button>
-                    <div id="dropdown-cont" class="w3-dropdown-content w3-bar-block w3-border">
-                        <a href="{% url 'login1' %}" class="w3-bar-item w3-button" title="Student">Student</a>
-                        <a href="{% url 'login2' %}" class="w3-bar-item w3-button" title="Faculty">Faculty</a>
-                        <a href="{% url 'login3' %}" class="w3-bar-item w3-button" title="Institute">Institute</a>
+                    <div class="w3-dropdown-click" id="dropdown2">
+                        <button onclick="dropdown()" class="w3-hover-black with w3-hover-opacity w3-border w3-btn" id="dropdown3">login</button>
+                        <div id="dropdown-cont" class="w3-dropdown-content w3-bar-block w3-border">
+                            <a href="javascript:open_form1()" class="w3-bar-item w3-button" title="Student">Student</a>
+                            <a href="javascript:open_form2()" class="w3-bar-item w3-button" title="Faculty">Faculty</a>
+                            <a href="javascript:open_form3()" class="w3-bar-item w3-button" title="Institute">Institute</a>
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endif %}
 
             <a href="javascript:void(0)" class="w3-bar-item w3-hide-large w3-hide-medium w3-right" onclick="collapseBar()">&#9776;</a>
@@ -79,9 +142,9 @@
                 <div class="w3-dropdown-click">
                     <button onclick="dropdownm()" class="w3-hover-black with w3-hover-opacity w3-border w3-btn" id="dropdown-btn-m">login</button>
                     <div id="dropdown-cont-m" class="w3-dropdown-content w3-bar-block w3-border">
-                        <a href="{% url 'login1' %}" class="w3-bar-item w3-button" title="Student">Student</a>
-                        <a href="{% url 'login2' %}" class="w3-bar-item w3-button" title="Faculty">Faculty</a>
-                        <a href="{% url 'login3' %}" class="w3-bar-item w3-button" title="Institute">Institute</a>
+                        <button onclick="open_form1()" class="w3-bar-item w3-button" title="Student">Student</button>
+                        <button onclick="open_form2()" class="w3-bar-item w3-button" title="Faculty">Faculty</button>
+                        <button onclick="open_form3()" class="w3-bar-item w3-button" title="Institute">Institute</button>
                     </div>
                 </div>
                 </div>
@@ -228,8 +291,324 @@
 
     </div>
 
+
+    </div>      <!--  MAIN CLOSE  -->
+
+
+    <!-- SCREEN -->
+    <div class="screen"></div>
+
+
+
+    <!-- LOGIN1 -->
+    <div class="l1-grid-cont">
+        <form action="{% url 'login1' %}" method="POST" class="l1-grid w3-border w3-round-large">
+            
+            {% csrf_token %}
+
+            <div class="l1-login-form">Student Login</div>
+            <div class="l1-username">email :</div>
+            <div class="l1-username_input">
+                <input type="email" placeholder="Enter the email" name="email">
+            </div>
+            <div class="l1-password">Password :</div>
+            <div class="l1-password_input">
+                <input type="password" id="l1-pass-input" placeholder="Enter the Password" name="password">
+                <i class="fa fa-eye" id="l1-eye"onclick="visible1()"></i>
+            </div>
+            <div class="l1-empty1"></div>
+            <div class="l1-forgot_password">
+                <!-- <a href="#">forgot_password</a>  -->
+            </div>
+            <div class="l1-empty2"></div>
+            <div class="l1-login">
+                <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity" type="submit">LOGIN</button>
+            </div>
+            <div class="l1-empty3"></div>
+            <div class="l1-empty4"></div>
+            <div class="l1-donothaveaccount"> 
+                <a href="javascript:open_sform1()">don't have account?</a> 
+            </div>
+            <div class="l1-empty6"></div>
+            <div class="l1-sign-up">
+                
+            </div>
+            <div class="l1-empty7"></div>
+        </form>
+    </div>
+
+    <!-- LOGIN2 -->
+    <div class="l2-grid-cont">
+        <form action="{% url 'login2' %}" method="POST" class="l2-grid w3-border w3-round-large">
+
+            {% csrf_token %}
+
+            <div class="l2-logo">Faculty Login</div>
+            
+            <div class="l2-username">email :</div>
+            <div class="l2-username_input">
+                 <input type="email" name="email">
+            </div>
+            <div class="l2-password">Password :</div>
+            <div class="l2-password_input">
+                <input type="password" name="password" id="l2-pass-input">
+                <i class="fa fa-eye" id="l2-eye" onclick="visible2()"></i>
+            </div>
+            <div class="l2-empty1"></div>
+            <div class="l2-forgot_password">
+             <!-- forgot password? -->
+            </div>
+            <div class="l2-empty2"></div>
+            <div class="l2-login">
+                <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity" type="submit">Login</button></div>
+            <div class="l2-empty3"></div>
+            <a class="l2-create" href="javascript:open_sform2()">Create New Account</a>
+        </form>
+    </div>
+
+    <!-- LOGIN3 -->
+    <div class="l3-grid-cont">
+        <form action="{% url 'login3' %}" method="post" class="l3-grid w3-border w3-round-large">
+
+            {% csrf_token %}
+
+            <div class="l3-logo">Institute Login</div>
+            
+            <div class="l3-username">email :</div>
+            <div class="l3-username_input">
+                 <input type="text" name="email">
+            </div>
+            <div class="l3-password">Password :</div>
+            <div class="l3-password_input">
+                    <input type="password" name="password" id="l3-pass-input">
+                    <i class="fa fa-eye" id="l3-eye" onclick="visible3()"></i>
+            </div>
+            <div class="l3-empty1"></div>
+            <div class="l3-forgot_password">
+             <!-- forgot password? -->
+            </div>
+            <div class="l3-empty2"></div>
+            <div class="l3-login">
+                <button type="submit" class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity">Login</button>
+            </div>
+            <div class="l3-empty3"></div>
+            <div class="l3-create"><a href="javascript:open_sform3()">Create New Account</a></div>
+        </form>
+    </div>
+
+    <!-- SIGN UP1 -->
+    <div class="s1-grid-cont">
+        <form action="{% url 'register1' %}" method="POST" class="s1-grid w3-border w3-round-large">
+
+            {% csrf_token %}
+            
+            <div class="s1-register-form">Student Register</div>
+            
+            <div class="s1-name">Name :</div>
+            <div class="s1-Name_input">
+                <input type="text" placeholder="Enter the name" name="s_name">
+            </div>
+            <div class="s1-phone_no">Phone No :</div>
+            <div class="s1-phone_no_input">
+                <input type="text" placeholder="Enter the phone no" name="phone">
+            </div>
+            <div class="s1-Email_id">Email_id :</div>
+            <div class="s1-email_id_input">
+                <input type="email" placeholder="Enter the email_id"
+                name="email">
+            </div>
+            <div class="s1-Institute">Institute :</div>
+            <div class="s1-institute_input">
+                <select name="i_id" id="">
+                    {% for i in institute %}
+                        <option value="{{i.i_id}}">{{i.i_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="s1-password">Password :</div>
+            <div class="s1-password_input">
+                <input type="password" placeholder="Enter the Password" id="s1-pass-input" name="password">
+                <i class="fa fa-eye" id="s1-eye" onclick="s1_visible()"></i>
+            </div>
+            <div class="s1-c_password">c_password :</div>
+            <div class="s1-c_password_input">
+                <input type="password" placeholder="Enter the c_password" id="s1-c_pass-input" name="cpassword">
+                <i class="fa fa-eye" id="s1-eye1" onclick="s1_visible1()"></i>
+            </div>
+            <div class="s1-empty1"></div>
+            <div class="s1-sign-in">
+                <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity" onclick="validate()" type="submit">SIGN-IN</button>
+            </div>
+            <div class="s1-empty2"></div>
+        </form>
+    </div>
+
+    <!-- SIGN UP2 -->
+    <div class="s2-grid-cont">
+        <form action="{% url 'register2' %}" method="POST" class="s2-grid w3-border w3-round-xlarge" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <div class="s2-logo">Faculty Register</div>
+
+            <div class="s2-name">Name :</div>
+            <div class="s2-name_input">
+                <input type="text" name="f_name">
+             </div>
+
+            <div class="s2-email">Email :</div>
+            <div class="s2-email_input">
+                <input type="text" placeholder="email123@gmail.com" name="email">
+            </div>
+
+            <div class="s2-qual">Qualification :</div>
+            <div class="s2-qual_input">
+                <input type="text" name="qualification">
+            </div>
+
+            <div class="s2-inst">Institute Name :</div>
+            <div class="s2-inst_input">
+                <select name="i_id" id="">
+                    {% for i in institute %}
+                        <option value="{{i.i_id}}">{{i.i_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="s2-image">Image :</div>
+            <div class="s2-image_input">
+                <input type="file" name="image">
+            </div>
+
+            <div class="s2-phone">Phone no :</div>
+            <div class="s2-ph_input">
+                <input type="text" name="phone">
+            </div>
+
+            <div class="s2-password">Password :</div>
+            <div class="s2-password_input">
+                <input type="password" id="s2-pass-input" name="password">
+                <i class="fa fa-eye" id="s2-eye" onclick="s2_visible()"></i>
+            </div>
+
+            <div class="s2-password2">Confirm Password :</div>
+            <div class="s2-password_input2">
+                <input type="password" id="s2-c_pass-input" name="cpassword">
+                <i class="fa fa-eye" id="s2-eye1" onclick="s2_visible1()"></i>
+            </div>
+
+            <div class="s2-empty2"></div>
+            <div class="s2-submit">
+                <button class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity" type="submit" >Submit</button>
+            </div>
+            <div class="s2-empty3"></div>
+            
+        </form>
+    </div>
+
+    <!-- SIGN UP3 -->
+    <div class="s3-grid-cont">
+        <form action="{% url 'register3' %}" method="post" class="s3-grid w3-border w3-round-large"  enctype="multipart/form-data">
+            
+            {% csrf_token %}
+
+            <div class="s3-register-form">Institute Register</div>
+            
+            <div class="s3-name">Institute :</div>
+            <div class="s3-Name_input">
+                <input type="text" placeholder="Enter the Institute name" name="i_name">
+            </div>
+
+            <div class="s3-address">Address :</div>
+            <div class="s3-address_input">
+                <input type="text" placeholder="Enter the institute address" name="address">
+            </div>
+
+            <div class="s3-image">Image :</div>
+            <div class="s3-image_input">
+                <input type="file"  name="image">
+            </div>
+
+            <div class="s3-Email">Email :</div>
+            <div class="s3-email_id_input">
+                <input type="text"placeholder="Enter the email" name="email">
+            </div>
+
+            <div class="s3-website">Website :</div>
+            <div class="s3-website_input">
+                <input type="url" placeholder="Enter the website" name="website">
+            </div>
+
+            <div class="s3-BankName">Bank Name :</div>
+            <div class="s3-bankname_input">
+                <input type="text" placeholder="Enter the Bank Name" name="b_name">
+            </div>
+
+            <div class="s3-AccountHolder">Account Holder :</div>
+            <div class="s3-AccountHolder_input">
+                <input type="text" placeholder="Enter the Account Holder" name="ac_name">
+            </div>
+
+            <div class="s3-AccountNumber">Account Number :</div>
+            <div class="s3-AccountNumber_input">
+                <input type="text" placeholder="Enter the Account Number" name="ac_no">
+            </div>
+
+            <div class="s3-IFSCCode">IFSC Code :</div>
+            <div class="s3-ifsccode_input">
+                <input type="text" placeholder="Enter the IFSC Code" name="ifsc">
+            </div>
+
+            <div class="s3-password">Password :</div>
+            <div class="s3-password_input">
+                <input type="password" id="s3-pass-input" placeholder="Enter the password" name="password">
+                <i class="fa fa-eye" id="s3-eye"onclick="s3_visible()"></i>
+            </div>
+
+            <div class="s3-confirmpassword">confirm password :</div>
+            <div class="s3-confirm_input">
+                <input type="password" id="s3-pass-input1" placeholder="Enter the password" name="cpassword">
+                <i class="fa fa-eye" id="s3-eye1"onclick="s3_visible1()"></i>
+            </div>
+
+            <div class="s3-empty1"></div>
+            <div class="s3-sign-in">
+                <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity" type="submit">SIGN-IN</button>
+            </div>
+
+            <div class="s3-empty2"></div>
+
+        </form>
+    </div>
+
+    <!-- ERRORS -->
+    {% if messages or form.errors %}
+        <div class="error-cont" id="error_cont" style="z-index: 2">
+            <div class="errors w3-border w3-round-large w3-hover-shadow w3-red w3-text-black" onclick="error()">
+                <span style="font-weight: 800;">&#x26A0; ERROR &#x26A0;</span> 
+                <br/>
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+                {% for field in form %}
+                    {% if field.errors %}
+                        <p> <strong>{{field.label}} :</strong> 
+                            {% for error in field.errors %}
+                                {{error|striptags}}
+                            {% endfor %}
+                        </p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
     <script src="{% static 'js/nav.js' %}"></script>
     <script src="{% static 'js/explore.js' %}"></script>
+    
+    <script src="{% static 'js/login_forms.js' %}"></script>
+    <script src="{% static 'js/signup_forms.js' %}"></script>
+    <script src="{% static 'js/error.js' %}"></script>
 
 </body>
 </html>

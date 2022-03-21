@@ -7,6 +7,7 @@ from django.db.models import F
 from course.forms import UploadForm
 from course.models import Course, Course_skills
 from faculty.models import Faculty
+from faculty.views import getFacultyData
 from institute.models import Institute
 from student.models import Enrolls, Rates, Student, Wishlist
 
@@ -26,7 +27,7 @@ def unenrolled(request, c_id):
         faculty = f
 
     for i in Institute.objects.raw('''
-        SELECT i_id, i_name, I.image, I.email, website
+        SELECT *
         FROM institute_institute I, faculty_faculty F
         WHERE F.f_id = %s and F.i_id_id = I.i_id;''', [faculty.f_id]):
         institute = i
@@ -45,7 +46,53 @@ def unenrolled(request, c_id):
         WHERE R.c_id_id = %s and S.s_id = R.s_id_id''', [c_id]):
         rates.append(r)
 
-    return render(request, 'unenrolled.html', {'course': course, 'faculty': faculty, 'institute': institute, 'skills': skills, 'rates': rates})
+    d = {'course': course, 'faculty': faculty, 'institute': institute, 'skills': skills, 'rates': rates}
+
+    s_id = 0
+    if 's_id' in request.COOKIES:
+        s_id = request.COOKIES['s_id']
+    else:
+        d.update({'free': True})
+    
+    if s_id != 0:
+        student = Student.objects.get(s_id=s_id)
+        if student.i_id_id == institute.i_id:
+            d.update({'free': True})
+
+    return render(request, 'unenrolled.html', d)
+
+def getCourseData(c_id):
+    course = Course.objects.get(c_id=c_id)
+
+    Course.objects.filter(c_id=c_id).update(total_views=F('total_views') + 1)
+
+    for f in Faculty.objects.raw('''
+        SELECT f_id, f_name, qualification, F.image
+        FROM faculty_faculty F, course_course C
+        WHERE C.c_id = %s and C.f_id_id = F.f_id;''', [c_id]):
+        faculty = f
+
+    for i in Institute.objects.raw('''
+        SELECT *
+        FROM institute_institute I, faculty_faculty F
+        WHERE F.f_id = %s and F.i_id_id = I.i_id;''', [faculty.f_id]):
+        institute = i
+
+    skills = []
+    for s in Course_skills.objects.raw('''
+        SELECT id, skills
+        FROM course_course_skills
+        WHERE c_id_id = %s;''',[c_id]):
+        skills.append(s)
+    
+    rates = []
+    for r in Rates.objects.raw('''
+        SELECT R.id, R.rating, R.desc, S.s_name, S.image
+        FROM student_rates R, student_student S
+        WHERE R.c_id_id = %s and S.s_id = R.s_id_id''', [c_id]):
+        rates.append(r)
+    
+    return {'course': course, 'faculty': faculty, 'institute': institute, 'skills': skills, 'rates': rates}
 
 
 def watched(request, c_id, index):
@@ -76,9 +123,12 @@ def upload(request):
         req = request.POST.copy()
 
         playlistid = req['playlistid']
-        dict = playlist_duration.duration(playlistid)
-        req['duration'] = dict['duration']
-        req['no_videos'] = dict['no_videos']
+        req['duration'] = '00:00:00'
+        req['no_videos'] = 0
+        if playlistid != '':
+            dict = playlist_duration.duration(playlistid)
+            req['duration'] = dict['duration']
+            req['no_videos'] = dict['no_videos']
 
         today = date.today()
         req['date'] = today
@@ -90,9 +140,9 @@ def upload(request):
         skill_list = skills.split(',')
         req.pop('skills')
 
-        course = UploadForm(req, request.FILES)
-        if course.is_valid():
-            course.save()
+        form = UploadForm(req, request.FILES)
+        if form.is_valid():
+            form.save()
 
             c_id = Course.objects.latest('c_id')
 
@@ -102,11 +152,12 @@ def upload(request):
 
             return redirect('faculty')
         else:
-            messages.error(request, "Something is wrong")
-        return render(request, 'upload.html')
+            f_id = request.COOKIES['f_id']
+            d = getFacultyData(f_id)
 
-    else:
-        return render(request, 'upload.html')
+            d.update({'form': form})
+
+            return render(request, 'faculty.html', d)
 
 
 def enroll(request, c_id):

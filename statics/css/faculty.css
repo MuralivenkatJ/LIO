@@ -1,4 +1,29 @@
-.grid-cont {
+body{
+    background: rgb(228, 228, 228) !important;
+}
+
+.main{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.screen{
+    background: rgb(228, 228, 228) !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.container {
+    background: rgb(228, 228, 228) !important;
     display: grid;
     align-items: center;
     justify-items: center;
@@ -8,11 +33,11 @@
     margin-bottom: 20px;
 }
 
-.upload{
+.c-upload{
     background: white !important;
 }
 
-.grid {
+.c-grid {
     display: grid;
     grid-template-columns: 200px 150px 150px 150px;
     grid-template-rows: 25px 80px 25px 25px;
@@ -27,13 +52,13 @@
     justify-items: center;
 }
 
-.image {
+.c-image {
     grid-area: img;
     width: 95%;
     margin: 5px;
 }
 
-.title {
+.c-title {
     grid-area: tit;
     display: grid;
     align-items: center;
@@ -71,7 +96,7 @@
     text-overflow: ellipsis;
 }
 
-.price{
+.c-price{
     grid-area: price;
     display: grid;
     justify-items: center;
@@ -107,9 +132,9 @@
     justify-items: center;
 }
 
-.empty1{
+.c-empty1{
     grid-area: empty1;
 }
-.empty2{
+.c-empty2{
     grid-area: empty2;
 }
