@@ -1,16 +1,35 @@
+.s1-grid-cont{
+    background: rgb(228, 228, 228) !important;
+}
+
+.s1-grid-cont form{
+    background: white;
+}
+
 * {
     padding: 0;
     margin: 0;
     font-family: sans-serif;
 }
 
-.grid-cont{
+.s1-grid-cont{
+    background: rgba(255, 244, 244, 0.289) !important;
+    z-index: -2;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
     display: grid;
     align-items: center;
     justify-items: center;
+
+    width: 100%;
     height: 100vh;
+
+    cursor: pointer;
 }
-.grid{
+.s1-grid{
     display: grid;
     grid-template-columns: 100px 120px 140px;
     grid-template-rows: 100px 50px 50px 50px 50px 50px 50px 50px;
@@ -26,8 +45,10 @@
     border-radius: 15px;
     align-items: center;
     justify-items: center; 
+
+    cursor: auto;
 }
-.register-form{
+.s1-register-form{
       background-color: white;
       grid-area: a;
       font-size: 30px;
@@ -35,53 +56,53 @@
       text-shadow: 1px 1px;
       }
 
-.name{
+.s1-name{
     grid-area: b;
     background: white;
     
 }     
-.Name_input{
+.s1-Name_input{
     grid-area: c;
     background: white;
 }
-.Name_input input{
+.s1-Name_input input{
     width: 220px;
 }
-.phone_no{
+.s1-phone_no{
     grid-area: d;
     background: white;
     
 }
-.phone_no_input{
+.s1-phone_no_input{
     grid-area: e;
     background: white;
 }
-.phone_no_input input{
+.s1-phone_no_input input{
     width: 220px;
 }
-.Email_id{
+.s1-Email_id{
     grid-area: f;
     background: white;
     
 }
-.email_id_input{
+.s1-email_id_input{
     grid-area: g;
     background: white;
 }
-.email_id_input input{
+.s1-email_id_input input{
     width: 220px;
 }
 
-.Institute{
+.s1-Institute{
     grid-area: x;
 }
-.institute_input{
+.s1-institute_input{
     grid-area: y;
 
     display: grid;
     align-items: center;
 }
-.institute_input select{
+.s1-institute_input select{
     width: 220px;
     height: auto;
     
@@ -89,52 +110,52 @@
     text-overflow: ellipsis;
 }
 
-.password{
+.s1-password{
     grid-area: h;
     background: white;
 
 }
-.password_input{
+.s1-password_input{
     grid-area: i;
     background: white;
     position: relative;
 
 }
-.password_input input{
+.s1-password_input input{
     width: 220px;
 }
-#eye{
+#s1-eye{
     position: absolute;
     right: 15px;
     top: 5px;
 }
-.c_password{
+.s1-c_password{
     grid-area: j;
     background: white;
     
 }
-.c_password_input{
+.s1-c_password_input{
     grid-area: k;
     background: white;
     position: relative;
 }
-.c_password_input input{
+.s1-c_password_input input{
     width: 220px;
 }
-#eye1{
+#s1-eye1{
     position: absolute;
     right: 15px;
     top: 5px;
 }
-.empty1{
+.s1-empty1{
     grid-area: l;
     background: white;
 }
-.sign-in{
+.s1-sign-in{
     grid-area: m;
     background: white;
 }
-.empty2{
+.s1-empty2{
     grid-area: o;
     background: white;
 }

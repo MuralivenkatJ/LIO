@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="icon" href="{% static 'images/logo.png' %}" type = "image/x-icon">
+    
+    <link rel="stylesheet" href="{% static 'css/paymentinfo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/error.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    
+    <title>Fee payment</title>
+
+</head>
+<body>
+    <div class="grid-cont">
+
+        <form action="{% url 'paymentinfo' c.c_id %}" method="post" class="grid w3-border w3-round-large" enctype='multipart/form-data'>
+
+            {% csrf_token %}
+
+            <div class="payment-info">Payment info</div>
+
+            <div class="c_name">course :</div>
+            <div class="c_name_input">Course Name comes here</div>
+
+            <div class="amount">Amount :</div>
+            <div class="amount_input">800</div>
+
+            <div class="acno">Account Number :</div>
+            <div class="acno_input">{{i.ac_no}}</div>
+
+            <div class="ifsc">IFSC  :</div>
+            <div class="ifsc_input">{{i.ifsc}}</div>
+
+            <div class="accountholder">Account Holder :</div>
+            <div class="accountholder_input">{{i.ac_name}}</div>
+
+            <div class="screenshot">Screenshot :</div>
+            <div class="screenshot_input">
+                <input type="file" id="upload" name="image">
+            </div>
+
+            <br>
+
+            <div class="utrid">UTR ID :</div>
+            <div class="utrid_input">
+                <input type="text" name="utr_no">
+            </div>
+
+             <div class="empty1"></div>
+
+            <div class="PaymentDone">
+                <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity">Payment Done</button>
+            </div>
+
+            <div class="empty2"></div>
+
+        </form>
+
+    </div>
+
+    {% if messages or form.errors %}
+        <div class="error-cont" id="error_cont" style="z-index: 1;">
+            <div class="errors w3-border w3-round-large w3-hover-shadow w3-red w3-text-black" onclick="error()">
+                <span style="font-weight: 800;">&#x26A0; ERROR &#x26A0;</span> 
+                <br/>
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+                {% for field in form %}
+                    {% if field.errors %}
+                        <p> <strong>{{field.label}} :</strong> 
+                            {% for error in field.errors %}
+                                {{error|striptags}}
+                            {% endfor %}
+                        </p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    
+    <script src="{% static 'js/error.js' %}"></script>
+
+</body>
+</html>

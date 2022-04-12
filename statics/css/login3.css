@@ -1,0 +1,94 @@
+body{
+    margin: 0;
+}
+
+.l3-grid-cont {
+    background: rgba(255, 244, 244, 0.289) !important;
+    z-index: -2;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    width: 100%;
+    min-height: 100vh;
+
+    cursor: pointer;
+}
+
+.l3-grid {
+    display: grid;
+    grid-template-columns: 120px 90px 150px;
+    grid-template-rows: 90px 50px 50px 30px 50px 50px;
+    grid-template-areas: "a a a" 
+                         "b c c" 
+                         "d e e" 
+                         "f f g" 
+                         "h i j"
+                         "k l l";
+
+    box-shadow: 10px 10px 15px grey;
+    background: white;
+
+    align-items: center;
+    justify-items: center;
+
+    cursor: auto;
+}
+
+.l3-logo {
+    grid-area: a;
+    font-size: 24px;
+    font-weight: 500 !important;
+}
+
+.l3-username {
+    grid-area: b;
+}
+
+.l3-username_input {
+    grid-area: c;
+}
+
+.l3-password {
+    grid-area: d;
+}
+
+.l3-password_input {
+    grid-area: e;
+    position: relative;
+}
+#l3-eye{
+    position: absolute;
+    right: 15px;
+    top: 5px;
+}
+
+.l3-empty1 {
+    grid-area: f;
+}
+
+.l3-forgot_password {
+    grid-area: g;
+    padding-bottom: 10px;
+    font-size: 12px;
+}
+
+.l3-empty2 {
+    grid-area: h;
+}
+
+.l3-login {
+    grid-area: i;
+}
+.l3-empty3{
+    grid-area: j;
+}
+.l3-create {
+    grid-area: l;
+    font-size: 12px;
+}

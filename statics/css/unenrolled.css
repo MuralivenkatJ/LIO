@@ -317,45 +317,51 @@ body{
     grid-area: link;
 }
 } */
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 90%;
-  }
-  
-  td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #dddddd;
-  }
+
+
+.cont-container2{
+    /* width: 100%; */
+    padding: 0 20px;
+    margin: 20px 0;
+}
 
 .container2{
-    margin: 4%;
-    
     display: grid;
-    grid-template-columns: 3fr 5fr 2fr;
-    grid-template-areas: 50px 100px;
+    grid-template-columns: 40px auto 40px;
+    grid-template-areas: 40px 80px;
     grid-template-areas: "Img name rating"
-                         "Img review review";
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+                         "review review review";
+
+    align-items: center;
+    justify-items: center;
+
+    min-width: 250px;
 }
 .Image2{
     grid-area: Img;
 }
+.Image2 img{
+    width: 40px;
+    height: 40px;
+}
 .Student{
-    margin-left: 2%;
     grid-area: name;
 }
 .Rating{
     grid-area: rating;
 }
 .review{
-    margin-left: 2%;
     grid-area: review;
+    margin: 0 5% 0 5%;
+    
+    overflow-wrap: break-word;
+    hyphens: manual;
+    white-space: pre-wrap;
+    
+    max-width: 95%;
+    max-height: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 @media screen  and (min-width:750px) {
     /* .container2{
@@ -366,27 +372,4 @@ table {
         grid-template-columns: 50% 20%;
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
     } */
-    .Image2{
-        grid-area: Img;
-    }
-    .Student{
-        grid-area: name;
-    }
-    .Rating{
-        grid-area: rating;
-    }
-    .review{
-        grid-area: review;
-    }
-}
-
-.container3{
-    display: grid;
-    grid-template-areas: "enroll wishlist";
-}
-.con1{
-    grid-area: enroll;
-}
-.con2{
-    grid-area: wishlist;
 }

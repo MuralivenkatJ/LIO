@@ -1,114 +1,140 @@
-.s{
-    margin-top: 10%;
-    padding-bottom: 20px;
+body{
+  background: rgb(228, 228, 228);
 }
 
-.container {
-    display: grid;
-    grid-template-columns: 250px 150px 450px;
-    grid-template-rows: 100px 80px 90px;
-    grid-template-areas:    "image complition complition"
-                            "prize title title"
-                            "enroll date name";
+.w3-top div{
+  background: rgb(228, 228, 228);
+}
 
+.w3-top div a{
+  background: white;
+}
+
+.s{
+    margin-top: 80px;
+    padding-bottom: 20px;
+    display: grid;
     align-items: center;
     justify-items: center;
-
-    cursor: pointer;
 }
 
+.container{
+    margin-bottom: 30px;
+    background: white;
+}
 
-.item-a {
-    grid-area: image;
+a{
+    text-decoration: none;
 }
-.item-a img{
-    width: 250px;
-    height: 100px;
-}
-.item-b {
-    grid-area: complition;
-  
-}
-.item-c {
-    grid-area: title;
-}
-.item-d {
-    grid-area: date;
-}
-.item-e{
-    grid-area: name;
-}
-.item-f{
-    grid-area: prize;
-}
-.item-g{
-    grid-area: enroll;
-}
-@media screen and (min-width:300px) and (max-width:400px){
+
+.Image {
+    grid-area: Image;
+    
+  }
+  .Title {
+    grid-area: Title;
+    
+  }
+  .Prize {
+    grid-area: Prize;
+  }
+  .Rating {
+    grid-area: Rating;
+  }
+  .Enroll{
+      grid-area: Enroll;
+  }
+  .Delete{
+    grid-area: Delete;
+  }
+ 
+@media screen and (min-width:200px) and (max-width:500px){
     .container {
-        margin-bottom: 50px;
+        max-width: 360px;
         display: grid;
-        max-height: 400px;
-        margin-left: 2%;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        grid-template-columns: 200px 200px;
-        grid-template-rows: 40px 40px 40px 40px;
+        grid-template-columns: 350px;
+        grid-template-rows: 190px 50px 25px 25px 50px 50px;
         grid-template-areas: 
-          "image image"
-          "complition complition"
-          "title title"
-          "date name"
-          "prize enroll"
-          ;
-          row-gap: 10px;
-        column-gap: 2px;  
-    }
-}
-@media screen and (min-width:400px) and (max-width:500px){
-    .container {
-        display: grid;
-        margin:2% 10% auto 10%;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        grid-template-columns: 150px 150px 100px;
-        grid-template-rows: 100px 80px 90px;
-        grid-template-areas: 
-          "image complition complition"
-          "prize title title"
-          "enroll date name"
+          "Image"
+          "Title"
+          "Rating"
+          "Prize"
+          "Enroll"
+          "Delete"
           ;
           row-gap: 3px;
         column-gap: 2px;  
-    }
+      }
+      .Image img{
+          width: 350px;
+          height: 190px;
+      }
 }
-@media screen and (min-width:500px) and (max-width:800px){
+
+@media screen and (min-width:500px) and (max-width:600px){
     .container {
-        display: grid;
-        margin:2% 10% auto 10%;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        grid-template-columns: 150px 250px 200px;
-        grid-template-rows: 100px 80px 90px;
-        grid-template-areas: 
-              "image complition complition"
-              "prize title title"
-              "enroll date name"
+            max-width: 360px;
+            display: grid;
+            grid-template-columns: 350px;
+            grid-template-rows: 190px 50px 25px 25px 50px 50px;
+            grid-template-areas: 
+              "Image"
+              "Title"
+              "Rating"
+              "Prize"
+              "Enroll"
+              "Delete"
               ;
-        row-gap: 3px;
-        column-gap: 2px;  
+              row-gap: 3px;
+            column-gap: 2px;  
+    }
+    .Image img{
+        width: 350px;
+        height: 190px;
     }
 }
-@media screen and (min-width:800px) {
+
+
+@media screen and (min-width:600px) and (max-width:1000px){
     .container {
+        max-width: 650px;
         display: grid;
-        margin:2% 10% auto 10%;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        grid-template-columns: 250px 150px 450px;
-        grid-template-rows: 100px 80px 90px;
+        grid-template-columns: 250px 200px 200px;
+        grid-template-rows: 80px 50px 50px;
         grid-template-areas: 
-          "image complition complition"
-          "prize title title"
-          "enroll date name"
+          "Image Title Title"
+          "Image Rating Enroll"
+          "Image Prize Delete"
           ;
           row-gap: 3px;
-        column-gap: 2px;  
+        column-gap: 3px;
+        align-items: center;
+    }
+    .Image img{
+        width: 250px;
+        height: 150px;
     }
 }
+
+@media screen and (min-width:1000px){
+    .container {
+            max-width: 650px;
+            display: grid;
+            grid-template-columns: 250px 200px 200px;
+            grid-template-rows: 80px 50px 50px;
+            grid-template-areas: 
+              "Image Title Title"
+              "Image Rating Enroll"
+              "Image Prize Delete"
+              ;
+              row-gap: 3px;
+            column-gap: 3px;
+            align-items: center;
+            justify-items: center;
+    }
+    .Image img{
+        width: 250px;
+        height: 150px;
+    }
+}
+  

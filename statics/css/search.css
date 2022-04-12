@@ -1,3 +1,7 @@
+body{
+    background: rgb(228, 228, 228);
+}
+
 div.scroll{
     overflow-x: scroll;
     overflow-y: hidden;
@@ -20,6 +24,9 @@ div.scroll-item{
 
     display: none;
 }
+.back a{
+    background: white;
+}
 .back-mobile{
     width: calc(100% - 20px);
 
@@ -30,6 +37,7 @@ div.scroll-item{
     justify-items: left;
 }
 .back-mobile a{
+    background: white;
     padding: 10px;
     padding-top: 1px !important;
     padding-left: 6px !important;
@@ -37,6 +45,7 @@ div.scroll-item{
     height: 30px;
     border-radius: 50% !important;
 }
+
 
 @media only screen and (min-width: 700px)
 {

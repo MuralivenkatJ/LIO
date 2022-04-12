@@ -1,30 +1,64 @@
-.grid-cont {
+body{
+    background: rgb(228, 228, 228) !important;
+}
+
+.main{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
     display: grid;
     align-items: center;
     justify-items: center;
-    
 }
 
-.grid {
+.screen{
+    background: rgb(228, 228, 228) !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.container {
+    background: rgb(228, 228, 228) !important;
     display: grid;
-    grid-template-columns: 200px 350px 100px;
-    grid-template-rows: 25px 80px 25px 25px;
-    grid-template-areas: "img tit dur" 
-                        "img descrip descrip" 
-                        "img h h" 
-                        "img j j";
-    
-    margin-top: 30px;
-    margin-bottom: 30px;
+    align-items: center;
+    justify-items: center;
 }
 
-.image {
+.name{
+    margin-bottom: 20px;
+}
+
+.c-upload{
+    background: white !important;
+}
+
+.c-grid {
+    display: grid;
+    grid-template-columns: 200px 150px 150px 150px;
+    grid-template-rows: 25px 80px 25px 25px;
+    grid-template-areas: "img tit tit dur" 
+                        "img descrip descrip descrip" 
+                        "price n_views empty1 n_videos" 
+                        "rating progres empty2 complete";
+    margin-bottom: 30px;
+    background: white;
+
+    align-items: center;
+    justify-items: center;
+}
+
+.c-image {
     grid-area: img;
     width: 95%;
     margin: 5px;
 }
 
-.title {
+.c-title {
     grid-area: tit;
     display: grid;
     align-items: center;
@@ -42,6 +76,8 @@
 
 .duration {
     grid-area: dur;
+    display: grid;
+    justify-items: center;
 }
 
 .desc {
@@ -60,10 +96,45 @@
     text-overflow: ellipsis;
 }
 
-.progress {
-    grid-area: h;
+.c-price{
+    grid-area: price;
+    display: grid;
+    justify-items: center;
 }
 
-.level {
-    grid-area: j;
+.views{
+    grid-area: n_views;
+    display: grid;
+    justify-items: center;
+}
+
+.videos{
+    grid-area: n_videos;
+    display: grid;
+    justify-items: center;
+}
+
+.rating{
+    grid-area: rating;
+    
+    font-size: 14px;
+}
+
+.progess{
+    grid-area: progres;
+    display: grid;
+    justify-items: center;
+}
+
+.complete{
+    grid-area: complete;
+    display: grid;
+    justify-items: center;
+}
+
+.c-empty1{
+    grid-area: empty1;
+}
+.c-empty2{
+    grid-area: empty2;
 }

@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
@@ -10,7 +11,7 @@ class Student(models.Model):
     s_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=10)
     email = models.EmailField()
-    image = models.ImageField(upload_to='media/student', default='media/student/default.jpg')
+    image = models.ImageField(upload_to='media/student', default='student/default.jpg')
     password = models.CharField(max_length=200)
     i_id = models.ForeignKey(Institute, on_delete=models.CASCADE)
 
@@ -45,6 +46,17 @@ class Rates(models.Model):
 class Wishlist(models.Model):
     s_id = models.ForeignKey(Student, on_delete=models.CASCADE)
     c_id = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = [['s_id', 'c_id']]
+
+class Pays(models.Model):
+    s_id = models.ForeignKey(Student, on_delete=models.CASCADE)
+    c_id = models.ForeignKey(Course, on_delete=models.CASCADE)
+    utr_no = models.CharField(max_length=15)
+    image = models.ImageField(upload_to='payment')
+    date = models.DateField(default=datetime.date(datetime.now()))
+    time = models.TimeField(default=datetime.time(datetime.now()))
 
     class Meta:
         unique_together = [['s_id', 'c_id']]

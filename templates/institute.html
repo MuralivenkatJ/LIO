@@ -1,0 +1,95 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="{% static 'images/logo.png' %}" type = "image/x-icon">
+    
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/institute.css' %}">
+
+    <title>Institute</title>
+</head>
+<body>
+
+    <!-- MENU BAR -->
+    <div class="w3-top">
+        <div class="w3-bar">
+            <img src="{% static 'images/logo.png' %}" alt="logo" width="40px" height="40px" class="w3-bar-item logo  w3-margin-left" title="LIO">
+            <a href="{% url 'explore' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="Explore">Explore</a>
+            
+            <a href="#" class="w3-bar-item w3-hide-small w3-right logo"><img src="{{media}}/media/{{profile}}" alt="logo" width="40px" height="40px" class="logo"></a>
+
+            {% if i_id != 0 %}
+                <a href="{% url 'approvals' %}" class="w3-bar-item w3-hide-small w3-black with w3-opacity bar-item w3-margin-left w3-border w3-btn" title="Approvals">Approvals</a>
+                <a href="{% url 'logout3' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn w3-right w3-margin-right" title="logout">logout</a>
+            {% else %}
+                <div class="w3-bar-item w3-hide-small bar-item w3-right w3-margin-right" id="dropdown1" style="padding: 0%;">
+                <div class="w3-dropdown-click" id="dropdown2">
+                    <button onclick="dropdown()" class="w3-hover-black with w3-hover-opacity w3-border w3-btn" id="dropdown3">login</button>
+                    <div id="dropdown-cont" class="w3-dropdown-content w3-bar-block w3-border">
+                        <a href="{% url 'login1' %}" class="w3-bar-item w3-button" title="Student">Student</a>
+                        <a href="{% url 'login2' %}" class="w3-bar-item w3-button" title="Faculty">Faculty</a>
+                        <a href="{% url 'login3' %}" class="w3-bar-item w3-button" title="Institute">Institute</a>
+                    </div>
+                </div>
+                </div>
+            {% endif %}
+
+            <a href="javascript:void(0)" class="w3-bar-item w3-hide-large w3-hide-medium w3-right" onclick="collapseBar()">&#9776;</a>
+        </div>
+
+        <div id="collapse" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium w3-white">
+            <a href="{% url 'explore' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="Explore">Explore</a>
+            
+            <!-- <a href="{% url 'login1' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="login">login</a> -->
+
+            {% if i_id != 0 %}
+                <a href="{% url 'approvals' %}" class="w3-bar-item mobile-bar  w3-black with w3-opacity bar-item w3-border w3-btn" title="Approvals">Approvals</a>
+                <a href="{% url 'logout3' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="logout">logout</a>
+            {% else %}
+                <div class="w3-bar-item bar-item w3-right" style="padding: 0%;">
+                <div class="w3-dropdown-click">
+                    <button onclick="dropdownm()" class="w3-hover-black with w3-hover-opacity w3-border w3-btn" id="dropdown-btn-m">login</button>
+                    <div id="dropdown-cont-m" class="w3-dropdown-content w3-bar-block w3-border">
+                        <a href="{% url 'login1' %}" class="w3-bar-item w3-button" title="Student">Student</a>
+                        <a href="{% url 'login2' %}" class="w3-bar-item w3-button" title="Faculty">Faculty</a>
+                        <a href="{% url 'register3' %}" class="w3-bar-item w3-button" title="Institute">Institute</a>
+                    </div>
+                </div>
+                </div>
+            {% endif %}
+
+            <a href="#" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn"><img src="{{media}}/media/{{profile}}" alt="logo" width="40px" height="40px" style="float: right;" class="logo w3-margin-right"></a>
+        </div>
+    </div>
+
+    <br><br><br><br>
+    
+    <h3>{{i_name}}</h3>
+
+    <br>
+
+    {% for a,b in list %}
+    <a href="{% url 'screenshot' a.id %}">
+        <div class="card w3-border w3-round-large w3-hover-shadow">
+            <div class="container1">
+                <div class="Course_name">Course Name :- {{b.c_name}} </div>
+                <div class="Faculty_name">Faculty Name :- {{b.f_name}} S </div>
+                <div class="Student_name">Student Name :- {{b.s_name}} </div>
+                <div class="Time">Time :- {{a.time}} </div>
+                <div class="Date">Date :- {{a.date}} </div>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+
+    <script src="{% static 'js/nav.js' %}"></script>
+
+</body>
+</html>

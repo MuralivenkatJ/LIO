@@ -1,7 +1,27 @@
-*{
-    padding: o;
-    margin: 0;
-    font-family: sans-serif;
+.grid-cont{
+    background: rgba(255, 244, 244, 0.289) !important;
+    z-index: -2;
+    
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    width: 100%;
+    min-height: 100vh;
+}
+.grid-cont:hover{
+    cursor: pointer;
+}
+.grid:hover{
+    cursor: auto;
+}
+
+.grid-cont form{
+    background: white;
 }
 
 
@@ -10,7 +30,6 @@
             background:white;
             align-items: center;
             justify-items: center;
-            height: 100vh;
             width: 100%;
 }
 .grid{

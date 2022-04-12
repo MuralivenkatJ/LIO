@@ -6,9 +6,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="{% static 'images/logo.png' %}" type = "image/x-icon">
       
     <title>Document</title>
     <link rel="icon" href="{% static 'images/logo1.png' %}" type = "image/x-icon">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/nav.css' %}">
     <link rel="stylesheet" href="{% static 'css/wishlist.css' %}">
     <link rel="stylesheet" href="{% static 'css/explore.css' %}">
@@ -19,11 +24,11 @@
     
     <!-- MENU BAR -->
     <div class="w3-top">
-        <div class="w3-bar w3-white">
-            <img src="{% static 'images/logo1.png' %}" alt="logo" width="40px" height="40px" class="w3-bar-item logo  w3-margin-left" title="LIO">
+        <div class="w3-bar">
+            <img src="{% static 'images/logo.png' %}" alt="logo" width="40px" height="40px" class="w3-bar-item logo  w3-margin-left" title="LIO">
             <a href="{% url 'explore' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="Explore">Explore</a>
             
-            <a href="#" class="w3-bar-item w3-hide-small w3-right logo"><img src="{% static 'images/logo1.png' %}" alt="logo" width="40px" height="40px" class="logo w3-margin-right"></a>
+            <a href="#" class="w3-bar-item w3-hide-small w3-right logo"><img src="{{media}}/media/{{profile}}" alt="logo" width="40px" height="40px" class="logo"></a>
             <a href="{% url 'mycourses' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn" title="My courses">My courses</a>
             <a href="{% url 'wishlist' %}" class="w3-bar-item w3-hide-small w3-black with w3-opacity bar-item w3-margin-left w3-border w3-btn" title="Wishlist">Wishlist</a>
             <a href="{% url 'logout1' %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn w3-right w3-margin-right" title="logout">logout</a>
@@ -39,29 +44,25 @@
             <a href="{% url 'wishlist' %}" class="w3-bar-item mobile-bar w3-black with w3-opacity bar-item w3-border w3-btn" title="Wishlist">Wishlist</a>
             <a href="{% url 'logout1' %}" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn" title="logout">logout</a>
 
-            <a href="#" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn"><img src="{% static 'images/logo1.png' %}" alt="logo" width="40px" height="40px" style="float: right;" class="logo w3-margin-right"></a>
+            <a href="#" class="w3-bar-item mobile-bar w3-hover-black with w3-hover-opacity bar-item w3-border w3-btn"><img src="{{media}}/media/{{profile}}" alt="logo" width="40px" height="40px" style="float: right;" class="logo w3-margin-right"></a>
         </div>
     </div>
 
     <div class="s">
 
         {% for c in course %}
-        <div class="container w3-round-large w3-hover-shadow">
-            <div class="item-a">
+        <div class="container w3-border w3-round-large w3-hover-shadow">
+            <div class="Image">
                 <img src="{{image}}/media/{{c.image}}" alt="course image">
             </div>
-            <div class="item-b">
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%
-                    </div>
-                </div>
-            </div>
-            <div class="item-c"><h3>{{c.c_name}}</h3> </div>
-            <div class="item-d"><p>date:{{c.date}}</p> </div>
-            <div class="item-e"><p>{{c.f_name}}</p></div>
-            <div class="item-f"><h3>{{c.price}}</h3></div>
-            <div class="item-g">
+            <div class="Title">{{c.c_name}}</div>
+            <div class="Prize">{{c.price}}</div>
+            <div class="Rating">{{c.rating}} <i class="fa fa-star-half-full"></i></div>
+            <div class="Enroll">
                 <a href="{% url 'enroll' c.c_id %}" class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity">Enroll</a>
+            </div>
+            <div class="Delete">
+                <a href="{% url 'delete' c.c_id %}" class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity">Delete</a>
             </div>
         </div>
         {% endfor %}

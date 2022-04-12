@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 
 from python_files import video_duration, playlist_duration
+import googleapiclient.discovery
 
 from course.models import Course
 from student.models import Enrolls, Rates, Student
@@ -17,9 +18,11 @@ def mycourses(request):
         return redirect('login1')
 
     passw = ''
+    profile = 'student/default.jpg'
     if s_id != 0:
         s = Student.objects.get(s_id=s_id)
         passw = s.password
+        profile = s.image
     
     if s_pass != passw:
         return redirect('login1')
@@ -53,7 +56,7 @@ def mycourses(request):
         
         data = zip(course, watched)
 
-        return render(request, 'mycourses.html', {'data': data})
+        return render(request, 'mycourses.html', {'data': data, 'profile': profile})
 
 
 def reviews(request, c_id):
@@ -90,3 +93,105 @@ def reviews(request, c_id):
 
     else:
         return render(request, 'rating.html', {'c_id': c_id})
+
+
+def enrolled(request, c_id):
+
+    # Check if the student has enrolled for the course
+    s_id = 0
+    s_id = int(request.COOKIES['s_id'])
+    passw = request.COOKIES['passw']
+
+    s = Student.objects.get(s_id=s_id)
+    password = s.password
+
+    if s_id == 0 or passw != password:
+        return render(request, 'login1.html')
+    
+    e = Enrolls.objects.filter(s_id_id=s_id, c_id_id=c_id)
+    if not e:
+        return redirect('mycourses')
+
+    # Using api to get the tumbnail, title, description
+    api_key = 'AIzaSyAThwinMHqAPzectaIrV7-RdL8wkrpfLa0'
+    course = Course.objects.get(pk=c_id)
+    playlistid = course.playlistid
+    #playlistid = 'PLsyeobzWxl7poL9JTVyndKe62ieoN-MZ3'
+
+    service = googleapiclient.discovery.build("youtube", "v3", developerKey = api_key)
+
+    rqt = service.playlistItems().list(
+        part = 'snippet, contentDetails',
+        maxResults = 50,
+        playlistId = playlistid,
+    )
+
+    res = rqt.execute()
+
+    if 'nextPageToken' in res:
+        token = res.get('nextPageToken')
+
+    while ('nextPageToken' in res):
+        rqt1 = service.playlistItems().list(
+            part = 'snippet, contentDetails',
+            maxResults = 50,
+            playlistId = playlistid,
+            pageToken = token,
+        )
+        res1 = rqt1.execute()
+
+        res['items'] = res['items'] + res1['items']
+
+        if 'nextPageToken' not in res1:
+            res.pop('nextPageToken', None)
+        else:
+            token = res1['nextPageToken']
+
+    vid_ids = []
+    data = []
+    dura = []
+
+    index = 0
+
+    for i in res["items"]:
+        dictionary = {}
+
+        if index % 50 == 0:
+            temp = video_duration.duration(vid_ids)
+            dura.extend(temp)
+            vid_ids.clear()
+
+        vid_ids.append(i["contentDetails"]["videoId"])
+
+        dictionary["vidId"] = i["contentDetails"]["videoId"]
+        dictionary["title"] = i["snippet"]["title"]
+        dictionary["desc"]  = i["snippet"]["description"]
+        dictionary["image"] = i["snippet"]["thumbnails"]["medium"]["url"]
+        dictionary['index'] = index
+
+        data.append(dictionary)
+
+        index = index + 1
+    
+    temp = video_duration.duration(vid_ids)
+    dura.extend(temp)
+    vid_ids.clear()
+
+    # getting the list of watched videos
+
+    st = ''
+    for c in Enrolls.objects.raw(
+    ''' SELECT *
+        FROM student_enrolls
+        WHERE s_id_id = %s and c_id_id = %s''', [s_id, c_id]):
+        st = c.watched
+    
+    list = []
+    if len(st) > 0:
+        list = st.split(',')
+    for i in range(len(list)):
+        list[i] = int(list[i])
+
+    zipped_data = zip(data, dura)
+    
+    return render(request, 'course.html', {'z_data': zipped_data, 'data': data, 'course': course, 'watched': list})

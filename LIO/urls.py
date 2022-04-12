@@ -27,7 +27,7 @@ urlpatterns = [
     path('wishlist/', include('wishlist.urls')),
     path('mycourses/', include('mycourses.urls')),
     path('course/', include('course.urls')),
-    path('institute', include('institute.urls')),
+    path('institute/', include('institute.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

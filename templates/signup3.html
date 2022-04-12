@@ -3,51 +3,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" href="{% static 'images/logo.png' %}" type = "image/x-icon">
     
     <title>Institute Register</title>
     <link rel="stylesheet" href="{% static 'css/signup3.css' %}">
+    <link rel="stylesheet" href="{% static 'css/error.css' %}">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" title="" type=""/>
 </head>
 <body>
-    <div class="grid-cont">
-        <form action="" method="post" class="grid w3-border w3-round-large"  enctype="multipart/form-data">
+    <div class="s3-grid-cont">
+        <form action="{% url 'register3' %}" method="post" class="s3-grid w3-border w3-round-large"  enctype="multipart/form-data">
             
             {% csrf_token %}
 
-            <div class="register-form">Institute Register</div>
+            <div class="s3-register-form">Institute Register</div>
             
-            <div class="name">Istitute :</div>
-            <div class="Name_input">
+            <div class="s3-name">Institute :</div>
+            <div class="s3-Name_input">
                 <input type="text" placeholder="Enter the Institute name" name="i_name">
             </div>
 
-            <div class="address">Address :</div>
-            <div class="address_input">
+            <div class="s3-address">Address :</div>
+            <div class="s3-address_input">
                 <input type="text" placeholder="Enter the institute address" name="address">
             </div>
 
-            <div class="image">Image :</div>
-            <div class="image_input">
+            <div class="s3-image">Image :</div>
+            <div class="s3-image_input">
                 <input type="file"  name="image">
             </div>
 
-            <div class="Email">Email :</div>
-            <div class="email_id_input">
+            <div class="s3-Email">Email :</div>
+            <div class="s3-email_id_input">
                 <input type="text"placeholder="Enter the email" name="email">
             </div>
 
-            <div class="website">website :</div>
-            <div class="website_input">
+            <div class="s3-website">Website :</div>
+            <div class="s3-website_input">
                 <input type="url" placeholder="Enter the website" name="website">
             </div>
-            <div class="empty1"></div>
-            <div class="sign-in">
+
+            <div class="s3-BankName">Bank Name :</div>
+            <div class="s3-bankname_input">
+                <input type="text" placeholder="Enter the Bank Name" name="b_name">
+            </div>
+
+            <div class="s3-AccountHolder">Account Holder :</div>
+            <div class="s3-AccountHolder_input">
+                <input type="text" placeholder="Enter the Account Holder" name="ac_name">
+            </div>
+
+            <div class="s3-AccountNumber">Account Number :</div>
+            <div class="s3-AccountNumber_input">
+                <input type="text" placeholder="Enter the Account Number" name="ac_no">
+            </div>
+
+            <div class="s3-IFSCCode">IFSC Code :</div>
+            <div class="s3-ifsccode_input">
+                <input type="text" placeholder="Enter the IFSC Code" name="ifsc">
+            </div>
+
+            <div class="s3-password">Password :</div>
+            <div class="s3-password_input">
+                <input type="password" id="s3-pass-input" placeholder="Enter the password" name="password">
+                <i class="fa fa-eye" id="s3-eye"onclick="s3_visible()"></i>
+            </div>
+
+            <div class="s3-confirmpassword">confirm password :</div>
+            <div class="s3-confirm_input">
+                <input type="password" id="s3-pass-input1" placeholder="Enter the password" name="cpassword">
+                <i class="fa fa-eye" id="s3-eye1"onclick="s3_visible1()"></i>
+            </div>
+
+            <div class="s3-empty1"></div>
+            <div class="s3-sign-in">
                 <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity" type="submit">SIGN-IN</button>
             </div>
-            <div class="empty2"></div>
+
+            <div class="s3-empty2"></div>
+
         </form>
     </div>
+
+    {% if messages or form.errors %}
+        <div class="error-cont" id="error_cont" style="z-index: 1;">
+            <div class="errors w3-border w3-round-large w3-hover-shadow w3-red w3-text-black" onclick="error()">
+                <span style="font-weight: 800;">&#x26A0; ERROR &#x26A0;</span> 
+                <br/>
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+                {% for field in form %}
+                    {% if field.errors %}
+                        <p> <strong>{{field.label}} :</strong> 
+                            {% for error in field.errors %}
+                                {{error|striptags}}
+                            {% endfor %}
+                        </p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <script src="{% static 'js/signup3.js' %}"></script>
+    <script src="{% static 'js/error.js' %}"></script>
     
 </body>
 </html>

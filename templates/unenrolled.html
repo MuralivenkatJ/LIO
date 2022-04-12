@@ -7,10 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="icon" href="{% static 'images/logo.png' %}" type = "image/x-icon">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" title="" type=""/>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="{% static 'css/unenrolled.css' %}">
+    <link rel="stylesheet" href="{% static 'css/paymentinfo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/error.css' %}">
 
     <title>Learn It Online</title>
+
+    {% if form %}
+    <style>
+        .grid-cont{
+            z-index: 1;
+        }
+        .page{
+            position: fixed;
+        }
+    </style>
+    {% endif %}
+    
 </head>
 <body>
     
@@ -18,12 +35,12 @@
 
 
         <!-- BUTTON AND IMAGE -->
-        <!-- <div class="back">
-            <a href="javascript:history.go(1)" class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity">back</a>
+        <div class="back">
+            <a href="{% url 'explore' %}" class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity">back</a>
         </div>
         <div class="back-mobile">
-            <a href="javascript:history.go(1)" class="w3-border w3-btn w3-hover-black with w3-hover-opacity">&#8592</a>
-        </div> -->
+            <a href="{% url 'explore' %}" class="w3-border w3-btn w3-hover-black with w3-hover-opacity">&#8592</a>
+        </div>
         <img class="c-image" src="{{media}}/media/{{course.image}}" alt="course-image">
 
 
@@ -85,31 +102,91 @@
 
         <!-- RATING (rates)-->
         {% for r in rates %}
-        <div class="container2">
-            <div class="Image2">
-                <img src="{{media}}/media/{{r.image}}" alt="Student">
+        <div class="cont-container2">
+            <div class="container2 w3-border w3-round">
+                <div class="Image2">
+                    <img src="{{media}}/media/{{r.image}}" alt="Student">
+                </div>
+                <div class="Student">{{r.s_name}}</div>
+                <div class="Rating">
+                    {{r.rating}} <i class="fa fa-star-half-full"></i>
+                </div>
+                <div class="review">{{r.desc}}</div>
             </div>
-            <div class="Student">
-                <h3>{{r.s_name}}</h3>
-            </div>
-            <div class="Rating">
-                <p>{{r.rating}} - *****</p>
-            </div>
-            <div class="review">
-                <p>{{r.desc}}</p>
-            </div>
-            
         </div>
         {% endfor %}
 
+        <br><br>
 
         <!-- ENROLL BUTTON -->
-        <a href="{% url 'enroll' course.c_id %}" class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity">Enroll</a>
+        {% if free %}
+            <a href="{% url 'enroll' course.c_id %}" class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity">Enroll</a>
+        {% else %}
+            <button class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity" onclick="open_form()">Enroll</button>
+        {% endif %}
         <a href="{% url 'wish' course.c_id %}" class="w3-border w3-round w3-btn w3-hover-black with w3-hover-opacity">Add to wishlist</a>
 
     </div>
 
+    <!-- PAYMENT FORM -->
+    {% if not free %}
+    <div class="grid-cont">
+        <form action="{% url 'paymentinfo' course.c_id %}" method="post" class="grid w3-border w3-round-large" enctype='multipart/form-data'>
+            {% csrf_token %}
+
+            <div class="payment-info">Payment info</div>
+            <div class="c_name">course :</div>
+            <div class="c_name_input">{{course.c_name}}</div>
+            <div class="amount">Amount :</div>
+            <div class="amount_input">{{course.price}}</div>
+            <div class="acno">Account Number :</div>
+            <div class="acno_input">{{institute.ac_no}}</div>
+            <div class="ifsc">IFSC  :</div>
+            <div class="ifsc_input">{{institute.ifsc}}</div>
+            <div class="accountholder">Account Holder :</div>
+            <div class="accountholder_input">{{institute.ac_name}}</div>
+            <div class="screenshot">Screenshot :</div>
+            <div class="screenshot_input">
+                <input type="file" id="upload" name="image">
+            </div>
+            <br>
+            <div class="utrid">UTR ID :</div>
+            <div class="utrid_input">
+                <input type="text" name="utr_no">
+            </div>
+            <div class="empty1"></div>
+            <div class="PaymentDone">
+                <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity">Payment Done</button>
+            </div>
+            <div class="empty2"></div>
+        </form>
+    </div>
+    {% endif %}
+
+    {% if messages or form.errors %}
+        <div class="error-cont" id="error_cont" style="z-index: 2;">
+            <div class="errors w3-border w3-round-large w3-hover-shadow w3-red w3-text-black" onclick="error()">
+                <span style="font-weight: 800;">&#x26A0; ERROR &#x26A0;</span> 
+                <br/>
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+                {% for field in form %}
+                    {% if field.errors %}
+                        <p> <strong>{{field.label}} :</strong> 
+                            {% for error in field.errors %}
+                                {{error|striptags}}
+                            {% endfor %}
+                        </p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    
     <script src="{% static 'js/unenrolled.js' %}"></script>
+    <script src="{% static 'js/error.js' %}"></script>
+    <script src="{% static 'js/paymentinfo.js' %}"></script>
 
 </body>
 </html>

@@ -1,3 +1,19 @@
+body{
+    background: rgb(228, 228, 228) !important;
+}
+  
+.w3-top div{
+    background: rgb(228, 228, 228) !important;
+}
+  
+.w3-top div a{
+    background: white;
+}
+
+.w3-top div button{
+    background: white !important;
+}
+
 a{
     text-decoration: none;
 }

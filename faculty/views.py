@@ -2,6 +2,7 @@ import hashlib
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from course.models import Course
+from explore.views import getExploreData
 
 from faculty.forms import facultyForm
 from faculty.models import Faculty
@@ -20,8 +21,8 @@ def login(request):
         passw = ''
         for row in Faculty.objects.raw(
             '''SELECT f_id 
-               FROM faculty_faculty F 
-               WHERE F.email=%s and F.password=%s''', [email, password]):
+               FROM faculty_faculty
+               WHERE email=%s and password=%s''', [email, password]):
             id = row.f_id
             passw = row.password
         if(id > 0):
@@ -31,10 +32,9 @@ def login(request):
             return response
         else:
             messages.error(request, 'incorrect email or password')
-            return render(request, 'login1.html')
-
-    else:
-        return render(request, 'login2.html')
+            d = getExploreData()
+            d.update({'top': 'l2'})
+            return render(request, 'explore.html', d)
 
 
 
@@ -44,20 +44,23 @@ def register(request):
         cpassword = request.POST.get('cpassword')
         if password != cpassword:
             messages.error(request, "Password didn't match")
+            d = getExploreData()
+            d.update({'top': 's2'})
+            return render(request, 'explore.html', d)
         else:
-            password = hashlib.md5(password.encode('utf-8')).hexdigest()
+            if password != '':
+                password = hashlib.md5(password.encode('utf-8')).hexdigest()
             req = request.POST.copy()
             req['password'] = password
             form = facultyForm(req, request.FILES)
             if form.is_valid():
                 form.save()
                 return redirect('explore')
-        return redirect('register2') 
-
-    else:
-        institutes = Institute.objects.all()
-
-        return render(request, 'signup2.html', {'institute': institutes})
+            else:
+                # messages.error(request, form.errors)
+                d = getExploreData()
+                d.update({'form': form, 'top': 's2'})
+                return render(request, 'explore.html', d)
 
 
 
@@ -80,10 +83,12 @@ def faculty(request):
     
     passw = ''
     f_name = ''
+    profile = ''
     if f_id != 0:
         f = Faculty.objects.get(f_id=f_id)
         passw = f.password
         f_name = f.f_name
+        profile = f.image
 
     if f_pass != passw:
         return redirect('login2')
@@ -91,11 +96,8 @@ def faculty(request):
     # UPLOADED COURSES
     course = []
     number = []
-    for c in Course.objects.raw('''
-        SELECT c_id, image, c_name, description, duration
-        FROM course_course
-        WHERE f_id_id = %s''', [f_id]):
 
+    for c in Course.objects.filter(f_id_id = f_id):
         in_progress = 0
         complete = 0
         enroll = Enrolls.objects.filter(c_id=c.c_id)
@@ -115,5 +117,35 @@ def faculty(request):
 
     zippedData = zip(course, number)
 
-    return render(request, 'faculty.html', {'f_name': f_name, 'course': zippedData})
-    
+    return render(request, 'faculty.html', {'f_name': f_name, 'profile': profile, 'course': zippedData})
+
+
+def getFacultyData(f_id):
+    f = Faculty.objects.get(f_id=f_id)
+    f_name = f.f_name
+    profile = f.image
+
+    course = []
+    number = []
+
+    for c in Course.objects.filter(f_id_id = f_id):
+        in_progress = 0
+        complete = 0
+        enroll = Enrolls.objects.filter(c_id=c.c_id)
+
+        for e in enroll:
+            if e.status == "inprogress":
+                in_progress = in_progress + 1
+            elif e.status == "complete":
+                complete = complete + 1
+        
+        dict = {}
+        dict['inprogress'] = in_progress
+        dict['complete'] = complete
+
+        course.append(c)
+        number.append(dict)
+
+    zippedData = zip(course, number)
+
+    return {'f_name': f_name, 'profile': profile, 'course': zippedData}

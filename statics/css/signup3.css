@@ -1,108 +1,206 @@
-* {
-    padding: 0;
-    margin: 0;
-    font-family: sans-serif;
+.s3-grid-cont{
+    background: rgba(255, 244, 244, 0.289) !important;
+    z-index: -2;
+
+    min-height: 100vh;
+    width: 100%;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    cursor: pointer;
 }
 
-.grid-cont{
+.s3-grid-cont form{
+    background: white;
+    cursor: auto;
+}
+
+.s3-grid-cont{
+    padding-top: 30px;
+    padding-bottom: 30px;
     display: grid;
     align-items: center;
     justify-items: center;
-    height: 100vh;
 }
-.grid{
+.s3-grid{
     display: grid;
-    grid-template-columns: 100px 120px 140px;
-    grid-template-rows: 100px 50px 50px 50px 50px 60px;
+    grid-template-columns: 150px 120px 140px;
+    grid-template-rows: 100px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50PX 50PX;
     grid-template-areas: "a a a"
                          "b c c"
                          "d e e"
-                         "x y y"
                          "f g g"
                          "h i i"
-                         "j k l";
+                         "j k k"
+                         "l m m"
+                         "p q q"
+                         "r s s"
+                         "t u u"
+                         "v w w"
+                         "x y y"
+                         "z A B";
     outline: 3px solid;
     border-radius: 15px;
     align-items: center;
     justify-items: center; 
+    box-shadow: 10px 10px 15px gray;
+    background-color: white;
 }
-.register-form{
-      background-color: white;
-      grid-area: a;
-      font-size: 30px;
-      text-transform: uppercase;
-      text-shadow: 1px 1px;
-      }
+.s3-register-form{
+    grid-area: a;
+    font-size: 30px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px;
+}
 
-.name{
+.s3-name{
     grid-area: b;
-    background: white;
-    
 }     
-.Name_input{
+.s3-Name_input{
     grid-area: c;
-    background: white;
 }
-.Name_input input{
+.s3-Name_input input{
     width: 220px;
 }
-.address{
+.s3-address{
     grid-area: d;
-    background: white;
-    
+    font-size: 17px;
 }
-.address_input{
+.s3-address_input{
     grid-area: e;
-    background: white;
 }
-
-.image{
-    grid-area: x;
-}
-.image_input{
-    grid-area: y;
-}
-
-.address_input input{
+.s3-address_input input{
     width: 220px;
 }
-.Email{
+
+.s3-image{
     grid-area: f;
-    background: white;
-    
+    font-size: 17px;
 }
-.email_id_input{
+.s3-image_input{
     grid-area: g;
-    background: white;
-}
-.email_id_input input{
     width: 220px;
 }
-.website{
+.s3-Email{
     grid-area: h;
     background: white;
-
+    font-size: 17px;
 }
-.website_input{
+.s3-email_id_input{
     grid-area: i;
+    background: white;
+}
+.s3-email_id_input input{
+    width: 220px;
+}
+.s3-website{
+    grid-area: j;
+    background: white;
+    font-size: 17px;
+}
+.s3-website_input{
+    grid-area: k;
     background: white;
     position: relative;
 
 }
-.website_input input{
+.s3-website_input input{
+    width: 220px;
+}
+.s3-BankName{
+    grid-area: l;
+}
+.s3-bankname_input{
+    grid-area: m;
+}
+.s3-bankname_input input{
+    width: 220px;
+}
+/* .Bankaddress{
+    grid-area: n;
+}
+.Bankaddress_input{
+    grid-area: o;
+}
+.Bankaddress_input input{
+    width: 220px;
+} */
+.s3-AccountHolder{
+    grid-area: p;
+}
+.s3-AccountHolder_input{
+    grid-area: q;
+}
+.s3-AccountHolder_input input{
+    width: 220px;
+}
+.s3-AccountNumber{
+    grid-area: r;
+}
+.s3-AccountNumber_input{
+    grid-area: s;
+}
+.s3-AccountNumber_input input{
+    width: 220px;
+}
+.s3-IFSCCode{
+    grid-area: t;
+}
+.s3-ifsccode_input{
+    grid-area: u;
+}
+.s3-ifsccode_input input{
+    width: 220px;
+}
+.s3-password{
+    grid-area: v;
+}
+.s3-password_input{
+    grid-area: w;
+    position: relative;
+}
+.s3-password_input input{
+    width: 220px;
+}
+#s3-eye{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+#s3-eye:hover{
+    cursor: pointer;
+}
+.s3-confirmpassword{
+    grid-area: x;
+}
+.s3-confirm_input{
+    grid-area: y;
+    position: relative;
+}
+.s3-confirm_input input{
     width: 220px;
 }
 
-.empty1{
-    grid-area: j;
+#s3-eye1{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+#s3-eye1:hover{
+    cursor: pointer;
+}
+.s3-empty1{
+    grid-area: z;
     background: white;
 }
-.sign-in{
-    grid-area: k;
+.s3-sign-in{
+    grid-area: A;
     background: white;
     
 }
-.empty2{
-    grid-area: l;
+.s3-empty2{
+    grid-area: B;
     background: white;
 }

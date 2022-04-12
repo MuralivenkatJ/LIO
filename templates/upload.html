@@ -6,29 +6,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Course</title>
+
+    <link rel="icon" href="{% static 'images/logo.png' %}" type = "image/x-icon">
+
     <link rel="stylesheet"  href="{% static 'css/upload.css' %}">
+    <link rel="stylesheet"  href="{% static 'css/error.css' %}">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" title="" type=""/>
     
 </head>
 <body>
+    
     <div class="grid-cont">
-    <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data" class="grid">
+        <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data" class="grid">
 
         {% csrf_token %}
 
         <div class="professor">Upload Course</div>
         <div class="title">Title : </div>
         <div class="titles-input">
-            <input type="text" name="c_name" required>
+            <input type="text" name="c_name">
         </div>
         <div class="image">image : </div>
         <div class='image-input'>
-            <input type="file" id="upload" name="image" required>
+            <input type="file" id="upload" name="image">
         </div>
         <div class="specialization">specialization : </div>
         <div class="specialization-input">
-            <input type="text" name="specialization" required>
+            <input type="text" name="specialization">
         </div>
         <div class="forwho">Forwho : </div>
         <div class="forwho-input">
@@ -40,7 +45,7 @@
         </div>
         <div class="playlist">Playlist_id : </div>
         <div class="playlist-input">
-            <input type="text" name="playlistid" required>
+            <input type="text" name="playlistid">
         </div>
         <div class="guidedproject">Type : </div>
         <div class="guidedproject-input">
@@ -50,11 +55,11 @@
         </div>
         <div class="descrption">descrption : </div>
         <div class="descrption-input">
-            <input type="text" name="description" required>
+            <input type="text" name="description">
         </div>
         <div class="skillacquired">skill Acquired : </div>
        <div class="chooseaskillacquired-input"> 
-           <input type="text" multiple name="skills" required>
+           <input type="text" multiple name="skills">
        </div>
              
         <div class="price">Price : </div>
@@ -66,16 +71,31 @@
             <button class="w3-btn w3-border w3-round w3-hover-black with w3-hover-opacity" type="submit">UPLOAD</button>
         </div>
         <div class="empty1"></div>
-    </form>
+        </form>
     </div>
 
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-	            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
+    {% if messages or form.errors %}
+        <div class="error-cont" id="error_cont" style="z-index: 1;">
+            <div class="errors w3-border w3-round-large w3-hover-shadow w3-red w3-text-black" onclick="error()">
+                <span style="font-weight: 800;">&#x26A0; ERROR &#x26A0;</span> 
+                <br/>
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+                {% for field in form %}
+                    {% if field.errors %}
+                        <p> <strong>{{field.label}} :</strong> 
+                            {% for error in field.errors %}
+                                {{error|striptags}}
+                            {% endfor %}
+                        </p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
     {% endif %}
+
+    <script src="{% static 'js/error.js' %}"></script>
 
 </body>
 </html>

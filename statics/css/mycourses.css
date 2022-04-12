@@ -1,5 +1,19 @@
+body{
+  background: rgb(228, 228, 228) !important;
+}
+
+.w3-top div{
+  background: rgb(228, 228, 228);
+}
+
+.w3-top div a{
+  background: white;
+}
+
 .s{
-  margin-top: 100px;
+  display: grid;
+  align-items: center;
+  justify-items: center;
 }
 
 a{
@@ -8,114 +22,176 @@ a{
 }
 
 .container {
+    background: white;
+    /* max-width: 965px;
     display: grid;
-    margin:2% 10% auto 10%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    grid-template-columns: 250px 150px 450px;
-    grid-template-rows: 100px 80px 90px;
-    grid-template-areas: 
-      "image complition complition"
-      "prize title title"
-      "emty date name";
-      row-gap: 3px;
-    column-gap: 2px;
+    grid-template-columns: 255px 255px 455px;
+    grid-template-rows: 50px 100px 50px;
+    grid-template-areas: "img progress progress"
+                         "img title title"
+                         "rate emty name"; */
+      /* row-gap: 3px;
+    column-gap: 2px; */
 
     align-items: center;
     justify-items: center;
+
+    margin-bottom: 30px;
+    padding: 0% !important;
 }
 
 .item-a {
-    grid-area: image;
-    
-  }
+    grid-area: img;
+}
 .item-a img{
   width: 250px;
-  height: 100px;
+  height: 140px;
 }
-  .item-b {
-    grid-area: complition;
-    
-  }
-  .item-c {
-    grid-area: title;
-  }
-  .item-d {
-    grid-area: date;
-  }
-  .item-e{
-      grid-area: name;
-  }
-  .item-f{
+.item-b{
+    grid-area: progress;
+    width: 95%;
+}
+/* .item-f{
       grid-area: prize;
-  }
-  .item-g{
+} */
+.item-c{
+    grid-area: title;
+    font-size: 18px;
+
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    overflow-wrap: break-word;
+    hyphens: manual;
+    white-space: pre-wrap;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.item-g{
       grid-area: emty;
-  }
-  @media screen and (min-width:300px) and (max-width:400px){
-    .container {margin-bottom: 50px;
-        display: grid;
-        max-height: 400px;
-        margin-left: 2%;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        grid-template-columns: 200px 200px;
-        grid-template-rows: 40px 40px 40px 40px;
-        grid-template-areas: 
-          "image image"
-          "complition complition"
-          "title title"
-          "date name"
-          "prize emty"
-          ;
-          row-gap: 10px;
-        column-gap: 2px;  
-      }
-    }
+}
+.item-d {
+    grid-area: rate;
+}
+.item-e{
+      grid-area: name;
+
+      display: grid;
+      align-items: center;
+      justify-items: center;
+  
+      overflow-wrap: break-word;
+      hyphens: manual;
+      white-space: pre-wrap;
+  
+      overflow: hidden;
+      text-overflow: ellipsis;
+}
+
+
   @media screen and (min-width:400px) and (max-width:500px){
     .container {
+        width: 400px !important;
         display: grid;
-        margin:2% 10% auto 10%;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        grid-template-columns: 150px 150px 100px;
-        grid-template-rows: 100px 80px 90px;
+        grid-template-columns: 200px 200px;
+        grid-template-rows: 100px 50px 50px 50px 50px;
         grid-template-areas: 
-          "image complition complition"
-          "prize title title"
-          "emty date name"
+          "img img"
+          "progress progress"
+          "title title"
+          "rate name"
+          "emty emty"
           ;
+      }
+      .item-a img{
+        width: 180px;
+        height: 100px;
+      }
+      .item-c{
+        width: 400px;
+        height: 50px;
+      }
+      .item-e{
+        width: 200px;
+        height: 50px;
+      }
+    }
+  @media screen and (min-width:500px) and (max-width:600px){
+    .container {
+        width: 410px !important;
+        display: grid;
+        grid-template-columns: 200px 100px 100px;
+        grid-template-rows: 50px 70px 50px;
+        grid-template-areas: 
+          "img progress progress"
+          "img title title"
+          "rate emty name";
           row-gap: 3px;
         column-gap: 2px;  
       }
+      .item-a img{
+        width: 200px;
+        height: 110px;
+      }
+      .item-c{
+        width: 200px;
+        height: 70px;
+      }
+      .item-e{
+        width: 100px;
+        height: 50px;
+      }
     }
-    @media screen and (min-width:500px) and (max-width:800px){
+    @media screen and (min-width:610px) and (max-width:800px){
         .container {
+            width: 610px !important;
             display: grid;
-            margin:2% 10% auto 10%;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-            grid-template-columns: 150px 250px 200px;
-            grid-template-rows: 100px 80px 90px;
+            grid-template-columns: 250px 150px 200px;
+            grid-template-rows: 50px 100px 50px;
             grid-template-areas: 
-              "image complition complition"
-              "prize title title"
-              "emty date name"
+              "img progress progress"
+              "img title title"
+              "rate emty name"
               ;
               row-gap: 3px;
             column-gap: 2px;  
           }
+          .item-a img{
+            width: 250px;
+            height: 140px;
+          }
+          .item-c{
+            width: 350px;
+            height: 100px;
+          }
+          .item-e{
+            width: 200px;
+            height: 50px;
+          }
         }
-  @media screen and (min-width:800px) {
-    .container {
+  @media screen and (min-width:810px) {
+    .container{
+        width: 810px !important;
         display: grid;
-        margin:2% 10% auto 10%;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        grid-template-columns: 250px 150px 450px;
-        grid-template-rows: 100px 80px 90px;
+        grid-template-columns: 250px 150px 400px;
+        grid-template-rows: 50px 100px 50px;
         grid-template-areas: 
-          "image complition complition"
-          "prize title title"
-          "emty date name"
+          "img progress progress"
+          "img title title"
+          "rate emty name"
           ;
           row-gap: 3px;
         column-gap: 2px;  
+      }
+      .item-c{
+        width: 550px;
+        height: 100px;
+      }
+      .item-e{
+        width: 400px;
+        height: 50px;
       }
 
   }

@@ -1,5 +1,5 @@
+import hashlib
 from django.shortcuts import render, redirect, HttpResponse
-import googleapiclient.discovery
 from django.contrib import messages
 from datetime import date
 from django.db.models import F
@@ -7,10 +7,11 @@ from django.db.models import F
 from course.forms import UploadForm
 from course.models import Course, Course_skills
 from faculty.models import Faculty
+from faculty.views import getFacultyData
 from institute.models import Institute
 from student.models import Enrolls, Rates, Student, Wishlist
 
-from python_files import video_duration, playlist_duration
+from python_files import playlist_duration
 
 # Create your views here.
 def unenrolled(request, c_id):
@@ -26,7 +27,7 @@ def unenrolled(request, c_id):
         faculty = f
 
     for i in Institute.objects.raw('''
-        SELECT i_id, i_name, I.image, I.email, website
+        SELECT *
         FROM institute_institute I, faculty_faculty F
         WHERE F.f_id = %s and F.i_id_id = I.i_id;''', [faculty.f_id]):
         institute = i
@@ -45,93 +46,53 @@ def unenrolled(request, c_id):
         WHERE R.c_id_id = %s and S.s_id = R.s_id_id''', [c_id]):
         rates.append(r)
 
-    return render(request, 'unenrolled.html', {'course': course, 'faculty': faculty, 'institute': institute, 'skills': skills, 'rates': rates})
+    d = {'course': course, 'faculty': faculty, 'institute': institute, 'skills': skills, 'rates': rates}
 
-
-def enrolled(request, c_id):
-    api_key = 'AIzaSyAThwinMHqAPzectaIrV7-RdL8wkrpfLa0'
-    course = Course.objects.get(pk=c_id)
-    playlistid = course.playlistid
-    #playlistid = 'PLsyeobzWxl7poL9JTVyndKe62ieoN-MZ3'
-
-    service = googleapiclient.discovery.build("youtube", "v3", developerKey = api_key)
-
-    rqt = service.playlistItems().list(
-        part = 'snippet, contentDetails',
-        maxResults = 50,
-        playlistId = playlistid,
-    )
-
-    res = rqt.execute()
-
-    if 'nextPageToken' in res:
-        token = res.get('nextPageToken')
-
-    while ('nextPageToken' in res):
-        rqt1 = service.playlistItems().list(
-            part = 'snippet, contentDetails',
-            maxResults = 50,
-            playlistId = playlistid,
-            pageToken = token,
-        )
-        res1 = rqt1.execute()
-
-        res['items'] = res['items'] + res1['items']
-
-        if 'nextPageToken' not in res1:
-            res.pop('nextPageToken', None)
-        else:
-            token = res1['nextPageToken']
-
-    vid_ids = []
-    data = []
-    dura = []
-
-    index = 0
-
-    for i in res["items"]:
-        dictionary = {}
-
-        if index % 50 == 0:
-            temp = video_duration.duration(vid_ids)
-            dura.extend(temp)
-            vid_ids.clear()
-
-        vid_ids.append(i["contentDetails"]["videoId"])
-
-        dictionary["vidId"] = i["contentDetails"]["videoId"]
-        dictionary["title"] = i["snippet"]["title"]
-        dictionary["desc"]  = i["snippet"]["description"]
-        dictionary["image"] = i["snippet"]["thumbnails"]["medium"]["url"]
-        dictionary['index'] = index
-
-        data.append(dictionary)
-
-        index = index + 1
+    s_id = 0
+    if 's_id' in request.COOKIES:
+        s_id = request.COOKIES['s_id']
+    else:
+        d.update({'free': True})
     
-    temp = video_duration.duration(vid_ids)
-    dura.extend(temp)
-    vid_ids.clear()
+    if s_id != 0:
+        student = Student.objects.get(s_id=s_id)
+        if student.i_id_id == institute.i_id:
+            d.update({'free': True})
 
-    # getting the list of watched videos
-    s_id = int(request.COOKIES['s_id'])
+    return render(request, 'unenrolled.html', d)
 
-    st = ''
-    for c in Enrolls.objects.raw(
-    ''' SELECT *
-        FROM student_enrolls
-        WHERE s_id_id = %s and c_id_id = %s''', [s_id, c_id]):
-        st = c.watched
+def getCourseData(c_id):
+    course = Course.objects.get(c_id=c_id)
+
+    Course.objects.filter(c_id=c_id).update(total_views=F('total_views') + 1)
+
+    for f in Faculty.objects.raw('''
+        SELECT f_id, f_name, qualification, F.image
+        FROM faculty_faculty F, course_course C
+        WHERE C.c_id = %s and C.f_id_id = F.f_id;''', [c_id]):
+        faculty = f
+
+    for i in Institute.objects.raw('''
+        SELECT *
+        FROM institute_institute I, faculty_faculty F
+        WHERE F.f_id = %s and F.i_id_id = I.i_id;''', [faculty.f_id]):
+        institute = i
+
+    skills = []
+    for s in Course_skills.objects.raw('''
+        SELECT id, skills
+        FROM course_course_skills
+        WHERE c_id_id = %s;''',[c_id]):
+        skills.append(s)
     
-    list = []
-    if len(st) > 0:
-        list = st.split(',')
-    for i in range(len(list)):
-        list[i] = int(list[i])
-
-    zipped_data = zip(data, dura)
+    rates = []
+    for r in Rates.objects.raw('''
+        SELECT R.id, R.rating, R.desc, S.s_name, S.image
+        FROM student_rates R, student_student S
+        WHERE R.c_id_id = %s and S.s_id = R.s_id_id''', [c_id]):
+        rates.append(r)
     
-    return render(request, 'course.html', {'z_data': zipped_data, 'data': data, 'course': course, 'watched': list})
+    return {'course': course, 'faculty': faculty, 'institute': institute, 'skills': skills, 'rates': rates}
 
 
 def watched(request, c_id, index):
@@ -162,23 +123,26 @@ def upload(request):
         req = request.POST.copy()
 
         playlistid = req['playlistid']
-        dict = playlist_duration.duration(playlistid)
-        req['duration'] = dict['duration']
-        req['no_videos'] = dict['no_videos']
+        req['duration'] = '00:00:00'
+        req['no_videos'] = 0
+        if playlistid != '':
+            dict = playlist_duration.duration(playlistid)
+            req['duration'] = dict['duration']
+            req['no_videos'] = dict['no_videos']
 
         today = date.today()
         req['date'] = today
 
         f_id = request.COOKIES['f_id']
-        req.update( {'f_id': f_id} )
+        req['f_id'] = f_id
 
         skills = req['skills']
         skill_list = skills.split(',')
         req.pop('skills')
 
-        course = UploadForm(req, request.FILES)
-        if course.is_valid():
-            course.save()
+        form = UploadForm(req, request.FILES)
+        if form.is_valid():
+            form.save()
 
             c_id = Course.objects.latest('c_id')
 
@@ -186,40 +150,15 @@ def upload(request):
                 obj = Course_skills(skills=skill, c_id=c_id)
                 obj.save()
 
-            return redirect('explore')
+            return redirect('faculty')
         else:
-            messages.error(request, "Something is wrong")
-        return render(request, 'upload.html')
+            f_id = request.COOKIES['f_id']
+            d = getFacultyData(f_id)
 
-    else:
-        return render(request, 'upload.html')
+            d.update({'form': form})
 
-    
-def wish(request, c_id):
-    s_id = 0
-    s_pass = ''
+            return render(request, 'faculty.html', d)
 
-    if 's_id' in request.COOKIES:
-        s_id = int(request.COOKIES['s_id'])
-        s_pass = request.COOKIES['passw']
-    else:
-        return redirect('login1')
-
-    passw = ''
-    if s_id != 0:
-        s = Student.objects.get(s_id=s_id)
-        passw = s.password
-    
-    if s_pass != passw:
-        return redirect('login1')
-    else:
-        s = Student.objects.get(s_id=s_id)
-        c = Course.objects.get(c_id=c_id)
-    
-        wished = Wishlist.objects.create(s_id=s, c_id=c)
-        wished.save()
-
-    return redirect('wishlist')
 
 def enroll(request, c_id):
     s_id = 0
@@ -239,11 +178,24 @@ def enroll(request, c_id):
     if s_pass != passw:
         return redirect('login1')
     else:
-        s = Student.objects.get(s_id=s_id)
-        c = Course.objects.get(c_id=c_id)
-    
-        enroll = Enrolls.objects.create(s_id=s, c_id=c)
-        enroll.save()
+        record = Enrolls.objects.filter(c_id_id=c_id, s_id_id=s_id)
+
+        if record.exists():
+            pass
+        else:
+            s = Student.objects.get(s_id=s_id)
+            s_i_id = s.i_id_id
+
+            c = Course.objects.get(c_id=c_id)
+            f_id = c.f_id_id
+            f = Faculty.objects.get(f_id=f_id)
+            f_i_id = f.i_id_id
+        
+            if s_i_id == f_i_id:
+                enroll = Enrolls.objects.create(s_id=s, c_id=c)
+                enroll.save()
+            else:
+                return redirect('paymentinfo', c_id=c_id)
 
     return redirect('mycourses')
 
