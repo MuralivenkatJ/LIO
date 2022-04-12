@@ -17,9 +17,10 @@
     float: none;
     padding: 10px;
     grid-template-areas: "Course_name Course_name Time"
-                         "Faculty_name Student_name Date";
+                         "Faculty_name Student_name Date"
+                         "Approv Approv Approv";
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 2fr 1fr;
+    grid-template-rows: 2fr 1fr 2fr;
     grid-row: 5px;
     grid-column: 5px;
 }
@@ -43,6 +44,21 @@
     text-align: center;
     grid-area: Date;
 }
+.Approv{
+    padding: 20px;
+    text-align: center;
+    grid-area: Approv;
+}
+.ApprovButton{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
 
 @media screen and (max-width:600px){
     .card {
@@ -65,9 +81,10 @@
        
         grid-template-areas: "Course_name Course_name "
                              "Faculty_name Student_name "
-                            "Time Date";
+                            "Time Date"
+                            "Approv Approv";
         grid-template-columns: 1fr 1fr ;
-        grid-template-rows: 2fr 1fr 1fr;
+        grid-template-rows: 2fr 1fr 1fr 1fr;
         row-gap: 2px;
        
     }
@@ -92,5 +109,19 @@
         margin-top: 8px;
         text-align: center;
         grid-area: Date;
+    }
+    .Approv{
+        text-align: center;
+        grid-area: Approv;
+    }
+    .ApprovButton{
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 5px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
     }
 }
