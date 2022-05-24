@@ -50,9 +50,12 @@ function loadScript() {
 window.onYouTubePlayerAPIReady = function() {
     // console.log("youtube player api is ready");
 };
+
+
 function onYouTubePlayer(videoId)
 {
-    console.log(typeof(YT.Player));
+    console.log(typeof(YT.player));
+
     player = new YT.Player("player", {
         videoId: videoId,
         playerVars: {
@@ -320,15 +323,15 @@ function controlsOn(e)
 }
 
 // CONTROLS OFF
-let previous = document.getElementById("previous10s");
+let previous = document.getElementsByClassName("previous10s")[0];
 previous.addEventListener('click', function(e){
     controlsOff(e);
 });
-let pause = document.getElementById("pauseplay");
+let pause = document.getElementsByClassName("pauseplay")[0];
 pause.addEventListener('click', function(e){
     controlsOff(e);
 });
-let next = document.getElementById("next10s");
+let next = document.getElementsByClassName("next10s")[0];
 next.addEventListener('click', function(e){
     controlsOff(e);
 });

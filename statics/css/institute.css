@@ -10,12 +10,16 @@
 }
 .container1{
     display: grid;
+    align-items: center;
+    justify-items: center;
+
     float: none;
     padding: 10px;
     grid-template-areas: "Course_name Course_name Time"
-                         "Faculty_name Student_name Date";
+                         "Faculty_name Student_name Date"
+                         "btn btn btn";
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 2fr 1fr;
+    grid-template-rows: 2fr 1fr auto;
     grid-row: 5px;
     grid-column: 5px;
 }
@@ -38,6 +42,9 @@
 .Date{
     text-align: center;
     grid-area: Date;
+}
+.btn{
+    grid-area: btn;
 }
 
 @media screen and (max-width:600px){

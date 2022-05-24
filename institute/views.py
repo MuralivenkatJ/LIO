@@ -3,6 +3,8 @@ import os
 from stat import S_IFDIR
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.core.mail import send_mail
+
 from course.models import Course
 from explore.views import getExploreData
 from faculty.models import Faculty
@@ -17,6 +19,16 @@ def register(request):
     if request.method == 'POST':
         password = request.POST.get('password')
         cpassword = request.POST.get('cpassword')
+
+        try:
+            i = Institute.objects.get(email=request.POST.get('email'))
+            messages.error(request, "An account has already been created with this mail id")
+            d = getExploreData()
+            d.update({'top': 's3'})
+            return render(request, 'explore.html', d)
+        except Institute.DoesNotExist:
+            pass
+
         if password != cpassword:
             messages.error(request, "Password didn't match")
             d = getExploreData()
@@ -112,7 +124,21 @@ def approvals(request):
 
     list = zip(list1, list2)
 
-    return render(request, 'institute.html', {'i_id': i_id, 'i_name': i_name, 'profile': profile, 'list': list})
+    list3 = []
+    for f in Faculty.objects.raw(
+        ''' select *
+            from faculty_faculty
+            where status = "Pending" and i_id_id = %s;''', [i_id]):
+        list3.append(f)
+
+    list4 = []
+    for s in Student.objects.raw(
+        '''select *
+           from student_student
+           where status = "Pending" and i_id_id = %s;''', [i_id]):
+        list4.append(s)
+
+    return render(request, 'institute.html', {'i_id': i_id, 'i_name': i_name, 'profile': profile, 'list': list, 'list3': list3, 'list4': list4})
 
 
 def screenshot(request, id):
@@ -163,6 +189,8 @@ def approve(request, id):
     s = Student.objects.get(s_id=approval.s_id_id)
     c = Course.objects.get(c_id=approval.c_id_id)
 
+    output = send_mail(f'Enrolled for the course {c.c_name}', f'Hello {s.s_name}, \n\n\tCongratulations, you are enrolled for {c.c_name}. Happy learning. \n\nOur Best Wishes, \nTeam LIO', 'liolearnitonline@gmail.com', [s.email], fail_silently=False,)
+
     enroll = Enrolls.objects.create(s_id=s, c_id=c)
     enroll.save()
 
@@ -174,3 +202,21 @@ def approve(request, id):
     approval.delete()
 
     return redirect('approvals')
+
+
+def approve2(request, id):
+
+    Faculty.objects.filter(f_id=id).update(status="Verified")
+
+    return redirect('approvals')
+
+def approve3(request, id):
+
+    Student.objects.filter(s_id=id).update(status="Verified")
+
+    s = Student.objects.get(s_id=id)
+    i = Institute.objects.get(i_id=s.i_id_id)
+    output = send_mail('Institute Verification', f'Hello {s.s_name}, \n\n\tYou are verified by the your institution {i.i_name}. Now you can enroll all the courses of {i.i_name} for free. \n\nBest Wishes, \nTeam LIO', 'liolearnitonline@gmail.com', [s.email], fail_silently=False,)
+
+    return redirect('approvals')
+

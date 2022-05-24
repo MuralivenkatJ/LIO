@@ -14,6 +14,7 @@ class Student(models.Model):
     image = models.ImageField(upload_to='media/student', default='student/default.jpg')
     password = models.CharField(max_length=200)
     i_id = models.ForeignKey(Institute, on_delete=models.CASCADE)
+    status = models.CharField(max_length=20, default="Pending")
 
     courses = models.ManyToManyField(Course, related_name='courses', through='Enrolls')
     ratings = models.ManyToManyField(Course, related_name='ratings', through='Rates')

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.core.mail import send_mail
 
 from python_files import video_duration, playlist_duration
 import googleapiclient.discovery
@@ -53,6 +54,11 @@ def mycourses(request):
                 total = c.no_videos
                 per = int(length / total * 100)
                 watched.append(per)
+
+                if(per == 100):
+                    output = send_mail(f'Completion of the course {c.c_name}', f'Congratulations, you have completed the course {c.c_name}. Keep going and happy learning. \n\nOur Best Wishes, \nTeam LIO', 'liolearnitonline@gmail.com', [s.email], fail_silently=False,)
+
+                    Enrolls.objects.filter(id=e.id).update(status="completed")
         
         data = zip(course, watched)
 

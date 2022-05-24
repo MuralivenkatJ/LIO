@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 from datetime import date
 from django.db.models import F
+from django.core.mail import send_mail
 
 from course.forms import UploadForm
 from course.models import Course, Course_skills
@@ -56,7 +57,7 @@ def unenrolled(request, c_id):
     
     if s_id != 0:
         student = Student.objects.get(s_id=s_id)
-        if student.i_id_id == institute.i_id:
+        if student.i_id_id == institute.i_id and student.status=="Verified":
             d.update({'free': True})
 
     return render(request, 'unenrolled.html', d)
@@ -136,6 +137,9 @@ def upload(request):
         f_id = request.COOKIES['f_id']
         req['f_id'] = f_id
 
+        f = Faculty.objects.get(f_id=f_id)
+        status = f.status
+
         skills = req['skills']
         skill_list = skills.split(',')
         req.pop('skills')
@@ -155,7 +159,7 @@ def upload(request):
             f_id = request.COOKIES['f_id']
             d = getFacultyData(f_id)
 
-            d.update({'form': form})
+            d.update({'form': form, 'status': status})
 
             return render(request, 'faculty.html', d)
 
@@ -185,13 +189,17 @@ def enroll(request, c_id):
         else:
             s = Student.objects.get(s_id=s_id)
             s_i_id = s.i_id_id
+            status = s.status
 
             c = Course.objects.get(c_id=c_id)
             f_id = c.f_id_id
             f = Faculty.objects.get(f_id=f_id)
             f_i_id = f.i_id_id
         
-            if s_i_id == f_i_id:
+            if s_i_id == f_i_id and status == "Verified":
+
+                output = send_mail(f'Enrolled for the course {c.c_name}', f'Hello {s.s_name}, \n\n\tCongratulations, you are enrolled for {c.c_name}. Happy learning. \n\nOur Best Wishes, \nTeam LIO', 'liolearnitonline@gmail.com', [s.email], fail_silently=False,)
+
                 enroll = Enrolls.objects.create(s_id=s, c_id=c)
                 enroll.save()
             else:

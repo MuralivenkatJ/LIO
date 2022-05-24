@@ -42,6 +42,16 @@ def register(request):
     if request.method == 'POST':
         password = request.POST.get('password')
         cpassword = request.POST.get('cpassword')
+
+        try:
+            f = Faculty.objects.get(email=request.POST.get('email'))
+            messages.error(request, "An account has already been created with this mail id")
+            d = getExploreData()
+            d.update({'top': 's2'})
+            return render(request, 'explore.html', d)
+        except Faculty.DoesNotExist:
+            pass
+
         if password != cpassword:
             messages.error(request, "Password didn't match")
             d = getExploreData()
@@ -84,11 +94,13 @@ def faculty(request):
     passw = ''
     f_name = ''
     profile = ''
+    status = ''
     if f_id != 0:
         f = Faculty.objects.get(f_id=f_id)
         passw = f.password
         f_name = f.f_name
         profile = f.image
+        status = f.status
 
     if f_pass != passw:
         return redirect('login2')
@@ -117,7 +129,7 @@ def faculty(request):
 
     zippedData = zip(course, number)
 
-    return render(request, 'faculty.html', {'f_name': f_name, 'profile': profile, 'course': zippedData})
+    return render(request, 'faculty.html', {'f_name': f_name, 'profile': profile, 'course': zippedData, 'status': status})
 
 
 def getFacultyData(f_id):

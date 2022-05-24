@@ -217,3 +217,7 @@ def query1(request, str):
 
     return render(request, 'search.html', {'course': course})
 
+
+def profile(request):
+    return render(request, 'profile.html')
+

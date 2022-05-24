@@ -129,6 +129,7 @@
     <div class="screen" style="z-index: -1"></div>
 
     <!-- UPLOAD FORM -->
+    {% if status == "Verified" %}
     <div class="grid-cont">
         <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data" class="grid">
     
@@ -185,6 +186,15 @@
             <div class="empty1"></div>
         </form>
     </div>
+    {% else %}
+    <div class="error-cont grid-cont" id="error_cont" style="z-index: 5;">
+        <div class="errors w3-border w3-round-large w3-hover-shadow w3-red w3-text-black" onclick="error()">
+            <span style="font-weight: 800;">&#x26A0; ERROR &#x26A0;</span> 
+            <br/>
+            <p>You Are Not Verified Yet!</p>
+        </div>
+    </div>
+    {% endif %}
 
 
     <!-- ERRORS -->

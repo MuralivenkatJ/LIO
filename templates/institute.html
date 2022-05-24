@@ -80,13 +80,43 @@
         <div class="card w3-border w3-round-large w3-hover-shadow">
             <div class="container1">
                 <div class="Course_name">Course Name :- {{b.c_name}} </div>
-                <div class="Faculty_name">Faculty Name :- {{b.f_name}} S </div>
+                <div class="Faculty_name">Faculty Name :- {{b.f_name}} </div>
                 <div class="Student_name">Student Name :- {{b.s_name}} </div>
                 <div class="Time">Time :- {{a.time}} </div>
                 <div class="Date">Date :- {{a.date}} </div>
             </div>
         </div>
     </a>
+    {% endfor %}
+
+    {% for f in list3 %}
+    <div class="card w3-border w3-round-large w3-hover-shadow">
+        <div class="container1">
+            <div class="Course_name">Faculty Name :- {{f.f_name}} </div>
+            <div class="Faculty_name">Phone number :- {{f.phone}} </div>
+            <div class="Student_name">email id :- {{f.email}} </div>
+            <div class="Time"></div>
+            <div class="Date"></div>
+            <div class="btn">
+                <a href="{% url 'approve2' f.f_id %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn">approve</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    {% for s in list4 %}
+    <div class="card w3-border w3-round-large w3-hover-shadow">
+        <div class="container1">
+            <div class="Course_name">Student Name :- {{s.s_name}} </div>
+            <div class="Faculty_name">Phone number :- {{s.phone}} </div>
+            <div class="Student_name">email id :- {{s.email}} </div>
+            <div class="Time"></div>
+            <div class="Date"></div>
+            <div class="btn">
+                <a href="{% url 'approve3' s.s_id %}" class="w3-bar-item w3-hide-small w3-hover-black with w3-hover-opacity bar-item w3-margin-left w3-border w3-btn">approve</a>
+            </div>
+        </div>
+    </div>
     {% endfor %}
 
     <script src="{% static 'js/nav.js' %}"></script>
